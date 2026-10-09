@@ -1097,6 +1097,60 @@ kbd{display:inline-grid;place-items:center;min-width:28px;height:28px;padding:0 
 @media (max-width:640px){.clips{flex-wrap:wrap;gap:8px}.clip{flex:0 0 calc(50% - 4px)!important}.clip video{aspect-ratio:1/1;object-fit:contain}}
 .cmt-blank{height:52px;margin-top:6px!important;background:repeating-linear-gradient(to bottom,transparent 0 16px,var(--line) 16px 17px)}
 
+
+/* 정렬 · 분류 묶음 */
+.gh-right{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+.sorter{display:inline-flex;padding:3px;border-radius:999px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line)}
+.sorter button{min-height:30px;padding:0 12px;border:0;border-radius:999px;background:none;color:var(--muted);font:500 12.5px/1 var(--font-body);cursor:pointer;transition:background .2s,color .2s}
+.sorter button:hover{color:var(--fg)}
+.sorter button[aria-pressed="true"]{background:var(--accent-a14);color:var(--accent)}
+.sorter button[hidden]{display:none}
+.grid-group{grid-column:1/-1;display:flex;align-items:center;gap:10px;margin:14px 0 -4px;font:600 15px/1.3 var(--font-body);color:var(--fg)}
+.grid-group:first-child{margin-top:0}
+.grid-group i{font-style:normal;font-size:11px;color:var(--dim);padding:2px 7px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line)}
+.grid-group::after{content:"";flex:1;height:1px;background:var(--line)}
+@media (max-width:560px){.grid-head{flex-wrap:wrap}.gh-right{width:100%;justify-content:space-between}}
+/* 프로젝트 타임라인 (작업 방식 섹션 안) */
+.ptl{margin-top:80px}
+.ptl-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px 24px;margin-bottom:30px}
+.ptl-head h3{margin:4px 0 0;font:700 clamp(21px,2.4vw,27px)/1.3 var(--font-body)}
+.ptl-head p{margin:0;max-width:40ch;color:var(--muted);font-size:14px}
+.ptl-list{position:relative;list-style:none;margin:0;padding:6px 0;display:grid;gap:18px}
+.ptl-list::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:linear-gradient(var(--line-strong),var(--accent));transform-origin:top}
+.ptl-item{position:relative;width:calc(50% - 36px);margin:0}
+.ptl-item:nth-child(odd){justify-self:start}
+.ptl-item:nth-child(even){justify-self:end}
+.ptl-item::before{content:"";position:absolute;top:26px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--line-strong);box-sizing:border-box}
+.ptl-item:nth-child(odd)::before{right:-43px}
+.ptl-item:nth-child(even)::before{left:-43px}
+.ptl-item::after{content:"";position:absolute;top:32px;width:28px;height:2px;background:var(--line)}
+.ptl-item:nth-child(odd)::after{right:-30px}
+.ptl-item:nth-child(even)::after{left:-30px}
+.ptl-item.now::before{border-color:var(--accent);background:var(--accent);box-shadow:0 0 14px var(--accent-a55)}
+.ptl-card{display:grid;grid-template-columns:140px minmax(0,1fr);gap:14px;align-items:center;padding:12px;border-radius:14px;background:var(--surface);box-shadow:0 0 0 1px var(--line);color:inherit;text-decoration:none;transition:box-shadow .25s var(--ease),transform .25s var(--ease)}
+.ptl-card:hover,.ptl-card:focus-visible{box-shadow:0 0 0 1px var(--accent-a55),0 12px 30px rgba(0,0,0,.35);transform:translateY(-2px)}
+.ptl-card img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:8px;background:var(--surface-2)}
+.ptl-body{display:flex;flex-direction:column;gap:3px;min-width:0}
+.ptl-when{font-size:12px;color:var(--accent)}
+.ptl-body b{font:700 16px/1.35 var(--font-body);color:var(--fg)}
+.ptl-d{font-size:13px;line-height:1.55;color:var(--muted)}
+.ptl-chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+.ptl-chips i{font-style:normal;font-size:11px;padding:2px 8px;border-radius:999px;background:var(--surface-2);color:var(--fg-2)}
+.ptl-chips i.hl{background:var(--gold-a14);color:var(--gold)}
+.motion .ptl-list::before{transition:transform 1.5s var(--ease)}
+.motion .ptl-item{transition:opacity .65s var(--ease),transform .65s var(--ease);transition-delay:calc(var(--i,0)*230ms + 200ms)}
+.motion .ptl.pre .ptl-list::before{transform:scaleY(0)}
+.motion .ptl.pre .ptl-item{opacity:0;transform:translateY(-26px)}
+@media (max-width:760px){
+  .ptl{margin-top:56px}
+  .ptl-list::before{left:7px}
+  .ptl-item,.ptl-item:nth-child(odd),.ptl-item:nth-child(even){width:auto;justify-self:stretch;margin-left:30px}
+  .ptl-item:nth-child(odd)::before,.ptl-item:nth-child(even)::before{left:-30px;right:auto;top:20px}
+  .ptl-item::after{display:none}
+  .ptl-card{grid-template-columns:96px minmax(0,1fr);gap:10px;padding:10px}
+  .ptl-body b{font-size:15px}
+  .ptl-d{font-size:12.5px}
+}
 /* 발전 과정 (세로 단계) */
 .evo{list-style:none;margin:0;padding:0 0 0 24px;position:relative;max-width:880px;display:grid;gap:24px}
 .evo::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--line-strong),var(--accent))}
@@ -1205,7 +1259,7 @@ kbd{display:inline-grid;place-items:center;min-width:28px;height:28px;padding:0 
           <svg class="ch-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="6" cy="7" r="2.2"/><circle cx="18" cy="6" r="2.2"/><circle cx="12" cy="17.5" r="2.2"/><path d="M8.2 6.7l7.6-.5M7.2 9l3.6 6.5M16.9 8l-3.7 7.4"/></svg>
           <span class="ch-big">SYSTEM</span>
           <span class="ch-title">시스템 설계</span>
-          <span class="ch-desc">규칙과 수치를 표와 다이어그램으로 먼저 검증합니다.</span>
+          <span class="ch-desc">센서 · 해킹부터 노드 마법까지, 규칙을 표와 구조도로 먼저 세웁니다.</span>
           <span class="ch-bar" aria-hidden="true"><i></i></span>
         </button>
         <button class="ch-card" type="button" data-mode="1" aria-pressed="false">
@@ -1213,7 +1267,7 @@ kbd{display:inline-grid;place-items:center;min-width:28px;height:28px;padding:0 
           <svg class="ch-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 3v3M12 3v3M15 3v3M9 18v3M12 18v3M15 18v3M3 9h3M3 12h3M3 15h3M18 9h3M18 12h3M18 15h3"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/></svg>
           <span class="ch-big">AI FLOW</span>
           <span class="ch-title">AI 파이프라인</span>
-          <span class="ch-desc">MCP로 엔진과 툴을 연결해 반복 작업을 줄입니다.</span>
+          <span class="ch-desc">md 문서에서 시작해 Claude와 MCP로 언리얼 · 유니티 · 블렌더를 엮습니다.</span>
           <span class="ch-bar" aria-hidden="true"><i></i></span>
         </button>
         <button class="ch-card" type="button" data-mode="2" aria-pressed="false">
@@ -1221,7 +1275,7 @@ kbd{display:inline-grid;place-items:center;min-width:28px;height:28px;padding:0 
           <svg class="ch-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8.5h10a4 4 0 0 1 4 4v1.8a2.4 2.4 0 0 1-4.3 1.5L15 13.6H9l-1.7 2.2A2.4 2.4 0 0 1 3 14.3v-1.8a4 4 0 0 1 4-4z"/><path d="M7.5 10.6v2.8M6.1 12h2.8"/><circle cx="15.6" cy="11.2" r=".6" fill="currentColor"/><circle cx="17.2" cy="12.8" r=".6" fill="currentColor"/></svg>
           <span class="ch-big">PLAYABLE</span>
           <span class="ch-title">빠른 프로토타입</span>
-          <span class="ch-desc">기획 의도를 며칠 안에 플레이 가능한 빌드로 확인합니다.</span>
+          <span class="ch-desc">무박 2일 해커톤부터 한 달 언리얼 MVP까지, 플레이로 증명합니다.</span>
           <span class="ch-bar" aria-hidden="true"><i></i></span>
         </button>
       </div>
@@ -1245,12 +1299,16 @@ kbd{display:inline-grid;place-items:center;min-width:28px;height:28px;padding:0 
         <p>단계마다 남는 파일이 있어서, 누가 봐도 어디까지 왔는지 알 수 있습니다.</p>
       </div>
       <ol class="steps reveal-group">
-        <li class="step"><span class="step-n mono">01</span><h3>규칙 정의</h3><p>핵심 루프와 실패 조건을 한 장으로 정리합니다.</p><span class="out mono">기획서.md</span></li>
-        <li class="step"><span class="step-n mono">02</span><h3>데이터화</h3><p>맵은 엑셀 평면도로, 수치는 표로 옮깁니다.</p><span class="out mono">평면도.xlsx</span></li>
-        <li class="step"><span class="step-n mono">03</span><h3>AI 연결</h3><p>MCP로 엔진과 툴에 반복 작업을 맡깁니다.</p><span class="out mono">AGENTS.md</span></li>
-        <li class="step"><span class="step-n mono">04</span><h3>블록아웃</h3><p>가장 작은 플레이 단위부터 엔진에 올립니다.</p><span class="out mono">L_Prototype_01</span></li>
-        <li class="step"><span class="step-n mono">05</span><h3>검증</h3><p>직접 플레이하고, 문서를 다시 고칩니다.</p><span class="out mono">회고.md</span></li>
+        <li class="step"><span class="step-n mono">01</span><h3>규칙 정의</h3><p>핵심 루프 · 실패 조건 · 세일즈 포인트를 한 장으로 정리합니다.</p><span class="out mono">명세서.md</span></li>
+        <li class="step"><span class="step-n mono">02</span><h3>구조화</h3><p>흐름은 구조도로, 수치는 표로, 동선은 평면도로 옮깁니다.</p><span class="out mono">구조도 · 표</span></li>
+        <li class="step"><span class="step-n mono">03</span><h3>AI 연결</h3><p>규칙 문서 하나로 Claude와 MCP에 엔진 · 툴 작업을 나눠 맡깁니다.</p><span class="out mono">AGENTS.md</span></li>
+        <li class="step"><span class="step-n mono">04</span><h3>블록아웃</h3><p>가장 작은 플레이 단위부터 엔진에 올립니다.</p><span class="out mono">L_Ch01Road</span></li>
+        <li class="step"><span class="step-n mono">05</span><h3>검증</h3><p>직접 플레이하고 비교 캡처로 다음 지시서를 고칩니다.</p><span class="out mono">HANDOFF.md</span></li>
       </ol>
+      <div class="ptl" id="ptl" aria-labelledby="ptlTitle">
+        <div class="ptl-head"><div><p class="eyebrow">Timeline</p><h3 id="ptlTitle">프로젝트 타임라인</h3></div><p>큼직한 프로젝트만 골라 시간순으로 놓았습니다. 누르면 그 프로젝트가 열립니다.</p></div>
+        <ol class="ptl-list" id="ptlList"></ol>
+      </div>
     </div>
   </section>
 
@@ -1272,8 +1330,8 @@ kbd{display:inline-grid;place-items:center;min-width:28px;height:28px;padding:0 
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9L12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11v4.5c0 1.4 2.5 3 5.5 3s5.5-1.6 5.5-3V11M21.5 9v5"/></svg>한국공학대학교</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg><a href="mailto:whitekhs8766@tukorea.ac.kr">whitekhs8766@tukorea.ac.kr</a></li>
           </ul>
-          <p class="ch-focus">시스템 설계, AI 프로토타이핑, 테크니컬 기획 <a class="ch-more" href="#channel" data-open="about">정보 더보기<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a></p>
-          <ul class="tags"><li>테크니컬 게임 기획</li><li>레벨 디자인</li><li>AI 워크플로우</li><li>UI</li></ul>
+          <p class="ch-focus">시스템 · 레벨 흐름 기획, AI 하네스 파이프라인, 빠른 프로토타입 <a class="ch-more" href="#channel" data-open="about">정보 더보기<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a></p>
+          <ul class="tags"><li>테크니컬 게임 기획</li><li>시스템 기획</li><li>레벨 흐름</li><li>AI 하네스</li><li>PM</li><li>게임 분석</li></ul>
           <a class="ch-award" href="#p-seoil-hackathon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8.5 20h7M10 17h4"/></svg><b>대상</b><span>AI 써먹는 인디게임 챌린지 2026 해커톤</span></a>
           <a class="ch-link" href="https://github.com/Lottesand" target="_blank" rel="noopener">github.com/Lottesand</a>
         </div>
@@ -1298,7 +1356,7 @@ kbd{display:inline-grid;place-items:center;min-width:28px;height:28px;padding:0 
       </div>
 
       <div id="panelGrid" role="tabpanel" aria-labelledby="gridTitle">
-        <div class="grid-head"><h3 id="gridTitle">프로젝트 케이스 스터디</h3><span class="count" id="count"></span></div>
+        <div class="grid-head"><h3 id="gridTitle">프로젝트 케이스 스터디</h3><div class="gh-right"><div class="sorter" id="sorter" role="group" aria-label="정렬"><button type="button" data-sort="new" aria-pressed="true">최신순</button><button type="button" data-sort="old" aria-pressed="false">오래된순</button><button type="button" data-sort="cat" aria-pressed="false">분류별</button></div><span class="count" id="count"></span></div></div>
         <div class="grid reveal-group" id="grid"></div>
         <p class="empty" id="empty" hidden></p>
       </div>
@@ -1307,7 +1365,7 @@ kbd{display:inline-grid;place-items:center;min-width:28px;height:28px;padding:0 
         <div>
           <h3>소개</h3>
           <p class="ap-lead">기획서로 끝내지 않고 플레이로 확인합니다.</p>
-          <p>시스템 설계와 AI 프로토타이핑을 함께 하는 테크니컬 게임 기획자입니다. 시스템 규칙을 표와 다이어그램으로 먼저 정리하고, AI 도구로 엔진과 툴을 연결해 며칠 안에 직접 플레이해 봅니다. 문서와 빌드가 같은 속도로 움직이게 만드는 것이 제 일의 방식입니다.</p>
+          <p>시스템 기획과 AI 파이프라인을 함께 하는 테크니컬 게임 기획자입니다. 규칙을 문서 · 표 · 구조도로 먼저 세우고, md 문서에서 시작해 Claude와 MCP로 언리얼 · 유니티 · 블렌더를 엮어 직접 플레이로 확인합니다. 무박 2일 해커톤 멀티플레이 게임부터 한 달짜리 언리얼 MVP까지, 문서와 빌드가 같은 속도로 움직이게 만드는 것이 제 방식입니다.</p>
           <h3>자격 · 수료</h3>
           <ul class="certs">
             <li class="cert"><span class="c-badge">수료</span><span class="c-body"><b>Google AI Professional Certificate</b><small>Coursera · Google · 7개 코스 · 학교 연계 과정</small></span><span class="c-end"><span class="c-date mono">2026.07</span><a class="c-verify" href="https://coursera.org/verify/professional-cert/PHVUTEBANONG" target="_blank" rel="noopener">검증</a></span></li>
@@ -1318,9 +1376,9 @@ kbd{display:inline-grid;place-items:center;min-width:28px;height:28px;padding:0 
           </ul>
           <h3>툴킷</h3>
           <div class="toolkit">
-            <div class="tk"><h4>엔진 · 구현</h4><ul><li>Unreal Engine 5</li><li>Unity 6</li><li>C++ · Win32 API</li><li>UMG</li><li>블루프린트</li></ul></div>
-            <div class="tk"><h4>AI 도구</h4><ul><li>Claude Code</li><li>Gemini CLI</li><li>Unreal MCP</li><li>Unity MCP</li><li>Blender MCP</li><li>Meshy</li></ul></div>
-            <div class="tk"><h4>기획 · 협업</h4><ul><li>엑셀 레벨 평면도</li><li>Markdown 기획서</li><li>GitHub</li><li>Diversion</li></ul></div>
+            <div class="tk"><h4>엔진 · 구현</h4><ul><li>Unreal Engine 5</li><li>Unity 6 · Netcode</li><li>C++ · Win32 API</li><li>Python</li><li>웹 · Firestore</li></ul></div>
+            <div class="tk"><h4>AI 도구</h4><ul><li>Claude Code</li><li>Unreal MCP</li><li>Unity MCP</li><li>Blender MCP</li><li>Meshy 7</li><li>Gemini CLI · API</li><li>Cursor</li></ul></div>
+            <div class="tk"><h4>기획 · 협업</h4><ul><li>AGENTS.md · 명세서</li><li>PowerPoint 기획서</li><li>Figma</li><li>Notion</li><li>GitHub · Diversion</li></ul></div>
             <div class="tk"><h4>아트 · 사운드</h4><ul><li>Photoshop</li><li>PowerPoint</li><li>Ableton</li><li>Splice</li></ul></div>
           </div>
         </div>
@@ -1488,9 +1546,9 @@ const chImg = (f, w, h, cap) => ({ src: `media/chime/img/${f}.webp`, w, h, cap }
 const chShot = (i, cap) => ({ src: `media/chime/shots/${pad2(i)}.webp`, w: 1600, h: 900, cap });
 const PROJECTS = [
   {
-    id: 'chime', cat: ['ai', 'proto'], type: 'soon', len: 'MVP 데모', badge: 'UE5', real: true, cover: 'media/chime/cover.webp',
+    id: 'chime', cat: ['ai', 'system', 'proto'], type: 'soon', len: 'MVP 데모', badge: 'UE5', real: true, cover: 'media/chime/cover.webp',
     title: 'CHIME | AI 파이프라인으로 한 달 만에 만든 AAA 지향 언리얼 스텔스 해킹 데모',
-    tool: 'Unreal Engine 5 · Claude Code · Blender · Meshy 7', meta2: '2인 팀 · PM · 개발 환경 · 게임 흐름 기획 · 2026.09–10',
+    tool: 'UE5 · Claude Code · MCP · Meshy 7', meta2: '2인 팀 · PM · 개발 환경 · 게임 흐름 기획 · 2026.09–10',
     date: '2026.09–10', period: '2인 팀 · 약 1개월 · MVP 완성',
     tags: ['UnrealEngine5', 'AAA', 'ClaudeCode', 'UnrealMCP', 'BlenderMCP', 'Meshy', '하네스엔지니어링', 'PM', '레벨흐름기획', '스텔스', '해킹'],
     media: [
@@ -1816,6 +1874,7 @@ const PROJECTS = [
     id: 'ip-series', cat: 'analysis', type: 'pdf', len: '3편', badge: 'SERIES', real: true, cover: 'media/ip-series/cover.webp',
     title: 'IP-메카닉 정렬 시리즈 | 선(先) IP · 포켓몬스터 분석, 그리고 직접 만들기',
     tool: 'PDF 발표 · Vercel · Firestore', meta2: '분석 2편 + 동서남북 웹게임 기획 · 프로토타입',
+    date: '2026.07–08',
     tags: ['IP분석', '선IP', '코어루프', '포켓몬스터', '미디어믹스', '동서남북', '웹게임', 'Firestore'],
     media: [
       { label: '1편 · 선 IP 설계', type: 'pdf', dir: 'sun-ip', count: 21, len: '21쪽', fullThumbs: true },
@@ -2204,7 +2263,7 @@ const Screen = (() => {
   const theater = $('#theater'), group = $('#channels'), cards = $$('.ch-card', group);
   const K = 0.1, M = 5, AUTO = 7000, LOCK = 20000, SWITCH = 300;
   const NAMES = ['CH 01 · SYSTEM DESIGN', 'CH 02 · AI WORKFLOW', 'CH 03 · PLAYABLE'];
-  const HINTS = ['노드에 마우스를 올리면 연결된 규칙이 켜집니다', '왼쪽 파일을 클릭하면 작업을 더 보냅니다', '클릭하거나 드래그해서 벽을 세워 보세요'];
+  const HINTS = ['노드에 마우스를 올리면 연결된 규칙이 켜집니다', '왼쪽 문서를 누르면 Claude에게 작업을 더 보냅니다', '클릭하거나 드래그해서 벽을 세워, 순찰 시야를 막아 보세요'];
   let W = 0, H = 0, Hs = 0, Hd = 0, Wd = 0, dpr = 1;
   let mode = 0, switchAt = -1e9, nextAuto = 0, lockUntil = 0, last = 0;
   let running = false, onScreen = true, paused = false, raf = 0, pending = false, lastDraw = 0;
@@ -2218,8 +2277,8 @@ const Screen = (() => {
 
   /* --- 장면 1: 시스템 노드 그래프 --- */
   const sys = (() => {
-    const N = [['탐지', .38, .26], ['경보', .53, .14], ['전투', .68, .26], ['해킹', .30, .54], ['은신', .17, .34], ['이동', .11, .68], ['레벨', .27, .84], ['퀘스트', .47, .74], ['대화', .64, .88], ['보상', .62, .53], ['성장', .80, .64], ['경제', .87, .34]];
-    const E = [[0, 1], [1, 2], [3, 0], [4, 0], [5, 4], [5, 6], [6, 7], [7, 9], [8, 7], [3, 9], [2, 9], [9, 10], [10, 11], [11, 9], [10, 2], [3, 7]];
+    const N = [['센서', .38, .26], ['경보', .53, .14], ['전투', .68, .26], ['해킹', .30, .54], ['은신', .17, .34], ['이동', .11, .68], ['레벨 흐름', .27, .84], ['탐색 · 파밍', .47, .74], ['인벤토리', .64, .88], ['보상', .62, .53], ['어빌리티', .80, .64], ['마법 노드', .87, .34]];
+    const E = [[0, 1], [1, 2], [3, 0], [4, 0], [5, 4], [5, 6], [6, 7], [7, 9], [8, 7], [3, 9], [2, 9], [9, 10], [10, 11], [11, 2], [10, 2], [3, 7], [8, 10]];
     const adj = N.map(() => new Set()); E.forEach(([a, b]) => { adj[a].add(b); adj[b].add(a); });
     const P = N.map(() => ({ x: 0, y: 0 })), rip = []; let hover = -1;
     return {
@@ -2260,39 +2319,41 @@ const Screen = (() => {
     };
   })();
 
-  /* --- 장면 2: AI 파이프라인 --- */
+  /* --- 장면 2: AI 파이프라인 — md 문서에서 시작해 Claude + MCP로 엔진 · 툴을 엮는 실제 흐름 (CHIME · 해커톤 · 도구 프로젝트) --- */
   const ai = (() => {
-    const SRC = ['기획서.md', '평면도.xlsx', '레퍼런스'], DST = ['Unreal 5', 'Blender', 'Meshy'];
+    const SRC = ['AGENTS.md', '명세서.md', 'HANDOFF.md'], DST = ['Unreal 5', 'Unity 6', 'Blender', 'Meshy 7'];
+    const NS = SRC.length, HUB = NS, D0 = NS + 1, ND = DST.length;
     let B = [], LI = [], LO = [], pk = [], count = 128, lastSpawn = 0, hover = -1;
-    const flash = new Float32Array(7);
+    const flash = new Float32Array(NS + 1 + ND);
     const lane = (x0, y0, x1, y1) => { const d = (x1 - x0) * .5; return [x0, y0, x0 + d, y0, x1 - d, y1, x1, y1]; };
     const bez = (l, t) => { const u = 1 - t, a = u * u * u, b = 3 * u * u * t, c = 3 * u * t * t, d = t * t * t; return [a * l[0] + b * l[2] + c * l[4] + d * l[6], a * l[1] + b * l[3] + c * l[5] + d * l[7]]; };
-    const spawn = src => { if (pk.length < 70) pk.push({ s: src, d: (Math.random() * 3) | 0, st: 0, p: 0, v: .55 + Math.random() * .45 }); };
+    const spawn = src => { if (pk.length < 70) pk.push({ s: src, d: (Math.random() * ND) | 0, st: 0, p: 0, v: .55 + Math.random() * .45 }); };
+    const col = (n, i) => .5 + (i - (n - 1) / 2) * (n > 3 ? .19 : .22);
     return {
       resize() {
-        const bw = Math.max(76, Math.min(132, W * .145)), bh = Math.max(22, Math.min(36, H * .095));
+        const bw = Math.max(76, Math.min(132, W * .145)), bh = Math.max(20, Math.min(34, H * .088));
         B = [];
-        SRC.forEach((l, i) => B.push({ l, x: W * .16, y: H * (.32 + i * .22), w: bw, h: bh }));
-        B.push({ l: 'Claude Code', sub: 'MCP 허브', x: W * .5, y: H * .54, w: bw * 1.3, h: bh * 1.75, hub: true });
-        DST.forEach((l, i) => B.push({ l, x: W * .84, y: H * (.32 + i * .22), w: bw, h: bh }));
-        const h = B[3];
-        LI = [0, 1, 2].map(i => lane(B[i].x + B[i].w / 2, B[i].y, h.x - h.w / 2, h.y));
-        LO = [4, 5, 6].map(i => lane(h.x + h.w / 2, h.y, B[i].x - B[i].w / 2, B[i].y));
+        SRC.forEach((l, i) => B.push({ l, x: W * .16, y: H * (col(NS, i) + .04), w: bw, h: bh }));
+        B.push({ l: 'Claude', sub: 'Code · MCP 허브', x: W * .5, y: H * .54, w: bw * 1.3, h: bh * 1.8, hub: true });
+        DST.forEach((l, i) => B.push({ l, x: W * .84, y: H * (col(ND, i) + .04), w: bw, h: bh }));
+        const h = B[HUB];
+        LI = SRC.map((_, i) => lane(B[i].x + B[i].w / 2, B[i].y, h.x - h.w / 2, h.y));
+        LO = DST.map((_, i) => lane(h.x + h.w / 2, h.y, B[D0 + i].x - B[D0 + i].w / 2, B[D0 + i].y));
       },
       draw(t, now, dt) {
         const s = sc();
         hover = -1;
         if (ptr.inside) B.forEach((b, i) => { if (Math.abs(ptr.x - b.x) < b.w / 2 + 4 && Math.abs(ptr.y - b.y) < b.h / 2 + 4) hover = i; });
         if (!reduced) {
-          const hs = hover >= 0 && hover < 3, iv = hs ? 90 : 240;
-          if (now - lastSpawn > iv) { lastSpawn = now; spawn(hs ? hover : (Math.random() * 3) | 0); }
+          const hs = hover >= 0 && hover < NS, iv = hs ? 90 : 240;
+          if (now - lastSpawn > iv) { lastSpawn = now; spawn(hs ? hover : (Math.random() * NS) | 0); }
           for (let i = pk.length - 1; i >= 0; i--) {
             const q = pk[i]; q.p += dt / 1000 * q.v;
-            if (q.p >= 1) { if (q.st === 0) { q.st = 1; q.p = 0; flash[3] = 1; } else { flash[4 + q.d] = 1; count++; pk.splice(i, 1); } }
+            if (q.p >= 1) { if (q.st === 0) { q.st = 1; q.p = 0; flash[HUB] = 1; } else { flash[D0 + q.d] = 1; count++; pk.splice(i, 1); } }
           }
-          for (let i = 0; i < 7; i++) flash[i] = Math.max(0, flash[i] - dt / 500);
+          for (let i = 0; i < flash.length; i++) flash[i] = Math.max(0, flash[i] - dt / 500);
         }
-        const on = (k, i) => hover < 0 ? false : hover === 3 || (k === 0 ? hover === i : hover === 4 + i);
+        const on = (k, i) => hover < 0 ? false : hover === HUB || (k === 0 ? hover === i : hover === D0 + i);
         [LI, LO].forEach((arr, k) => arr.forEach((l, i) => {
           const h = on(k, i); o.strokeStyle = h ? 'rgba(61,242,201,.75)' : 'rgba(61,242,201,.18)'; o.lineWidth = h ? 1.6 : 1;
           o.beginPath(); o.moveTo(l[0], l[1]); o.bezierCurveTo(l[2], l[3], l[4], l[5], l[6], l[7]); o.stroke();
@@ -2301,25 +2362,25 @@ const Screen = (() => {
           const l = q.st === 0 ? LI[q.s] : LO[q.d];
           for (let k = 3; k >= 0; k--) { const [x, y] = bez(l, Math.max(0, q.p - k * .025)); o.fillStyle = k ? `rgba(61,242,201,${.5 - k * .12})` : '#d8fff4'; o.beginPath(); o.arc(x, y, (k ? 2 : 2.8) * s, 0, TAU); o.fill(); }
         });
-        const h = B[3], pulse = Math.sin(t * .003);
-        o.strokeStyle = `rgba(61,242,201,${.16 + flash[3] * .45})`; o.lineWidth = 1;
+        const h = B[HUB], pulse = Math.sin(t * .003);
+        o.strokeStyle = `rgba(61,242,201,${.16 + flash[HUB] * .45})`; o.lineWidth = 1;
         o.beginPath(); o.ellipse(h.x, h.y, h.w * .78 + pulse * 4, h.h * .95 + pulse * 3, 0, 0, TAU); o.stroke();
         B.forEach((b, i) => {
           const hv = hover === i, f = flash[i];
           rrect(o, b.x - b.w / 2, b.y - b.h / 2, b.w, b.h, 6 * s); o.fillStyle = b.hub ? '#0f2a26' : '#0c1817'; o.fill();
           o.strokeStyle = `rgba(61,242,201,${hv ? 1 : .35 + f * .6})`; o.lineWidth = hv || b.hub ? 1.5 : 1; o.stroke();
           o.textAlign = 'center';
-          o.font = `${b.hub ? 700 : 500} ${Math.round((b.hub ? 14 : 11.5) * s)}px ${b.hub ? F.disp : F.kr}`;
+          o.font = `${b.hub ? 700 : 500} ${Math.round((b.hub ? 15 : 11.5) * s)}px ${b.hub ? F.disp : i < NS && !/[가-힣]/.test(b.l) ? F.mono : F.kr}`;
           o.fillStyle = b.hub ? '#3df2c9' : hv ? '#ffffff' : 'rgba(232,241,239,.85)';
-          o.fillText(b.l, b.x, b.y + (b.hub ? -1 : 4) * s);
+          o.fillText(b.l, b.x, b.y + (b.hub ? -2 : 4) * s);
           if (b.sub) { o.font = `500 ${Math.round(10 * s)}px ${F.kr}`; o.fillStyle = 'rgba(232,241,239,.55)'; o.fillText(b.sub, b.x, b.y + 14 * s); }
         });
         o.font = `500 ${Math.round(10 * s)}px ${F.mono}`; o.fillStyle = 'rgba(232,241,239,.4)';
-        o.fillText('INPUT', B[0].x, B[0].y - B[0].h / 2 - 9 * s); o.fillText('TOOLS', B[4].x, B[4].y - B[4].h / 2 - 9 * s);
+        o.fillText('DOCS', B[0].x, B[0].y - B[0].h / 2 - 9 * s); o.fillText('ENGINE · TOOLS', B[D0].x, B[D0].y - B[D0].h / 2 - 9 * s);
         o.textAlign = 'right'; o.font = `500 ${Math.round(11 * s)}px ${F.mono}`; o.fillStyle = 'rgba(61,242,201,.85)';
         o.fillText('TASKS ' + String(count).padStart(4, '0'), W * .94, H - 14); o.textAlign = 'left';
       },
-      down() { const src = hover >= 0 && hover < 3 ? hover : -1; for (let i = 0; i < 5; i++) spawn(src >= 0 ? src : (Math.random() * 3) | 0); }
+      down() { const src = hover >= 0 && hover < NS ? hover : -1; for (let i = 0; i < 5; i++) spawn(src >= 0 ? src : (Math.random() * NS) | 0); }
     };
   })();
 
@@ -2576,11 +2637,34 @@ function cardHTML(p, i) {
       <span class="card-meta"><span class="card-cat">${catName(p)}</span> · ${p.tool}</span>
       <span class="card-meta">${p.meta2 || [p.role, p.period, p.date].filter(Boolean).join(' · ')}</span></span></a>`;
 }
+// 정렬: 최신순(끝난 달 기준) · 오래된순(시작한 달 기준) · 분류별(홈에서만, 두 분류 이상인 프로젝트는 각 분류에 모두 나옴)
+let sortMode = 'new';
+try { const v = localStorage.getItem('pt-sort'); if (v === 'new' || v === 'old' || v === 'cat') sortMode = v; } catch (e) {}
+const ym = (y, m) => +y * 12 + (+m - 1);
+function span(p) {
+  const d = (p.date || '').trim(), all = [...d.matchAll(/(\d{4})\.(\d{2})/g)];
+  if (!all.length) return [0, 0];
+  const s = ym(all[0][1], all[0][2]), r = /^(\d{4})\.(\d{2})\s*[–-]\s*(\d{2})$/.exec(d);
+  return [s, r ? ym(r[1], r[3]) : ym(all[all.length - 1][1], all[all.length - 1][2])];
+}
+const byDate = dir => (a, b) => { const A = span(a), B = span(b); return dir < 0 ? (B[1] - A[1] || B[0] - A[0]) : (A[0] - B[0] || A[1] - B[1]); };
 function renderGrid(animate) {
   const q = query.trim().toLowerCase();
-  const list = PROJECTS.filter(p => (activeTab === 'all' || catsOf(p).includes(activeTab)) &&
+  let list = PROJECTS.filter(p => (activeTab === 'all' || catsOf(p).includes(activeTab)) &&
     (!q || [p.title, p.tool, p.summary, p.tags.join(' ')].join(' ').toLowerCase().includes(q)));
-  grid.innerHTML = list.map(cardHTML).join('');
+  const mode = sortMode === 'cat' && activeTab !== 'all' ? 'new' : sortMode;
+  if (mode === 'cat') {
+    let k = 0, html = '';
+    Object.keys(CATS).forEach(c => {
+      const g = list.filter(p => catsOf(p).includes(c)).sort(byDate(-1)); if (!g.length) return;
+      html += `<h4 class="grid-group"><span>${CATS[c]}</span><i class="mono">${g.length}</i></h4>` + g.map(p => cardHTML(p, k++)).join('');
+    });
+    grid.innerHTML = html;
+  } else {
+    list = list.slice().sort(byDate(mode === 'old' ? 1 : -1));
+    grid.innerHTML = list.map(cardHTML).join('');
+  }
+  $$('#sorter button').forEach(b => { b.setAttribute('aria-pressed', String(b.dataset.sort === mode)); b.hidden = b.dataset.sort === 'cat' && activeTab !== 'all'; });
   if (animate && !reduced) $$('.card', grid).forEach(c => c.classList.add('pop'));
   emptyEl.hidden = list.length > 0;
   if (!list.length) emptyEl.textContent = q ? `‘${query.trim()}’와 맞는 프로젝트가 없습니다.` : '이 분류에는 아직 프로젝트가 없습니다.';
@@ -2624,8 +2708,31 @@ function setupChannel() {
     const y = $('#panelAbout').getBoundingClientRect().top + window.scrollY - $('#nav').offsetHeight - $('.tabs-row').offsetHeight - 16;
     window.scrollTo({ top: Math.max(0, y), behavior: reduced ? 'auto' : 'smooth' });
   });
+  $('#sorter').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b || b.dataset.sort === sortMode) return;
+    sortMode = b.dataset.sort; try { localStorage.setItem('pt-sort', sortMode); } catch (err) {}
+    renderGrid(true);
+  });
   window.addEventListener('resize', moveInd);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(moveInd);
+}
+
+/* 작업 방식 아래 프로젝트 타임라인 — 큼직한 프로젝트만, 보이면 선이 내려오고 항목이 차례로 떨어진다 */
+const TIMELINE = [
+  { id: 'luxmea', when: '2023.04 – 06', t: 'LUX MEA · 기획서 201장', d: '1장에서 201장까지, 색 마법과 노드식 마법 제작을 혼자 기획', chips: ['시스템 기획', 'PowerPoint'] },
+  { id: 'katana-zero', when: '2026.05 – 06', t: 'Katana Zero Rebirth', d: 'Gemini CLI로 만든 Win32 API 2D 액션 모작 — 스레드 로딩 · 색 충돌맵', chips: ['CLI로 개발', 'C++ · Win32 API'] },
+  { id: 'subivors', when: '2026.07 – 09', t: 'SUBIVORS', d: '첫 5인 팀 · 첫 메인 기획, 실제 서울 지하철역을 답사해 무대로', chips: ['팀 기획', 'Figma · Notion'] },
+  { id: 'seoil-hackathon', when: '2026.09.05 – 06', t: '뜻밖의난관 · 해커톤 대상', d: 'Claude와 Unity를 MCP로 가장 먼저 연결해 무박 2일 만에 멀티플레이 완성', chips: [{ t: '대상', hl: true }, 'Claude + Unity MCP'] },
+  { id: 'chime', when: '2026.09 – 10', t: 'CHIME · AAA를 향한 한 달', d: '대상 부상 Claude 한 달로 AI 3종 파이프라인을 엮어 언리얼 MVP 완성', chips: ['MVP 완성', 'Unreal · Blender MCP · Meshy'] }
+];
+function setupTimeline() {
+  const box = $('#ptl'), list = $('#ptlList'); if (!box || !list) return;
+  list.innerHTML = TIMELINE.map((t, i) => { const p = byId[t.id]; return `<li class="ptl-item${i === TIMELINE.length - 1 ? ' now' : ''}" style="--i:${i}"><a class="ptl-card" href="#p-${t.id}"><img src="${p.cover}" alt="" loading="lazy" width="640" height="360"><span class="ptl-body"><span class="ptl-when mono">${t.when}</span><b>${t.t}</b><span class="ptl-d">${t.d}</span><span class="ptl-chips">${t.chips.map(c => typeof c === 'string' ? `<i>${c}</i>` : `<i class="hl">${c.t}</i>`).join('')}</span></span></a></li>`; }).join('');
+  if (reduced || !('IntersectionObserver' in window)) return;
+  if (box.getBoundingClientRect().top < window.innerHeight * .85) return;
+  box.classList.add('pre');
+  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { box.classList.remove('pre'); io.disconnect(); } }), { rootMargin: '0px 0px -12% 0px', threshold: .05 });
+  io.observe(box);
 }
 
 let toastT = 0;
@@ -4348,6 +4455,7 @@ $$('[data-pc="n"]').forEach(el => { el.textContent = PROJECTS.length; });
 $$('[data-pc="break"]').forEach(el => { el.textContent = `${PROJECTS.length}개 (${Object.keys(CATS).map(k => `${CATS[k]} ${PROJECTS.filter(p => catsOf(p).includes(k)).length}`).join(' · ')})`; });
 renderGrid(false);
 setupChannel();
+setupTimeline();
 moveInd();
 setupContact();
 setupNav();
