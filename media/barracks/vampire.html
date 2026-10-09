@@ -1,0 +1,2610 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vampire Survivors Lite - The Barracks</title>
+    <style>
+        /* ===== Base Styles ===== */
+        :root {
+            --bg: #0b0f14;
+            --ink: #eaf0f6;
+            --accent: #71d2ff;
+            --danger: #ff6b6b;
+            --good: #9bff8a;
+            --ui-bg: #0e1723;
+            --border-color: #223142;
+            --button-bg: #122034;
+            --button-border: #2a3c51;
+        }
+        html, body { height: 100%; }
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Helvetica, Arial, sans-serif;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            user-select: none;
+        }
+        button {
+            pointer-events: auto;
+            cursor: pointer;
+            border: 1px solid var(--button-border);
+            background: var(--button-bg);
+            color: var(--ink);
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+        button:hover { filter: brightness(1.2); }
+        button:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+            filter: grayscale(0.5);
+        }
+        input {
+            background: #10161f;
+            border: 1px solid #1f2a37;
+            padding: 12px;
+            border-radius: 8px;
+            color: var(--ink);
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .screen {
+            width: 100%;
+            height: 100%;
+            display: none;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+        .screen.active { display: block; }
+        #auth-screen, #profile-setup-screen { display: none; place-items: center; }
+        #auth-screen.active, #profile-setup-screen.active { display: grid; }
+
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: grid;
+            place-items: center;
+            z-index: 100;
+        }
+        .modal-content {
+            background: var(--ui-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            width: min(420px, 90%);
+            box-shadow: 0 20px 40px rgba(0,0,0,.35);
+        }
+        .form-container {
+            width: min(400px, 100%);
+            background: rgba(10, 14, 20, .85);
+            border: 1px solid var(--border-color);
+            padding: 32px;
+            border-radius: 16px;
+            text-align: center;
+        }
+        .form-container h2 { margin: 0 0 24px; }
+        .form-group { margin-bottom: 16px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 6px; font-size: 14px; opacity: 0.8; }
+        .form-actions { display: flex; gap: 12px; margin-top: 24px; }
+        .form-actions button { width: 100%; }
+        .message { margin-top: 16px; color: var(--danger); font-size: 14px; min-height: 20px; }
+
+        /* ===== Main Menu Screen ===== */
+        #main-menu-screen {
+            display: none;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #main-menu-screen.active { display: flex; }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .profile-display { display: flex; align-items: center; gap: 16px; }
+        .profile-info { font-size: 18px; opacity: 0.9; }
+        .profile-info span { font-weight: 600; }
+        .currency-display { display: flex; gap: 24px; text-align: right; }
+        .currency-display div { font-size: 20px; font-weight: bold; }
+        .currency-display span { font-weight: normal; font-size: 16px; opacity: 0.8; }
+        #display-gold { color: #ffd700; }
+        #display-highscore { color: var(--accent); }
+
+        .bottom-container { display: flex; justify-content: space-between; align-items: flex-end; width: 100%; }
+        .main-menu-buttons { display: flex; gap: 16px; }
+        
+        #play-btn {
+            font-size: 28px;
+            padding: 20px 40px;
+            border-radius: 16px;
+            background: linear-gradient(45deg, var(--accent), #4aa2ff);
+            color: #0b0f14;
+            border: none;
+            box-shadow: 0 8px 20px rgba(113, 210, 255, 0.3);
+        }
+        #shop-btn {
+            font-size: 28px;
+            padding: 20px 40px;
+            border-radius: 16px;
+        }
+        #settings-btn { font-size: 14px; padding: 8px 12px; }
+
+        /* ===== Ranking ===== */
+        .ranking-container {
+            background: rgba(10, 14, 20, .8);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 16px;
+            width: min(350px, 40%);
+        }
+        .ranking-container h3 { margin: 0 0 16px; text-align: center; color: var(--accent); }
+        .ranking-list { list-style: none; padding: 0; margin: 0; }
+        .ranking-item { display: flex; justify-content: space-between; padding: 8px 4px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .ranking-item:last-child { border-bottom: none; }
+        .ranking-item .rank { font-weight: bold; width: 30px; }
+        .ranking-item .name { flex-grow: 1; opacity: 0.9; }
+        .ranking-item .score { font-weight: bold; color: var(--good); }
+
+        /* ===== Shop Screen ===== */
+        #shop-screen {
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            height: 100%;
+        }
+        #shop-screen.active { display: flex; }
+        .shop-layout {
+            display: grid;
+            grid-template-columns: 3fr 7fr;
+            gap: 20px;
+            width: 100%;
+            height: calc(100% - 60px);
+        }
+        .shop-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .shop-panel {
+            background: rgba(10, 14, 20, .8);
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            border-radius: 16px;
+            overflow-y: auto;
+        }
+        .shop-panel h3 { margin: 0 0 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color); color: var(--accent); }
+        .stat-display-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 16px; }
+        .stat-display-row .label { opacity: 0.8; }
+        .stat-display-row .value { font-weight: 600; }
+        .upgrade-item {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            align-items: center;
+            gap: 16px;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            background: #0c131c;
+        }
+        .upgrade-info .name { font-size: 16px; font-weight: 600; }
+        .upgrade-info .level { font-size: 13px; opacity: 0.7; }
+        .upgrade-cost { font-weight: 600; color: #ffd700; }
+        .upgrade-btn { padding: 8px 16px; font-size: 14px; }
+
+        /* ===== Game Container ===== */
+        #game-container { display: none; }
+        #game-container.active { display: block; width: 100%; height: 100%;}
+        .wrap{width:100%; max-width:1100px; padding:20px; box-sizing:border-box; margin: auto;}
+        header{display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;}
+        header h1 {font-size: clamp(18px, 2vw, 22px); margin:0; opacity:.9}
+        .controls{opacity:.8; font-size:12px}
+        .controls kbd{background:#11161c; border:1px solid #1f2a37; padding:2px 6px; border-radius:6px; margin:0 2px;}
+        .stage{position:relative; width:100%; aspect-ratio:16/9; background:#0e1319; border:1px solid #1f2a37; border-radius:16px; overflow:hidden; box-shadow:0 20px 40px rgba(0,0,0,.35); transition: transform 0.1s ease-out, background-color 0.5s ease;}
+        .stage.shake { transform: translate(3px, -2px); }
+        canvas{width:100%; height:100%; display:block; image-rendering: pixelated; image-rendering: optimizeSpeed;}
+        .hud{position:absolute; inset:0; pointer-events:none;}
+        .row{display:flex; gap:8px; align-items:center}
+        .health-row { position: relative; }
+        #hpText {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 10px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 1px 1px 2px #000;
+        }
+        .top{position:absolute; top:12px; left:12px; right:12px; display:flex; justify-content:space-between; align-items:center}
+        .chip{background:#10161f; border:1px solid #1f2a37; padding:6px 10px; border-radius:999px; font-size:12px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.02)}
+        #room-objective { font-size: 16px; font-weight: bold; color: var(--accent); text-shadow: 1px 1px 3px #000;}
+        .bar{position:relative; width:260px; height:10px; background:#0b1016; border:1px solid #1f2a37; border-radius:999px; overflow:hidden}
+        .hp{background:linear-gradient(90deg, #ff8484, #ff3b3b)}
+        .xp{background:linear-gradient(90deg, #6af1a4, #4bd6ff)}
+        .fill{position:absolute; inset:0 100% 0 0}
+        .center{position:absolute; inset:0; display:grid; place-items:center}
+        .menu{pointer-events:auto; background:rgba(10,14,20,.85); backdrop-filter: blur(6px); border:1px solid #223142; padding:24px; border-radius:16px; max-width:560px; text-align:center;}
+        .menu h2{margin:0 0 8px;}
+        .menu p{opacity:.85}
+        .menu .btns{display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-top:16px}
+        .lvlup{position:absolute; inset:0; display:none; place-items:center; z-index: 10;}
+        .card{background:#0e1723; border:1px solid #24425e; padding:16px; border-radius:16px; width:min(520px, 92%);}
+        .opts{display:grid; gap:8px; margin-top:10px}
+        .opt{display:flex; justify-content:space-between; align-items:center; padding:10px; background:#0c131c; border:1px solid #1f2e40; border-radius:12px; pointer-events:auto; cursor:pointer}
+        .opt:hover{filter:brightness(1.06)}
+        .opt.evolved { border-color: var(--good); background: #132a2d; }
+        .muted{opacity:.85}
+        #player-damage-overlay { position: absolute; inset: 0; background: var(--danger); opacity: 0; pointer-events: none; transition: opacity 0.3s ease-out;}
+        .stats-panel {
+            display: none; position: absolute; top: 12px; left: 12px; pointer-events: auto; z-index: 20;
+            background: rgba(10, 14, 20, .92); backdrop-filter: blur(6px); border: 1px solid #223142;
+            padding: 16px; border-radius: 16px; width: min(340px, 90%); font-size: 13px; line-height: 1.7;
+            max-height: calc(100% - 32px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+        }
+        .stats-panel h4 { margin: 0 0 10px; font-size: 15px; border-bottom: 1px solid #223142; padding-bottom: 8px; }
+        .stats-panel .stat-row { display: flex; justify-content: space-between; opacity: .9; }
+        .stats-panel .stat-row .value { font-weight: 600; color: var(--accent); }
+
+        #minimap-container {
+            position: absolute;
+            top: 50px;
+            right: 12px;
+            border: 1px solid var(--border-color);
+            background: rgba(14, 23, 35, 0.85);
+            border-radius: 8px;
+            padding: 4px;
+        }
+
+        #full-map-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(11, 15, 20, 0.88);
+            backdrop-filter: blur(4px);
+            display: none;
+            place-items: center;
+            z-index: 50;
+        }
+        #full-map-overlay.active { display: grid; }
+
+        #dev-panel {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            background: var(--ui-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 8px;
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 100;
+            pointer-events: auto;
+        }
+        #dev-panel.active { display: flex; }
+        #dev-panel button { font-size: 12px; padding: 4px 8px; }
+    </style>
+</head>
+<body>
+
+    <!-- Auth Screen -->
+    <div id="auth-screen" class="screen active">
+        <form class="form-container">
+            <h2 id="auth-title">로그인</h2>
+            <div class="form-group">
+                <label for="username">아이디</label>
+                <input type="text" id="username" name="username">
+            </div>
+            <div class="form-group">
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div class="message" id="auth-message"></div>
+            <div class="form-actions">
+                <button id="auth-submit-btn" type="submit">로그인</button>
+                <button id="auth-toggle-btn" type="button">회원가입</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- First Time Profile Setup Screen -->
+    <div id="profile-setup-screen" class="screen">
+        <div class="form-container">
+            <h2>프로필 설정</h2>
+            <p style="opacity:0.8; margin:-16px 0 24px;">최초 접속 시 한 번만 설정합니다.</p>
+            <div class="form-group">
+                <label for="profile-company">중대</label>
+                <input type="text" id="profile-company" placeholder="예: 1중대">
+            </div>
+            <div class="form-group">
+                <label for="profile-rank">계급</label>
+                <input type="text" id="profile-rank" placeholder="예: 일병">
+            </div>
+            <div class="form-group">
+                <label for="profile-name">성명</label>
+                <input type="text" id="profile-name" placeholder="예: 홍길동">
+            </div>
+            <div class="message" id="profile-message"></div>
+            <div class="form-actions">
+                <button id="profile-save-btn">저장하고 시작하기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Menu Screen -->
+    <div id="main-menu-screen" class="screen">
+        <div class="top-bar">
+            <div class="profile-display">
+                <div class="profile-info">
+                    <span id="display-company"></span> / <span id="display-rank"></span> <strong id="display-name"></strong>
+                </div>
+                <button id="settings-btn">⚙️ 설정</button>
+            </div>
+            <div class="currency-display">
+                <div id="display-highscore"><span>최고 기록</span><br>0</div>
+                <div id="display-gold"><span>골드</span><br>💰 0</div>
+            </div>
+        </div>
+        <div class="bottom-container">
+            <div class="ranking-container">
+                <h3>🏆 TOP 5 랭킹</h3>
+                <ul class="ranking-list" id="ranking-list">
+                    <!-- Ranking items inserted via JS -->
+                </ul>
+            </div>
+            <div class="main-menu-buttons">
+                <button id="shop-btn">상점</button>
+                <button id="play-btn">플레이</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shop Screen -->
+    <div id="shop-screen" class="screen">
+        <div class="shop-header">
+            <h2>상점</h2>
+            <button id="shop-back-btn">메인 메뉴로</button>
+        </div>
+        <div class="shop-layout">
+            <div class="shop-panel" id="shop-stats-panel"></div>
+            <div class="shop-panel" id="shop-items-panel">
+                <h3>스탯 업그레이드</h3>
+                <div id="shop-upgrades-list"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal-backdrop" style="display: none;">
+        <div class="modal-content">
+            <h2>설정</h2>
+            <div class="form-group">
+                <label for="edit-company">중대</label>
+                <input type="text" id="edit-company">
+            </div>
+            <div class="form-group">
+                <label for="edit-rank">계급</label>
+                <input type="text" id="edit-rank">
+            </div>
+            <div class="form-group">
+                <label for="edit-name">성명</label>
+                <input type="text" id="edit-name">
+            </div>
+            <div class="form-group">
+                <label>사운드</label>
+                <button id="mute-toggle-btn" style="width: 100%;">음소거</button>
+            </div>
+            <div class="modal-actions">
+                <button id="delete-account-btn">회원탈퇴</button>
+                <div style="display: flex; gap: 8px;">
+                    <button id="logout-btn">로그아웃</button>
+                    <button id="settings-close-btn" style="background: none; border-color: #555;">닫기</button>
+                    <button id="settings-save-btn">저장</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="unsaved-alert" class="modal-backdrop" style="display: none;">
+        <div class="modal-content" style="text-align: center;">
+            <h3>저장되지 않은 변경사항이 있습니다.</h3>
+            <p style="opacity: 0.8; margin-bottom: 24px;">저장하지 않고 닫으시겠습니까?</p>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+                <button id="unsaved-discard-btn">닫기</button>
+                <button id="unsaved-save-btn">저장 후 닫기</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="alert-modal" class="modal-backdrop" style="display: none;">
+        <div class="modal-content" style="text-align: center;">
+            <h3 id="alert-title">알림</h3>
+            <p id="alert-message" style="opacity: 0.8; margin-bottom: 24px;"></p>
+            <div style="display: flex; justify-content: center;">
+                <button id="alert-ok-btn">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="delete-confirm-modal" class="modal-backdrop" style="display: none;">
+        <div class="modal-content" style="text-align: center;">
+            <h3>회원탈퇴</h3>
+            <p style="opacity: 0.8; margin-bottom: 24px;">정말로 회원탈퇴 하시겠습니까?<br>모든 데이터가 영구적으로 삭제됩니다.</p>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+                <button id="delete-cancel-btn" style="background: none; border-color: #555;">취소</button>
+                <button id="delete-confirm-btn" style="background: var(--danger); border-color: #ff8a8a;">탈퇴</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Container -->
+    <div id="game-container">
+        <div class="wrap">
+             <header>
+                 <h1>Vampire Survivors Lite - Stage <span id="stage-level-display">1</span></h1>
+                 <div class="controls">
+                     이동 <kbd>WASD</kbd>/<kbd>←↑→↓</kbd> · 일시정지 <kbd>P</kbd> · 스탯 <kbd>I</kbd> · 지도 <kbd>TAB</kbd>
+                 </div>
+             </header>
+            <div class="stage">
+                <div id="player-damage-overlay"></div>
+                <canvas id="game" width="960" height="540"></canvas>
+                <div class="hud">
+                    <div class="top">
+                        <div class="row health-row" aria-label="health">
+                            <span class="chip">HP</span>
+                            <div class="bar">
+                                <div class="fill hp" id="hpFill"></div>
+                                <span id="hpText">100/100</span>
+                            </div>
+                        </div>
+                        <div class="row" aria-label="xp">
+                            <span class="chip" id="room-objective"></span>
+                            <span class="chip">LV <span id="lv">1</span></span>
+                            <div class="bar"><div class="fill xp" id="xpFill"></div></div>
+                            <span class="chip">💀 <span id="kills">0</span></span>
+                            <span class="chip">💰 <span id="gold">0</span></span>
+                        </div>
+                    </div>
+                    <div id="minimap-container">
+                        <canvas id="minimap-canvas" width="120" height="120"></canvas>
+                    </div>
+                    <div id="full-map-overlay">
+                        <canvas id="full-map-canvas" width="360" height="360"></canvas>
+                    </div>
+                    <div class="center">
+                        <div class="menu" id="start-menu"></div>
+                    </div>
+                    <div class="lvlup" id="lvlup">
+                        <div class="card">
+                            <h3>레벨 업!</h3>
+                            <p class="muted">업그레이드를 하나 고르세요</p>
+                            <div class="opts" id="lvlOpts"></div>
+                        </div>
+                    </div>
+                    <div class="stats-panel" id="statsPanel"></div>
+                    <div id="dev-panel">
+                        <button id="dev-godmode">God Mode: OFF</button>
+                        <button id="dev-gold">+1000 Gold</button>
+                        <button id="dev-mastery">Master Weapons</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // =================================================
+        // APP CONTROLLER & AUTHENTICATION
+        // =================================================
+        const app = {
+            currentUser: null,
+            isMuted: false,
+            settingsChanged: false,
+            SHOP_DATA: {
+                stats: {
+                    maxHp: { name: '최대 체력', baseCost: 50, costMultiplier: 1.15, bonusPerLevel: 5, maxLevel: 50, format: (val) => `${val}`},
+                    attack: { name: '공격력', baseCost: 100, costMultiplier: 1.2, bonusPerLevel: 0.01, maxLevel: 50, format: (val) => `+${(val * 100).toFixed(0)}%`},
+                    speed: { name: '이동 속도', baseCost: 75, costMultiplier: 1.18, bonusPerLevel: 0.005, maxLevel: 50, format: (val) => `+${(val * 100).toFixed(1)}%`},
+                    pickup: { name: '자석 범위', baseCost: 40, costMultiplier: 1.12, bonusPerLevel: 3, maxLevel: 50, format: (val) => `+${val}px`},
+                }
+            },
+            
+            init() {
+                this.cacheDOMElements();
+                this.addEventListeners();
+                this.checkLoginStatus();
+            },
+
+            cacheDOMElements() {
+                this.dom = {
+                    screens: {
+                        auth: document.getElementById('auth-screen'),
+                        profileSetup: document.getElementById('profile-setup-screen'),
+                        mainMenu: document.getElementById('main-menu-screen'),
+                        shop: document.getElementById('shop-screen'),
+                        game: document.getElementById('game-container'),
+                    },
+                    auth: {
+                        title: document.getElementById('auth-title'),
+                        form: document.querySelector('#auth-screen .form-container'),
+                        usernameInput: document.getElementById('username'),
+                        passwordInput: document.getElementById('password'),
+                        message: document.getElementById('auth-message'),
+                        submitBtn: document.getElementById('auth-submit-btn'),
+                        toggleBtn: document.getElementById('auth-toggle-btn'),
+                    },
+                    profileSetup: {
+                        companyInput: document.getElementById('profile-company'),
+                        rankInput: document.getElementById('profile-rank'),
+                        nameInput: document.getElementById('profile-name'),
+                        message: document.getElementById('profile-message'),
+                        saveBtn: document.getElementById('profile-save-btn'),
+                    },
+                    mainMenu: {
+                        company: document.getElementById('display-company'),
+                        rank: document.getElementById('display-rank'),
+                        name: document.getElementById('display-name'),
+                        gold: document.querySelector('#display-gold'),
+                        highscore: document.querySelector('#display-highscore'),
+                        rankingList: document.getElementById('ranking-list'),
+                        settingsBtn: document.getElementById('settings-btn'),
+                        playBtn: document.getElementById('play-btn'),
+                        shopBtn: document.getElementById('shop-btn'),
+                    },
+                    shop: {
+                        backBtn: document.getElementById('shop-back-btn'),
+                        statsPanel: document.getElementById('shop-stats-panel'),
+                        upgradesList: document.getElementById('shop-upgrades-list'),
+                    },
+                    settings: {
+                        modal: document.getElementById('settings-modal'),
+                        companyInput: document.getElementById('edit-company'),
+                        rankInput: document.getElementById('edit-rank'),
+                        nameInput: document.getElementById('edit-name'),
+                        muteBtn: document.getElementById('mute-toggle-btn'),
+                        saveBtn: document.getElementById('settings-save-btn'),
+                        closeBtn: document.getElementById('settings-close-btn'),
+                        deleteBtn: document.getElementById('delete-account-btn'),
+                        logoutBtn: document.getElementById('logout-btn'),
+                    },
+                    unsavedAlert: {
+                        modal: document.getElementById('unsaved-alert'),
+                        saveBtn: document.getElementById('unsaved-save-btn'),
+                        discardBtn: document.getElementById('unsaved-discard-btn'),
+                    },
+                    alertModal: {
+                        modal: document.getElementById('alert-modal'),
+                        title: document.getElementById('alert-title'),
+                        message: document.getElementById('alert-message'),
+                        okBtn: document.getElementById('alert-ok-btn'),
+                    },
+                    deleteConfirm: {
+                        modal: document.getElementById('delete-confirm-modal'),
+                        confirmBtn: document.getElementById('delete-confirm-btn'),
+                        cancelBtn: document.getElementById('delete-cancel-btn'),
+                    }
+                };
+            },
+
+            addEventListeners() {
+                this.dom.auth.toggleBtn.addEventListener('click', () => this.toggleAuthMode());
+                this.dom.auth.form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.handleAuthSubmit();
+                });
+                this.dom.profileSetup.saveBtn.addEventListener('click', () => this.handleProfileSave());
+                this.dom.mainMenu.playBtn.addEventListener('click', () => this.startGame());
+                this.dom.mainMenu.shopBtn.addEventListener('click', () => this.enterShop());
+                this.dom.shop.backBtn.addEventListener('click', () => this.enterMainMenu());
+
+                this.dom.mainMenu.settingsBtn.addEventListener('click', () => this.openSettings());
+                this.dom.settings.closeBtn.addEventListener('click', () => this.closeSettings());
+                this.dom.settings.saveBtn.addEventListener('click', () => this.saveSettings());
+                this.dom.settings.deleteBtn.addEventListener('click', () => this.deleteAccount());
+                this.dom.settings.logoutBtn.addEventListener('click', () => this.logout());
+                this.dom.settings.muteBtn.addEventListener('click', () => this.toggleMute());
+                const settingsInputs = [this.dom.settings.companyInput, this.dom.settings.rankInput, this.dom.settings.nameInput];
+                settingsInputs.forEach(input => input.addEventListener('input', () => this.settingsChanged = true));
+                this.dom.unsavedAlert.saveBtn.addEventListener('click', () => {
+                    this.saveSettings();
+                    this.dom.unsavedAlert.modal.style.display = 'none';
+                });
+                this.dom.unsavedAlert.discardBtn.addEventListener('click', () => {
+                    this.dom.settings.modal.style.display = 'none';
+                    this.dom.unsavedAlert.modal.style.display = 'none';
+                });
+                this.dom.alertModal.okBtn.addEventListener('click', () => this.dom.alertModal.modal.style.display = 'none');
+                this.dom.deleteConfirm.cancelBtn.addEventListener('click', () => this.dom.deleteConfirm.modal.style.display = 'none');
+                this.dom.deleteConfirm.confirmBtn.addEventListener('click', () => this.handleDeleteConfirm());
+            },
+
+            showScreen(screenName) {
+                Object.values(this.dom.screens).forEach(screen => screen.classList.remove('active'));
+                if (this.dom.screens[screenName]) {
+                    this.dom.screens[screenName].classList.add('active');
+                }
+            },
+
+            checkLoginStatus() {
+                const lastUser = localStorage.getItem('lastLoggedInUser');
+                if (lastUser) {
+                    this.currentUser = this.getUser(lastUser);
+                    if (this.currentUser) {
+                        this.enterMainMenu();
+                        return;
+                    }
+                }
+                this.showScreen('auth');
+            },
+
+            toggleAuthMode() {
+                const isLogin = this.dom.auth.submitBtn.textContent === '로그인';
+                this.dom.auth.title.textContent = isLogin ? '회원가입' : '로그인';
+                this.dom.auth.submitBtn.textContent = isLogin ? '회원가입' : '로그인';
+                this.dom.auth.toggleBtn.textContent = isLogin ? '로그인하기' : '회원가입';
+                this.dom.auth.message.textContent = '';
+            },
+
+            handleAuthSubmit() {
+                const isLogin = this.dom.auth.submitBtn.textContent === '로그인';
+                if (isLogin) this.login();
+                else this.signup();
+            },
+
+            signup() {
+                const username = this.dom.auth.usernameInput.value.trim();
+                const password = this.dom.auth.passwordInput.value;
+                const messageEl = this.dom.auth.message;
+                if (!username || !password) {
+                    messageEl.textContent = '아이디와 비밀번호를 모두 입력하세요.';
+                    return;
+                }
+                const users = this.getUsers();
+                if (users[username]) {
+                    messageEl.textContent = '이미 존재하는 아이디입니다.';
+                    return;
+                }
+                users[username] = {
+                    password: password,
+                    profile: { company: '', rank: '', name: '' },
+                    gold: 0,
+                    highScore: 0,
+                    upgrades: { maxHp: 0, attack: 0, speed: 0, pickup: 0 }
+                };
+                this.saveUsers(users);
+                messageEl.textContent = '회원가입 성공! 로그인해주세요.';
+                messageEl.style.color = 'var(--good)';
+                this.toggleAuthMode();
+            },
+
+            login() {
+                const username = this.dom.auth.usernameInput.value.trim();
+                const password = this.dom.auth.passwordInput.value;
+                const messageEl = this.dom.auth.message;
+                const user = this.getUser(username);
+                if (user && user.password === password) {
+                    this.currentUser = user;
+                    if (!this.currentUser.upgrades) {
+                        this.currentUser.upgrades = { maxHp: 0, attack: 0, speed: 0, pickup: 0 };
+                        this.updateUser(this.currentUser);
+                    }
+                    this.currentUser.username = username;
+                    localStorage.setItem('lastLoggedInUser', username);
+                    if (!user.profile.name) {
+                        this.showScreen('profileSetup');
+                    } else {
+                        this.enterMainMenu();
+                    }
+                } else {
+                    messageEl.textContent = '아이디 또는 비밀번호가 일치하지 않습니다.';
+                }
+            },
+            
+            logout() {
+                this.currentUser = null;
+                localStorage.removeItem('lastLoggedInUser');
+                this.showScreen('auth');
+                this.dom.settings.modal.style.display = 'none';
+                this.dom.deleteConfirm.modal.style.display = 'none';
+            },
+
+            handleProfileSave() {
+                const company = this.dom.profileSetup.companyInput.value.trim();
+                const rank = this.dom.profileSetup.rankInput.value.trim();
+                const name = this.dom.profileSetup.nameInput.value.trim();
+                if (!company || !rank || !name) {
+                    this.dom.profileSetup.message.textContent = '모든 항목을 입력해주세요.';
+                    return;
+                }
+                this.currentUser.profile = { company, rank, name };
+                this.updateUser(this.currentUser);
+                this.enterMainMenu();
+            },
+
+            enterMainMenu() {
+                this.updateMainMenuUI();
+                this.showScreen('mainMenu');
+            },
+
+            updateMainMenuUI() {
+                if (!this.currentUser) return;
+                const { company, rank, name } = this.currentUser.profile;
+                this.dom.mainMenu.company.textContent = company;
+                this.dom.mainMenu.rank.textContent = rank;
+                this.dom.mainMenu.name.textContent = name;
+                this.dom.mainMenu.gold.innerHTML = `<span>골드</span><br>💰 ${this.currentUser.gold}`;
+                this.dom.mainMenu.highscore.innerHTML = `<span>최고 기록</span><br>${this.currentUser.highScore || 0}`;
+                this.updateRanking();
+            },
+            
+            updateRanking() {
+                const users = this.getUsers();
+                const rankedUsers = Object.values(users)
+                    .filter(u => u.profile && u.profile.name)
+                    .sort((a, b) => (b.highScore || 0) - (a.highScore || 0))
+                    .slice(0, 5);
+                this.dom.mainMenu.rankingList.innerHTML = '';
+                if (rankedUsers.length === 0) {
+                    this.dom.mainMenu.rankingList.innerHTML = `<li style="text-align:center; opacity:0.7;">아직 기록이 없습니다.</li>`;
+                    return;
+                }
+                rankedUsers.forEach((user, index) => {
+                    const li = document.createElement('li');
+                    li.className = 'ranking-item';
+                    li.innerHTML = `
+                        <span class="rank">#${index + 1}</span>
+                        <span class="name">${user.profile.name}</span>
+                        <span class="score">${user.highScore || 0}</span>
+                    `;
+                    this.dom.mainMenu.rankingList.appendChild(li);
+                });
+            },
+
+            openSettings() {
+                this.settingsChanged = false;
+                const { company, rank, name } = this.currentUser.profile;
+                this.dom.settings.companyInput.value = company;
+                this.dom.settings.rankInput.value = rank;
+                this.dom.settings.nameInput.value = name;
+                this.dom.settings.muteBtn.textContent = this.isMuted ? '음소거 해제' : '음소거';
+                this.dom.settings.modal.style.display = 'grid';
+            },
+
+            closeSettings() {
+                if (this.settingsChanged) {
+                    this.dom.unsavedAlert.modal.style.display = 'grid';
+                } else {
+                    this.dom.settings.modal.style.display = 'none';
+                }
+            },
+
+            saveSettings() {
+                const company = this.dom.settings.companyInput.value.trim();
+                const rank = this.dom.settings.rankInput.value.trim();
+                const name = this.dom.settings.nameInput.value.trim();
+                if (!company || !rank || !name) {
+                    this.showAlert("모든 프로필 정보를 입력해야 합니다.");
+                    return;
+                }
+                this.currentUser.profile = { company, rank, name };
+                this.updateUser(this.currentUser);
+                this.updateMainMenuUI();
+                this.settingsChanged = false;
+                this.dom.settings.modal.style.display = 'none';
+            },
+
+            deleteAccount() {
+                this.dom.deleteConfirm.modal.style.display = 'grid';
+            },
+
+            handleDeleteConfirm() {
+                const users = this.getUsers();
+                delete users[this.currentUser.username];
+                this.saveUsers(users);
+                this.logout();
+            },
+
+            toggleMute() {
+                this.isMuted = !this.isMuted;
+                this.dom.settings.muteBtn.textContent = this.isMuted ? '음소거 해제' : '음소거';
+                game.setMute(this.isMuted);
+                this.settingsChanged = true;
+            },
+
+            showAlert(message, title = "알림") {
+                this.dom.alertModal.title.textContent = title;
+                this.dom.alertModal.message.textContent = message;
+                this.dom.alertModal.modal.style.display = 'grid';
+            },
+
+            startGame() {
+                this.showScreen('game');
+                game.start(this.currentUser, this.isMuted, (earnedGold, finalScore) => {
+                    this.currentUser.gold = (this.currentUser.gold || 0) + earnedGold;
+                    if (finalScore > (this.currentUser.highScore || 0)) {
+                        this.currentUser.highScore = finalScore;
+                    }
+                    this.updateUser(this.currentUser);
+                    this.enterMainMenu();
+                });
+            },
+
+            enterShop() {
+                this.renderShop();
+                this.showScreen('shop');
+            },
+            
+            getUpgradeCost(statKey, level) {
+                const statData = this.SHOP_DATA.stats[statKey];
+                return Math.floor(statData.baseCost * Math.pow(statData.costMultiplier, level));
+            },
+
+            renderShop() {
+                const statsPanel = this.dom.shop.statsPanel;
+                const upgrades = this.currentUser.upgrades;
+                let statsHtml = `<h3>플레이어 기본 스탯</h3>`;
+                statsHtml += `<div class="stat-display-row"><span class="label">💰 보유 골드</span> <span class="value">${this.currentUser.gold}</span></div><hr style="border-color: #223142; opacity:0.5; margin: 16px 0;">`;
+
+                for (const key in upgrades) {
+                    const statData = this.SHOP_DATA.stats[key];
+                    const level = upgrades[key];
+                    const bonus = level * statData.bonusPerLevel;
+                    statsHtml += `<div class="stat-display-row">
+                        <span class="label">${statData.name}</span>
+                        <span class="value">${statData.format(bonus)}</span>
+                    </div>`;
+                }
+                statsPanel.innerHTML = statsHtml;
+
+                const upgradesList = this.dom.shop.upgradesList;
+                upgradesList.innerHTML = '';
+                for (const key in upgrades) {
+                    const statData = this.SHOP_DATA.stats[key];
+                    const currentLevel = upgrades[key];
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'upgrade-item';
+
+                    const isMaxLevel = currentLevel >= statData.maxLevel;
+                    const cost = isMaxLevel ? 0 : this.getUpgradeCost(key, currentLevel);
+                    const canAfford = this.currentUser.gold >= cost;
+                    
+                    itemDiv.innerHTML = `
+                        <div class="upgrade-info">
+                            <div class="name">${statData.name}</div>
+                            <div class="level">Lv. ${currentLevel} / ${statData.maxLevel}</div>
+                        </div>
+                        <div class="upgrade-cost">${isMaxLevel ? 'MAX' : `💰 ${cost}`}</div>
+                        <button class="upgrade-btn" data-stat="${key}" ${isMaxLevel || !canAfford ? 'disabled' : ''}>업그레이드</button>
+                    `;
+
+                    if (!isMaxLevel) {
+                       itemDiv.querySelector('.upgrade-btn').addEventListener('click', (e) => {
+                            const statKey = e.target.dataset.stat;
+                            this.purchaseUpgrade(statKey);
+                       });
+                    }
+
+                    upgradesList.appendChild(itemDiv);
+                }
+            },
+
+            purchaseUpgrade(statKey) {
+                const upgrades = this.currentUser.upgrades;
+                const currentLevel = upgrades[statKey];
+                const statData = this.SHOP_DATA.stats[statKey];
+
+                if(currentLevel >= statData.maxLevel) return;
+
+                const cost = this.getUpgradeCost(statKey, currentLevel);
+                if (this.currentUser.gold >= cost) {
+                    this.currentUser.gold -= cost;
+                    upgrades[statKey]++;
+                    this.updateUser(this.currentUser);
+                    this.renderShop();
+                }
+            },
+
+            getUsers() {
+                return JSON.parse(localStorage.getItem('game_users')) || {};
+            },
+            saveUsers(users) {
+                localStorage.setItem('game_users', JSON.stringify(users));
+            },
+            getUser(username) {
+                const users = this.getUsers();
+                if (users[username]) {
+                    users[username].username = username;
+                    return users[username];
+                }
+                return null;
+            },
+            updateUser(user) {
+                const users = this.getUsers();
+                users[user.username] = {
+                    password: user.password,
+                    profile: user.profile,
+                    gold: user.gold,
+                    highScore: user.highScore,
+                    upgrades: user.upgrades,
+                };
+                this.saveUsers(users);
+            }
+        };
+
+        // =================================================
+        // GAME LOGIC (COMPLETE & ERROR-FREE OBJECT)
+        // =================================================
+        const game = {
+            state: {},
+            dom: {},
+            audioCtx: null,
+            masterGain: null,
+            muted: false,
+            onGameEnd: null,
+            wasRunningBeforeStats: false,
+            currentUser: null,
+            MAP_COLORS: ['#0e1319', '#1a0e19', '#19150e', '#0e1910', '#0e1919'],
+
+            DATA: {
+                WEAPONS: {
+                    base: { name: '기본 공격', maxLevel: 3, levels: [ { dmg: 10, fireRate: 0.8, detail: '가장 가까운 적에게 투사체를 발사합니다.' }, { dmg: 15, fireRate: 0.8, detail: '공격력 +5' }, { dmg: 15, fireRate: 0.7, detail: '연사속도 +15%' } ] },
+                    orbiter: { name: '수호 위성', maxLevel: 3, levels: [ { dmg: 15, count: 1, rotSpeed: 2, range: 60, detail: '1개의 위성이 주위를 돕니다.' }, { dmg: 20, count: 2, rotSpeed: 2.2, range: 70, detail: '위성 2개, 범위 증가' }, { dmg: 25, count: 3, rotSpeed: 2.5, range: 80, detail: '위성 3개, 범위/속도 증가' } ] },
+                    lance: { name: '관통 작살', maxLevel: 3, levels: [ { dmg: 25, fireRate: 2.5, pierce: 3, speed: 600, detail: '3초마다 적을 관통하는 작살을 발사합니다.' }, { dmg: 35, fireRate: 2.2, pierce: 4, speed: 600, detail: '공격력/관통 증가, 쿨타임 감소' }, { dmg: 45, fireRate: 2.0, pierce: 5, speed: 600, detail: '공격력/관통 증가, 쿨타임 감소' } ] },
+                    blade: { name: '마력의 칼날', maxLevel: 3, levels: [ { dmg: 20, fireRate: 2.0, count: 1, detail: '2초마다 랜덤한 적에게 칼날을 날립니다.' }, { dmg: 20, fireRate: 1.5, count: 2, detail: '칼날 2개, 쿨타임 감소' }, { dmg: 25, fireRate: 1.5, count: 2, detail: '공격력 증가' } ] },
+                    missile: { name: '유도 미사일', maxLevel: 3, levels: [ { dmg: 40, fireRate: 4.0, speed: 250, turn: 3, detail: '4초마다 HP가 가장 높은 적에게 미사일을 발사합니다.'}, { dmg: 60, fireRate: 3.5, speed: 280, detail: '공격력 증가, 쿨타임 감소'}, { dmg: 80, fireRate: 3.0, speed: 320, detail: '공격력 증가, 쿨타임 감소'} ] }
+                },
+                PASSIVES: {
+                    maxHp: { name: '최대 HP 증가', maxLevel: 3, levels: [ { value: 20, detail: '최대 HP +20' }, { value: 20, detail: '최대 HP +20' }, { value: 20, detail: '최대 HP +20' } ] },
+                    speed: { name: '이동 속도 증가', maxLevel: 3, levels: [ { value: 0.1, detail: '이동 속도 +10%' }, { value: 0.1, detail: '이동 속도 +10%' }, { value: 0.1, detail: '이동 속도 +10%' } ] },
+                    pickup: { name: '자력 범위 증가', maxLevel: 3, levels: [ { value: 40, detail: '자력 범위 +40px' }, { value: 40, detail: '자력 범위 +40px' }, { value: 40, detail: '자력 범위 +40px' } ] },
+                    attack: { name: '공격력 증가', maxLevel: 3, levels: [ { value: 0.1, detail: '모든 공격력 +10%'}, { value: 0.1, detail: '모든 공격력 +10%'}, { value: 0.1, detail: '모든 공격력 +10%'} ] },
+                    cooldown: { name: '쿨타임 감소', maxLevel: 3, levels: [ { value: 0.08, detail: '모든 쿨타임 -8%'}, { value: 0.08, detail: '모든 쿨타임 -8%'}, { value: 0.08, detail: '모든 쿨타임 -8%'} ] }
+                },
+                EVOLUTIONS: {
+                    evo_base: { name: '🛡️ 크리켓 파편탄', weapon: 'base', passive: 'maxHp', detail: '기본 공격 적중 시 폭발하며 3방향 콩알탄으로 분열합니다.' },
+                    evo_orbiter: { name: '☄️ 초신성 궤도', weapon: 'orbiter', passive: 'speed', detail: '위성이 잔상 없이 초고속 회전하며 직접 강력한 데미지를 입힙니다.' },
+                    evo_lance: { name: '⚡ 천벌의 창', weapon: 'lance', passive: 'pickup', detail: '거대한 번개 창이 적을 꿰뚫고 지나간 자리에 번개를 남깁니다.' },
+                    evo_blade: { name: '🌀 만개하는 칼날폭풍', weapon: 'blade', passive: 'attack', detail: '태풍 및 꽃모양으로 촤자작 펼쳐진 후 적들을 맹렬히 추격합니다.' },
+                    evo_missile: { name: '🚀 전방위 미사일 폭풍', weapon: 'missile', passive: 'cooldown', detail: '시계 방향으로 고속 유도 미사일을 난사합니다.' },
+                }
+            },
+            
+            init() {
+                this.draw = this.draw.bind(this);
+                this.loop = this.loop.bind(this);
+                this.dom = {
+                    canvas: document.getElementById('game'),
+                    stage: document.querySelector('.stage'),
+                    damageOverlay: document.getElementById('player-damage-overlay'),
+                    hpFill: document.getElementById('hpFill'),
+                    hpText: document.getElementById('hpText'),
+                    xpFill: document.getElementById('xpFill'),
+                    lvText: document.getElementById('lv'),
+                    goldText: document.getElementById('gold'),
+                    killsText: document.getElementById('kills'),
+                    startMenu: document.getElementById('start-menu'),
+                    lvlup: document.getElementById('lvlup'),
+                    lvlOpts: document.getElementById('lvlOpts'),
+                    statsPanel: document.getElementById('statsPanel'),
+                    stageLevelDisplay: document.getElementById('stage-level-display'),
+                    roomObjective: document.getElementById('room-objective'),
+                    minimapCanvas: document.getElementById('minimap-canvas'),
+                    fullMapOverlay: document.getElementById('full-map-overlay'),
+                    fullMapCanvas: document.getElementById('full-map-canvas'),
+                    devPanel: document.getElementById('dev-panel'),
+                    devGodModeBtn: document.getElementById('dev-godmode'),
+                    devGoldBtn: document.getElementById('dev-gold'),
+                    devMasteryBtn: document.getElementById('dev-mastery'),
+                };
+                this.ctx = this.dom.canvas.getContext('2d');
+                this.minimapCtx = this.dom.minimapCanvas.getContext('2d');
+                this.fullMapCtx = this.dom.fullMapCanvas.getContext('2d');
+
+                this.dom.startMenu.addEventListener('click', (e) => {
+                    if (e.target.id === 'startBtn') {
+                        this.initAudio();
+                        this.resume();
+                    }
+                });
+                
+                window.addEventListener('keydown', e => this.onKey(e, true));
+                window.addEventListener('keyup', e => this.onKey(e, false));
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.ctrlKey && e.altKey && e.key.toLowerCase() === 'd') {
+                        this.toggleDevMode();
+                    }
+                });
+
+                this.dom.devGodModeBtn.addEventListener('click', () => this.toggleGodMode());
+                this.dom.devGoldBtn.addEventListener('click', () => {
+                    if (this.currentUser) {
+                        this.currentUser.gold = (this.currentUser.gold || 0) + 1000;
+                        app.updateUser(this.currentUser);
+                        app.updateMainMenuUI();
+                    }
+                });
+                this.dom.devMasteryBtn.addEventListener('click', () => this.devMasterWeapons());
+
+                new ResizeObserver(() => this.fitDPR()).observe(this.dom.canvas);
+                this.fitDPR();
+                this.loop();
+            },
+
+            initAudio() {
+                if (this.audioCtx) return;
+                try {
+                    this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    this.masterGain = this.audioCtx.createGain();
+                    this.masterGain.gain.value = this.muted ? 0 : 0.2;
+                    this.masterGain.connect(this.audioCtx.destination);
+                } catch (e) {
+                    console.warn('Audio unavailable:', e);
+                }
+            },
+
+            setMute(isMuted) {
+                this.muted = isMuted;
+                if (this.masterGain && this.audioCtx) {
+                    this.masterGain.gain.setValueAtTime(this.muted ? 0 : 0.2, this.audioCtx.currentTime);
+                }
+            },
+
+            bleep(type = 'shoot') {
+                if (!this.audioCtx || this.muted) return;
+                try {
+                    const o = this.audioCtx.createOscillator();
+                    const g = this.audioCtx.createGain();
+                    o.type = 'square';
+                    const t = this.audioCtx.currentTime;
+                    if (type === 'shoot') {
+                        o.frequency.setValueAtTime(620, t);
+                        o.frequency.exponentialRampToValueAtTime(220, t + 0.12);
+                    } else if (type === 'hit') {
+                        o.frequency.setValueAtTime(160, t);
+                        o.frequency.exponentialRampToValueAtTime(80, t + 0.08);
+                    } else if (type === 'gem') {
+                        o.frequency.setValueAtTime(880, t);
+                        o.frequency.exponentialRampToValueAtTime(440, t + 0.12);
+                    } else if (type === 'lance') {
+                        o.type = 'sawtooth';
+                        o.frequency.setValueAtTime(330, t);
+                        o.frequency.exponentialRampToValueAtTime(110, t + 0.15);
+                    } else if (type === 'bomb') {
+                        o.type = 'sawtooth';
+                        o.frequency.setValueAtTime(120, t);
+                        o.frequency.exponentialRampToValueAtTime(40, t + 0.25);
+                    }
+                    g.gain.setValueAtTime(0.15, t);
+                    g.gain.exponentialRampToValueAtTime(0.001, t + 0.16);
+                    o.connect(g);
+                    g.connect(this.masterGain);
+                    o.start();
+                    o.stop(t + 0.17);
+                } catch (err) {
+                    // Ignore audio glitch safely
+                }
+            },
+
+            fitDPR() {
+                const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+                const cssW = this.dom.canvas.clientWidth || 960;
+                const cssH = this.dom.canvas.clientHeight || 540;
+                this.dom.canvas.width = Math.round(cssW * dpr);
+                this.dom.canvas.height = Math.round(cssH * dpr);
+                // 포트폴리오 공개용 보정: 960x540 기준 화면을 실제 캔버스 크기에 맞춰 확대/축소
+                const fitScale = cssW / 960;
+                if (this.ctx) this.ctx.setTransform(dpr * fitScale, 0, 0, dpr * fitScale, 0, 0);
+            },
+
+            start(user, isMuted, onGameEndCallback) {
+                this.currentUser = user;
+                this.onGameEnd = onGameEndCallback;
+                this.setMute(isMuted);
+                this.restart();
+            },
+
+            restart() {
+                this.dom.startMenu.innerHTML = `<h2>시작할까요?</h2><p>방의 목표를 클리어하고 보스 방을 찾아 클리어하세요!</p><div class="btns"><button id="startBtn">게임 시작</button></div>`;
+                
+                const upgrades = this.currentUser?.upgrades || { maxHp: 0, attack: 0, speed: 0, pickup: 0 };
+                const baseStats = {
+                    maxHp: 100 + ((upgrades.maxHp || 0) * app.SHOP_DATA.stats.maxHp.bonusPerLevel),
+                    speed: 180 * (1 + (upgrades.speed || 0) * app.SHOP_DATA.stats.speed.bonusPerLevel),
+                    pickup: 120 + ((upgrades.pickup || 0) * app.SHOP_DATA.stats.pickup.bonusPerLevel),
+                };
+
+                this.state = {
+                    running: false,
+                    time: 0,
+                    lastT: performance.now(),
+                    keys: new Set(),
+                    stageLevel: 1,
+                    mapGrid: {},
+                    currentRoomCoords: { x: 0, y: 0 },
+                    obstacles: [],
+                    bounds: { w: 960, h: 540 },
+                    mapColor: this.MAP_COLORS[0],
+                    player: {
+                        x: 480,
+                        y: 270,
+                        r: 12,
+                        speed: baseStats.speed,
+                        hp: baseStats.maxHp,
+                        maxHp: baseStats.maxHp,
+                        pickup: baseStats.pickup,
+                        weapons: { base: { level: 1, cd: 0 } },
+                        passives: {},
+                        hitTimer: 0,
+                        magnetTimer: 0,
+                        isInvincible: false
+                    },
+                    level: 1,
+                    xp: 0,
+                    nextXp: 20,
+                    enemies: [],
+                    projs: [],
+                    drops: [],
+                    effects: [],
+                    damageNumbers: [],
+                    spawnTimer: 0,
+                    goldEarned: 0,
+                    totalKills: 0,
+                    devMode: false
+                };
+
+                this.generateMap();
+                this.loadRoom(0, 0);
+
+                this.dom.startMenu.style.display = 'block';
+                this.dom.lvlup.style.display = 'none';
+                this.dom.statsPanel.style.display = 'none';
+                this.statsVisible = false;
+            },
+
+            generateMap() {
+                this.state.mapGrid = {};
+                const startPos = { x: 0, y: 0 };
+                const rooms = [{ ...startPos }];
+                this.state.mapGrid['0,0'] = { type: 'start', discovered: true, cleared: true, doors: {} };
+
+                const mainPathLength = 4 + this.state.stageLevel;
+                let currentPos = { ...startPos };
+
+                for (let i = 0; i < mainPathLength; i++) {
+                    const { nextPos, dir } = this.getRandomNeighbor(currentPos, this.state.mapGrid);
+                    if (!nextPos) break;
+                    const key = `${nextPos.x},${nextPos.y}`;
+                    this.state.mapGrid[key] = { type: 'normal', discovered: false, cleared: false, doors: {} };
+                    this.connectRooms(currentPos, nextPos, dir);
+                    rooms.push(nextPos);
+                    currentPos = nextPos;
+                }
+                this.state.mapGrid[`${currentPos.x},${currentPos.y}`].type = 'boss';
+
+                const sidePathCount = 1 + this.state.stageLevel;
+                for (let i = 0; i < sidePathCount; i++) {
+                    const branchFrom = rooms[Math.floor(this.rand(0, rooms.length))];
+                    const { nextPos, dir } = this.getRandomNeighbor(branchFrom, this.state.mapGrid);
+                    if (nextPos) {
+                        const key = `${nextPos.x},${nextPos.y}`;
+                        this.state.mapGrid[key] = { type: 'normal', discovered: false, cleared: false, doors: {} };
+                        this.connectRooms(branchFrom, nextPos, dir);
+                        rooms.push(nextPos);
+                    }
+                }
+
+                const deadEnds = rooms.filter(r => Object.keys(this.state.mapGrid[`${r.x},${r.y}`].doors).length === 1 && this.state.mapGrid[`${r.x},${r.y}`].type === 'normal');
+                if (deadEnds.length > 0) {
+                    const shopPos = deadEnds.splice(Math.floor(this.rand(0, deadEnds.length)), 1)[0];
+                    this.state.mapGrid[`${shopPos.x},${shopPos.y}`].type = 'shop';
+                }
+                if (deadEnds.length > 0 && Math.random() < 0.5) {
+                    const survivalPos = deadEnds.splice(Math.floor(this.rand(0, deadEnds.length)), 1)[0];
+                    this.state.mapGrid[`${survivalPos.x},${survivalPos.y}`].type = 'survival';
+                }
+            },
+
+            getRandomNeighbor(pos, grid) {
+                const dirs = [
+                    { x: 0, y: -1, name: 'N' },
+                    { x: 0, y: 1, name: 'S' },
+                    { x: -1, y: 0, name: 'W' },
+                    { x: 1, y: 0, name: 'E' }
+                ];
+                this.shuffleArray(dirs);
+                for (const dir of dirs) {
+                    const nextPos = { x: pos.x + dir.x, y: pos.y + dir.y };
+                    if (!grid[`${nextPos.x},${nextPos.y}`]) {
+                        return { nextPos, dir };
+                    }
+                }
+                return { nextPos: null };
+            },
+
+            connectRooms(fromPos, toPos, dir) {
+                const opposite = { N: 'S', S: 'N', E: 'W', W: 'E' };
+                this.state.mapGrid[`${fromPos.x},${fromPos.y}`].doors[dir.name] = true;
+                this.state.mapGrid[`${toPos.x},${toPos.y}`].doors[opposite[dir.name]] = true;
+            },
+
+            shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+            },
+
+            loadRoom(x, y) {
+                this.state.currentRoomCoords = { x, y };
+                const roomKey = `${x},${y}`;
+                const room = this.state.mapGrid[roomKey];
+                room.discovered = true;
+
+                this.state.enemies = [];
+                this.state.projs = [];
+                this.state.drops = [];
+
+                this.dom.stage.style.backgroundColor = this.MAP_COLORS[(Math.abs(x * 3 + y * 5)) % this.MAP_COLORS.length];
+
+                switch (room.type) {
+                    case 'start':
+                        this.dom.roomObjective.textContent = "방을 탐험하세요";
+                        break;
+                    case 'normal':
+                        room.killTarget = 20 + this.state.stageLevel * 10;
+                        room.killsInRoom = 0;
+                        this.dom.roomObjective.textContent = `적 처치: 0 / ${room.killTarget}`;
+                        break;
+                    case 'survival':
+                        room.survivalTime = 30;
+                        this.dom.roomObjective.textContent = `생존: 30.0초`;
+                        break;
+                    case 'shop':
+                        this.state.running = false;
+                        this.showShopMenu();
+                        break;
+                    case 'boss':
+                        this.state.running = false;
+                        this.dom.startMenu.innerHTML = `<h2>스테이지 ${this.state.stageLevel} 클리어!</h2><p>다음 스테이지로 진입합니다.</p>`;
+                        this.dom.startMenu.style.display = 'block';
+                        setTimeout(() => { this.nextStage(); }, 1800);
+                        break;
+                }
+
+                // Create round obstacles (rocks)
+                const rockCount = 1 + Math.floor(this.state.stageLevel * 1.5);
+                this.state.obstacles = [];
+                for (let i = 0; i < rockCount; i++) {
+                    this.state.obstacles.push({
+                        x: this.rand(180, this.state.bounds.w - 180),
+                        y: this.rand(140, this.state.bounds.h - 140),
+                        r: this.rand(24, 38)
+                    });
+                }
+            },
+
+            nextStage() {
+                this.state.stageLevel++;
+                this.dom.stageLevelDisplay.textContent = this.state.stageLevel;
+                this.generateMap();
+                this.state.currentRoomCoords = { x: 0, y: 0 };
+                this.state.player.x = 480;
+                this.state.player.y = 270;
+                this.loadRoom(0, 0);
+                this.resume();
+            },
+
+            showShopMenu() {
+                const menu = this.dom.startMenu;
+                const p = this.state.player;
+
+                const healCost = 40 + this.state.stageLevel * 15;
+                const upgradeCost = 140 + this.state.stageLevel * 30;
+                const xpCost = 70 + this.state.stageLevel * 20;
+
+                const canHeal = (this.currentUser?.gold || 0) >= healCost;
+                const canUpgrade = (this.currentUser?.gold || 0) >= upgradeCost;
+                const canXp = (this.currentUser?.gold || 0) >= xpCost;
+
+                menu.innerHTML = `<h2>비밀 상점</h2>
+                    <div class="opts">
+                        <div class="opt" id="buy-heal" style="pointer-events: ${canHeal ? 'auto' : 'none'}; opacity: ${canHeal ? 1 : 0.5}">
+                            <div>체력 50% 회복<div class="muted">💰 ${healCost}</div></div>
+                        </div>
+                        <div class="opt" id="buy-upgrade" style="pointer-events: ${canUpgrade ? 'auto' : 'none'}; opacity: ${canUpgrade ? 1 : 0.5}">
+                            <div>랜덤 스펙업 1회<div class="muted">💰 ${upgradeCost}</div></div>
+                        </div>
+                        <div class="opt" id="buy-xp" style="pointer-events: ${canXp ? 'auto' : 'none'}; opacity: ${canXp ? 1 : 0.5}">
+                            <div>경험치 50% 획득<div class="muted">💰 ${xpCost}</div></div>
+                        </div>
+                    </div>
+                    <div class="btns"><button id="exit-shop">나가기</button></div>`;
+
+                menu.querySelector('#buy-heal').onclick = () => {
+                    if ((this.currentUser?.gold || 0) >= healCost) {
+                        this.currentUser.gold -= healCost;
+                        p.hp = Math.min(p.maxHp, p.hp + p.maxHp * 0.5);
+                        this.showShopMenu();
+                    }
+                };
+                menu.querySelector('#buy-upgrade').onclick = () => {
+                    if ((this.currentUser?.gold || 0) >= upgradeCost) {
+                        this.currentUser.gold -= upgradeCost;
+                        menu.style.display = 'none';
+                        this.showLevelCards();
+                    }
+                };
+                menu.querySelector('#buy-xp').onclick = () => {
+                    if ((this.currentUser?.gold || 0) >= xpCost) {
+                        this.currentUser.gold -= xpCost;
+                        this.gainXp(this.state.nextXp * 0.5);
+                        this.showShopMenu();
+                    }
+                };
+                menu.querySelector('#exit-shop').onclick = () => {
+                    this.state.mapGrid[`${this.state.currentRoomCoords.x},${this.state.currentRoomCoords.y}`].cleared = true;
+                    this.resume();
+                };
+                menu.style.display = 'block';
+            },
+
+            loop() {
+                requestAnimationFrame(this.loop);
+                const t = performance.now();
+                if (!this.state || !this.state.player) {
+                    if (this.ctx) {
+                        this.ctx.fillStyle = '#0c1219';
+                        this.ctx.fillRect(0, 0, this.dom.canvas.clientWidth, this.dom.canvas.clientHeight);
+                    }
+                    return;
+                }
+
+                const dt = Math.min(1 / 30, (t - (this.state.lastT || t)) / 1000);
+                this.state.lastT = t;
+                if (this.state.running) this.update(dt);
+                this.draw();
+            },
+
+            update(dt) {
+                if (!this.state || !this.state.player) return;
+
+                const room = this.state.mapGrid[`${this.state.currentRoomCoords.x},${this.state.currentRoomCoords.y}`];
+                if (room && !room.cleared) {
+                    if (room.type === 'survival') {
+                        room.survivalTime -= dt;
+                        this.dom.roomObjective.textContent = `생존: ${Math.max(0, room.survivalTime).toFixed(1)}초`;
+                        if (room.survivalTime <= 0) {
+                            room.cleared = true;
+                            this.dom.roomObjective.textContent = "클리어!";
+                            this.state.enemies = [];
+                        }
+                    }
+                }
+
+                this.state.time += dt;
+                this.state.spawnTimer -= dt;
+                if (this.state.player.hitTimer > 0) this.state.player.hitTimer -= dt;
+                if (this.state.player.magnetTimer > 0) this.state.player.magnetTimer -= dt;
+
+                if (room && this.state.spawnTimer <= 0 && !room.cleared && (room.type === 'normal' || room.type === 'survival')) {
+                    const spawnRate = room.type === 'survival' ? 0.08 : Math.max(0.2, 1.0 - this.state.stageLevel * 0.12);
+                    this.state.spawnTimer = spawnRate;
+                    this.spawnEnemy();
+                }
+
+                this.updatePlayer(dt);
+                this.updateEnemies(dt);
+                this.updateWeapons(dt);
+                this.updateProjectiles(dt);
+                this.updateDrops(dt);
+                this.updateEffects(dt);
+                this.updateUI();
+            },
+
+            updatePlayer(dt) {
+                const p = this.state.player;
+                let ax = 0, ay = 0;
+                const k = this.state.keys;
+                const currentSpeed = p.speed * (1 + (p.passives.speed?.level || 0) * 0.1);
+                if (k.has('w') || k.has('arrowup')) ay -= 1;
+                if (k.has('s') || k.has('arrowdown')) ay += 1;
+                if (k.has('a') || k.has('arrowleft')) ax -= 1;
+                if (k.has('d') || k.has('arrowright')) ax += 1;
+                if (ax || ay) {
+                    const L = Math.hypot(ax, ay);
+                    p.x += (ax / L) * currentSpeed * dt;
+                    p.y += (ay / L) * currentSpeed * dt;
+                }
+
+                // Obstacle collision pushback
+                for (const obs of this.state.obstacles) {
+                    const dist = Math.hypot(p.x - obs.x, p.y - obs.y);
+                    if (dist < p.r + obs.r) {
+                        const overlap = p.r + obs.r - dist;
+                        const angle = Math.atan2(p.y - obs.y, p.x - obs.x);
+                        p.x += Math.cos(angle) * overlap;
+                        p.y += Math.sin(angle) * overlap;
+                    }
+                }
+
+                // Door room transition
+                const room = this.state.mapGrid[`${this.state.currentRoomCoords.x},${this.state.currentRoomCoords.y}`];
+                const doorThickness = 22;
+                if (p.y < doorThickness && room?.doors.N && room.cleared) {
+                    p.y = this.state.bounds.h - doorThickness - p.r;
+                    this.loadRoom(this.state.currentRoomCoords.x, this.state.currentRoomCoords.y - 1);
+                } else if (p.y > this.state.bounds.h - doorThickness && room?.doors.S && room.cleared) {
+                    p.y = doorThickness + p.r;
+                    this.loadRoom(this.state.currentRoomCoords.x, this.state.currentRoomCoords.y + 1);
+                } else if (p.x < doorThickness && room?.doors.W && room.cleared) {
+                    p.x = this.state.bounds.w - doorThickness - p.r;
+                    this.loadRoom(this.state.currentRoomCoords.x - 1, this.state.currentRoomCoords.y);
+                } else if (p.x > this.state.bounds.w - doorThickness && room?.doors.E && room.cleared) {
+                    p.x = doorThickness + p.r;
+                    this.loadRoom(this.state.currentRoomCoords.x + 1, this.state.currentRoomCoords.y);
+                }
+
+                p.x = this.clamp(p.x, p.r, this.state.bounds.w - p.r);
+                p.y = this.clamp(p.y, p.r, this.state.bounds.h - p.r);
+            },
+
+            spawnEnemy() {
+                const { w, h } = this.state.bounds;
+                const edge = Math.floor(this.rand(0, 4));
+                let x, y;
+                if (edge === 0) { x = -20; y = this.rand(0, h); }
+                else if (edge === 1) { x = w + 20; y = this.rand(0, h); }
+                else if (edge === 2) { x = this.rand(0, w); y = -20; }
+                else { x = this.rand(0, w); y = h + 20; }
+
+                // Escalated stage scaling
+                const hp = 16 + (this.state.stageLevel * 22);
+                const speed = 55 + (this.state.stageLevel * 12);
+                const newEnemy = {
+                    x, y,
+                    r: 12,
+                    hp, maxHp: hp,
+                    speed,
+                    hitTimer: 0,
+                    stunTimer: 0,
+                    moveDelay: this.rand(0, 0.3),
+                    displayHp: hp
+                };
+                this.state.enemies.push(newEnemy);
+            },
+
+            updateEnemies(dt) {
+                const p = this.state.player;
+                for (let i = this.state.enemies.length - 1; i >= 0; i--) {
+                    const e = this.state.enemies[i];
+                    if (!e) continue;
+                    if (e.hitTimer > 0) e.hitTimer -= dt;
+                    if (e.stunTimer > 0) {
+                        e.stunTimer -= dt;
+                        continue; // Flinch/stun stop
+                    }
+
+                    e.displayHp += (e.hp - e.displayHp) * 0.2;
+
+                    if (e.moveDelay > 0) {
+                        e.moveDelay -= dt;
+                    } else {
+                        const dx = p.x - e.x, dy = p.y - e.y;
+                        const L = Math.hypot(dx, dy) || 1;
+                        e.x += (dx / L) * e.speed * dt;
+                        e.y += (dy / L) * e.speed * dt;
+                    }
+
+                    // Rock collision for enemies (rocks block enemies)
+                    for (const obs of this.state.obstacles) {
+                        const dist = Math.hypot(e.x - obs.x, e.y - obs.y);
+                        if (dist < e.r + obs.r) {
+                            const overlap = e.r + obs.r - dist;
+                            const angle = Math.atan2(e.y - obs.y, e.x - obs.x);
+                            e.x += Math.cos(angle) * overlap;
+                            e.y += Math.sin(angle) * overlap;
+                        }
+                    }
+
+                    // Enemy separation
+                    for (let j = i - 1; j >= 0; j--) {
+                        const other = this.state.enemies[j];
+                        if (!other) continue;
+                        const dx = e.x - other.x;
+                        const dy = e.y - other.y;
+                        const dist = Math.hypot(dx, dy) || 1;
+                        const overlap = (e.r + other.r) - dist;
+                        if (overlap > 0) {
+                            const sep = 0.5;
+                            const moveX = (dx / dist) * overlap * sep;
+                            const moveY = (dy / dist) * overlap * sep;
+                            e.x += moveX; e.y += moveY;
+                            other.x -= moveX; other.y -= moveY;
+                        }
+                    }
+
+                    // Player damage contact
+                    if (this.dist2(p, e) < (p.r + e.r) ** 2 && !p.isInvincible) {
+                        if (p.hitTimer <= 0) {
+                            p.hp -= 10;
+                            p.hitTimer = 0.5;
+                            this.dom.damageOverlay.style.opacity = '0.5';
+                            this.dom.stage.classList.add('shake');
+                            setTimeout(() => {
+                                this.dom.damageOverlay.style.opacity = '0';
+                                this.dom.stage.classList.remove('shake');
+                            }, 150);
+                        }
+                        if (p.hp <= 0) {
+                            this.gameOver();
+                            break;
+                        }
+                    }
+                }
+            },
+
+            updateWeapons(dt) {
+                const p = this.state.player;
+                const upgrades = this.currentUser?.upgrades || { maxHp: 0, attack: 0, speed: 0, pickup: 0 };
+                const shopAttackBonus = 1 + ((upgrades.attack || 0) * app.SHOP_DATA.stats.attack.bonusPerLevel);
+                const passiveAttackBonus = 1 + (p.passives.attack?.level || 0) * 0.1;
+                const totalAttackBonus = shopAttackBonus * passiveAttackBonus;
+                const cooldownBonus = 1 - (p.passives.cooldown?.level || 0) * 0.08;
+
+                for (const key in p.weapons) {
+                    const weapon = p.weapons[key];
+                    weapon.cd -= dt;
+                    if (weapon.cd > 0) continue;
+
+                    if (key.startsWith('evo_')) {
+                        if (key === 'evo_base') {
+                            weapon.cd = 0.7 * cooldownBonus;
+                            if (this.state.enemies.length === 0) continue;
+                            let target = this.state.enemies[0], d2 = Infinity;
+                            for (const e of this.state.enemies) {
+                                const dd = this.dist2(p, e);
+                                if (dd < d2) { d2 = dd; target = e; }
+                            }
+                            const dx = target.x - p.x, dy = target.y - p.y;
+                            const L = Math.hypot(dx, dy) || 1;
+                            this.state.projs.push({
+                                type: 'evo_base',
+                                x: p.x, y: p.y, r: 8,
+                                vx: (dx / L) * 520, vy: (dy / L) * 520,
+                                life: 0.9, dmg: 35 * totalAttackBonus, hits: []
+                            });
+                            this.bleep('shoot');
+                        } else if (key === 'evo_orbiter') {
+                            weapon.cd = 0; // Orbiters continuously active
+                        } else if (key === 'evo_lance') {
+                            weapon.cd = 1.4 * cooldownBonus;
+                            if (this.state.enemies.length === 0) continue;
+                            let target = this.state.enemies[0], d2 = Infinity;
+                            for (const e of this.state.enemies) {
+                                const dd = this.dist2(p, e);
+                                if (dd < d2) { d2 = dd; target = e; }
+                            }
+                            const dx = target.x - p.x, dy = target.y - p.y;
+                            const L = Math.hypot(dx, dy) || 1;
+                            this.state.projs.push({
+                                type: 'evo_lance',
+                                x: p.x, y: p.y, r: 16,
+                                vx: (dx / L) * 1000, vy: (dy / L) * 1000,
+                                life: 1.4, dmg: 140 * totalAttackBonus, pierce: 999, hits: []
+                            });
+                            this.bleep('lance');
+                        } else if (key === 'evo_blade') {
+                            weapon.cd = 2.4 * cooldownBonus;
+                            // Flower storm bursting and then seeking
+                            const bladeCount = 16;
+                            for (let i = 0; i < bladeCount; i++) {
+                                const angle = (i / bladeCount) * Math.PI * 2;
+                                this.state.projs.push({
+                                    type: 'evo_blade',
+                                    x: p.x, y: p.y, r: 12,
+                                    angle,
+                                    life: 1.6,
+                                    dmg: 50 * totalAttackBonus,
+                                    hits: [],
+                                    startTime: this.state.time,
+                                    target: null,
+                                    returning: false
+                                });
+                            }
+                            this.bleep('shoot');
+                        } else if (key === 'evo_missile') {
+                            weapon.cd = 0.08 * cooldownBonus;
+                            weapon.burstCount = weapon.burstCount || 0;
+                            if (weapon.burstCount < 16) {
+                                const angle = (weapon.burstCount / 16) * Math.PI * 2;
+                                const target = this.state.enemies[Math.floor(this.rand(0, this.state.enemies.length))] || null;
+                                this.state.projs.push({
+                                    type: 'missile',
+                                    x: p.x, y: p.y, r: 8,
+                                    vx: Math.cos(angle) * 360,
+                                    vy: Math.sin(angle) * 360,
+                                    life: 3.5,
+                                    dmg: 55 * totalAttackBonus,
+                                    spec: { speed: 380, turn: 5 },
+                                    target,
+                                    hits: [],
+                                    isEvolved: true
+                                });
+                                this.bleep('shoot');
+                                weapon.burstCount++;
+                            } else {
+                                weapon.cd = 3.0 * cooldownBonus;
+                                weapon.burstCount = 0;
+                            }
+                        }
+                    } else {
+                        const spec = this.DATA.WEAPONS[key].levels[weapon.level - 1];
+                        weapon.cd = spec.fireRate * cooldownBonus;
+                        if (key === 'base') {
+                            if (this.state.enemies.length === 0) continue;
+                            let target = this.state.enemies[0], d2 = Infinity;
+                            for (const e of this.state.enemies) {
+                                const dd = this.dist2(p, e);
+                                if (dd < d2) { d2 = dd; target = e; }
+                            }
+                            const dx = target.x - p.x, dy = target.y - p.y;
+                            const L = Math.hypot(dx, dy) || 1;
+                            this.state.projs.push({
+                                type: 'base',
+                                x: p.x, y: p.y, r: 6,
+                                vx: (dx / L) * 400, vy: (dy / L) * 400,
+                                life: 1.2, dmg: spec.dmg * totalAttackBonus, hits: []
+                            });
+                            this.bleep('shoot');
+                        } else if (key === 'lance') {
+                            if (this.state.enemies.length === 0) continue;
+                            let target = this.state.enemies[0], d2 = Infinity;
+                            for (const e of this.state.enemies) {
+                                const dd = this.dist2(p, e);
+                                if (dd < d2) { d2 = dd; target = e; }
+                            }
+                            const dx = target.x - p.x, dy = target.y - p.y;
+                            const L = Math.hypot(dx, dy) || 1;
+                            this.state.projs.push({
+                                type: 'lance',
+                                x: p.x, y: p.y, r: 6,
+                                vx: (dx / L) * spec.speed, vy: (dy / L) * spec.speed,
+                                life: 1.5, dmg: spec.dmg * totalAttackBonus, pierce: spec.pierce, hits: []
+                            });
+                            this.bleep('lance');
+                        } else if (key === 'blade') {
+                            for (let i = 0; i < spec.count; i++) {
+                                if (this.state.enemies.length === 0) continue;
+                                const target = this.state.enemies[Math.floor(this.rand(0, this.state.enemies.length))];
+                                this.state.projs.push({
+                                    type: 'blade',
+                                    x: p.x, y: p.y, r: 10,
+                                    dmg: spec.dmg * totalAttackBonus,
+                                    life: 1.5, target, spec: { speed: 320 }, returning: false, hits: []
+                                });
+                            }
+                        } else if (key === 'missile') {
+                            if (this.state.enemies.length === 0) continue;
+                            let target = this.state.enemies[0];
+                            for (const e of this.state.enemies) { if (e.hp > target.hp) target = e; }
+                            this.state.projs.push({
+                                type: 'missile',
+                                x: p.x, y: p.y, r: 8,
+                                vx: 0, vy: 0,
+                                life: 4, dmg: spec.dmg * totalAttackBonus, spec, target, hits: []
+                            });
+                        }
+                    }
+                }
+
+                // Orbiter processing
+                const orbKey = p.weapons.orbiter ? 'orbiter' : (p.weapons.evo_orbiter ? 'evo_orbiter' : null);
+                if (orbKey) {
+                    let spec, dmg, size;
+                    if (orbKey === 'evo_orbiter') {
+                        spec = { count: 6, rotSpeed: 7.5, range: 145 };
+                        size = 24;
+                        dmg = 75 * totalAttackBonus;
+                    } else {
+                        spec = this.DATA.WEAPONS.orbiter.levels[p.weapons.orbiter.level - 1];
+                        size = 15;
+                        dmg = spec.dmg * totalAttackBonus;
+                    }
+
+                    const angleStep = (Math.PI * 2) / spec.count;
+                    if (!p.weapons[orbKey].hitCooldowns) p.weapons[orbKey].hitCooldowns = new Map();
+
+                    for (let i = 0; i < spec.count; i++) {
+                        const angle = this.state.time * spec.rotSpeed + angleStep * i;
+                        const ox = p.x + Math.cos(angle) * spec.range;
+                        const oy = p.y + Math.sin(angle) * spec.range;
+
+                        for (let j = this.state.enemies.length - 1; j >= 0; j--) {
+                            const e = this.state.enemies[j];
+                            if (!e) continue;
+                            const cd = p.weapons[orbKey].hitCooldowns.get(e);
+                            if (cd && this.state.time < cd) continue;
+
+                            if (this.dist2({ x: ox, y: oy }, e) < (size / 2 + e.r) ** 2) {
+                                e.hp -= dmg;
+                                e.hitTimer = 0.1;
+                                e.stunTimer = 0.12; // Enemy flinch on hit!
+                                this.state.damageNumbers.push({ text: Math.round(dmg), x: e.x, y: e.y, life: 0.6 });
+                                p.weapons[orbKey].hitCooldowns.set(e, this.state.time + 0.35);
+                                if (e.hp <= 0) this.killEnemy(e, j);
+                            }
+                        }
+                    }
+                }
+            },
+
+            updateProjectiles(dt) {
+                for (let i = this.state.projs.length - 1; i >= 0; i--) {
+                    const b = this.state.projs[i];
+                    b.life -= dt;
+                    if (b.life <= 0) {
+                        if (b.type === 'evo_base') {
+                            // Explode into 3 split fragments (Cricket's Head style)
+                            this.state.effects.push({ type: 'explosion', x: b.x, y: b.y, r: 60, life: 0.3 });
+                            this.bleep('bomb');
+                            for (let k = 0; k < 3; k++) {
+                                const angle = (k / 3) * Math.PI * 2 + Math.random() * 0.5;
+                                this.state.projs.push({
+                                    type: 'base',
+                                    x: b.x, y: b.y, r: 4,
+                                    vx: Math.cos(angle) * 320, vy: Math.sin(angle) * 320,
+                                    life: 0.6, dmg: b.dmg * 0.6, hits: []
+                                });
+                            }
+                        }
+                        this.state.projs.splice(i, 1);
+                        continue;
+                    }
+
+                    if (b.type === 'evo_blade') {
+                        const progress = (1.6 - b.life) / 1.6;
+                        if (progress < 0.4) {
+                            // Expand outward in flower typhoon
+                            const rRadius = progress * 2.5 * 240;
+                            b.x = this.state.player.x + Math.cos(b.angle + this.state.time * 16) * rRadius;
+                            b.y = this.state.player.y + Math.sin(b.angle + this.state.time * 16) * rRadius;
+                        } else {
+                            // Seek nearest enemies aggressively
+                            if (!b.target || b.target.hp <= 0) {
+                                b.target = this.state.enemies[Math.floor(this.rand(0, this.state.enemies.length))] || null;
+                            }
+                            if (b.target && b.target.hp > 0) {
+                                const dx = b.target.x - b.x, dy = b.target.y - b.y;
+                                const L = Math.hypot(dx, dy) || 1;
+                                b.x += (dx / L) * 440 * dt;
+                                b.y += (dy / L) * 440 * dt;
+                            }
+                        }
+                    } else if (b.type === 'blade') {
+                        const targetPos = b.returning ? this.state.player : (b.target && b.target.hp > 0 ? b.target : this.state.player);
+                        const dx = targetPos.x - b.x, dy = targetPos.y - b.y;
+                        const L = Math.hypot(dx, dy) || 1;
+                        b.x += (dx / L) * b.spec.speed * dt;
+                        b.y += (dy / L) * b.spec.speed * dt;
+                        if (!b.returning && L < 20) b.returning = true;
+                    } else if (b.type === 'missile') {
+                        if (b.target && b.target.hp > 0) {
+                            const dx = b.target.x - b.x, dy = b.target.y - b.y;
+                            const L = Math.hypot(dx, dy) || 1;
+                            const tx = dx / L, ty = dy / L;
+                            b.vx = b.vx * (1 - dt * b.spec.turn) + tx * dt * b.spec.turn;
+                            b.vy = b.vy * (1 - dt * b.spec.turn) + ty * dt * b.spec.turn;
+                            const vL = Math.hypot(b.vx, b.vy) || 1;
+                            b.vx = (b.vx / vL) * b.spec.speed;
+                            b.vy = (b.vy / vL) * b.spec.speed;
+                        }
+                        b.x += b.vx * dt;
+                        b.y += b.vy * dt;
+                    } else {
+                        b.x += b.vx * dt;
+                        b.y += b.vy * dt;
+                    }
+
+                    // Rock collision for projectiles (rocks block projectiles!)
+                    let hitRock = false;
+                    for (const obs of this.state.obstacles) {
+                        if (this.dist2(b, obs) < (b.r + obs.r) ** 2) {
+                            if (b.type === 'evo_base') {
+                                this.state.effects.push({ type: 'explosion', x: b.x, y: b.y, r: 60, life: 0.3 });
+                            }
+                            this.state.projs.splice(i, 1);
+                            hitRock = true;
+                            break;
+                        }
+                    }
+                    if (hitRock) continue;
+
+                    // Hit enemy detection
+                    for (let j = this.state.enemies.length - 1; j >= 0; j--) {
+                        const e = this.state.enemies[j];
+                        if (!e || b.hits.includes(e)) continue;
+                        const rr = b.r + e.r;
+                        if (this.dist2(b, e) < rr * rr) {
+                            const damage = Math.round(b.dmg);
+                            e.hp -= damage;
+                            e.hitTimer = 0.1;
+                            e.stunTimer = 0.15; // All attacks cause brief flinch/stun!
+                            this.state.damageNumbers.push({ text: damage, x: e.x, y: e.y, life: 0.6 });
+                            b.hits.push(e);
+
+                            if (b.type === 'evo_lance' && Math.random() < 0.6) {
+                                this.state.effects.push({ type: 'lightning', x: e.x, y: e.y, life: 0.5, dmg: b.dmg * 0.6 });
+                            }
+                            if (b.type === 'evo_base') {
+                                b.life = 0; // Trigger burst immediately on hit!
+                            }
+                            if (e.hp <= 0) {
+                                this.killEnemy(e, j);
+                            }
+
+                            if (b.pierce && b.hits.length >= b.pierce) b.life = 0;
+                            if (!b.pierce && b.type !== 'evo_blade') b.life = 0;
+                            if (b.life <= 0) break;
+                        }
+                    }
+                }
+            },
+
+            updateDrops(dt) {
+                const p = this.state.player;
+                const currentPickup = (p.magnetTimer > 0) ? 9999 : p.pickup + (p.passives.pickup?.level || 0) * 40;
+                for (let i = this.state.drops.length - 1; i >= 0; i--) {
+                    const d = this.state.drops[i];
+                    const dx = p.x - d.x, dy = p.y - d.y;
+                    const L = Math.hypot(dx, dy) || 1;
+                    if (L < currentPickup) {
+                        d.x += (dx / L) * 600 * dt;
+                        d.y += (dy / L) * 600 * dt;
+                    }
+                    if (L < p.r + d.r + 2) {
+                        if (d.type === 'xp') { this.gainXp(d.v); this.bleep('gem'); }
+                        else if (d.type === 'gold') { this.state.goldEarned++; this.bleep('gem'); }
+                        else if (d.type === 'heart') { p.hp = Math.min(p.maxHp, p.hp + p.maxHp * 0.5); }
+                        else if (d.type === 'magnet') { p.magnetTimer = 5; }
+                        else if (d.type === 'bomb') {
+                            this.triggerBombReact();
+                        }
+                        this.state.drops.splice(i, 1);
+                    }
+                }
+            },
+
+            triggerBombReact() {
+                this.bleep('bomb');
+                [...this.state.enemies].forEach(e => {
+                    this.state.damageNumbers.push({ text: 999, x: e.x, y: e.y, life: 0.6 });
+                    this.state.effects.push({ type: 'explosion', x: e.x, y: e.y, r: 40, life: 0.3 });
+                });
+                this.state.enemies = [];
+                this.dom.stage.classList.add('shake');
+                setTimeout(() => this.dom.stage.classList.remove('shake'), 180);
+            },
+
+            updateEffects(dt) {
+                for (let i = this.state.effects.length - 1; i >= 0; i--) {
+                    const eff = this.state.effects[i];
+                    eff.life -= dt;
+                    if (eff.type === 'lightning') {
+                        for (let j = this.state.enemies.length - 1; j >= 0; j--) {
+                            const e = this.state.enemies[j];
+                            if (!e) continue;
+                            if (this.dist2(eff, e) < (32 + e.r) ** 2) {
+                                e.hp -= eff.dmg * dt * 3;
+                                e.hitTimer = 0.1;
+                                e.stunTimer = 0.1;
+                                if (e.hp <= 0) this.killEnemy(e, j);
+                            }
+                        }
+                    }
+                    if (eff.life <= 0) this.state.effects.splice(i, 1);
+                }
+                for (let i = this.state.damageNumbers.length - 1; i >= 0; i--) {
+                    const dn = this.state.damageNumbers[i];
+                    dn.life -= dt;
+                    dn.y -= 22 * dt;
+                    if (dn.life <= 0) this.state.damageNumbers.splice(i, 1);
+                }
+            },
+
+            killEnemy(enemy, index) {
+                this.state.totalKills++;
+                const room = this.state.mapGrid[`${this.state.currentRoomCoords.x},${this.state.currentRoomCoords.y}`];
+                if (room && room.type === 'normal' && !room.cleared) {
+                    room.killsInRoom++;
+                    this.dom.roomObjective.textContent = `적 처치: ${room.killsInRoom} / ${room.killTarget}`;
+                    if (room.killsInRoom >= room.killTarget) {
+                        room.cleared = true;
+                        this.dom.roomObjective.textContent = "클리어!";
+                    }
+                }
+
+                this.state.drops.push({ x: enemy.x, y: enemy.y, r: 6, type: 'xp', v: 8 });
+                const roll = Math.random();
+                if (roll < 0.004) this.state.drops.push({ x: enemy.x, y: enemy.y, r: 8, type: 'bomb' });
+                else if (roll < 0.012) this.state.drops.push({ x: enemy.x, y: enemy.y, r: 8, type: 'heart' });
+                else if (roll < 0.024) this.state.drops.push({ x: enemy.x, y: enemy.y, r: 8, type: 'magnet' });
+                else if (Math.random() < 0.12) this.state.drops.push({ x: enemy.x, y: enemy.y, r: 6, type: 'gold', v: 10 });
+
+                this.state.effects.push({ type: 'death', x: enemy.x, y: enemy.y, life: 0.3, r: enemy.r });
+                if (index > -1) this.state.enemies.splice(index, 1);
+                this.bleep('hit');
+            },
+
+            gainXp(v) {
+                this.state.xp += v;
+                if (this.state.xp >= this.state.nextXp) {
+                    this.state.xp -= this.state.nextXp;
+                    this.levelUp();
+                }
+            },
+
+            nextXpReq(lv) {
+                return Math.round(20 + lv * 10 + Math.pow(lv, 1.5) * 5);
+            },
+
+            levelUp() {
+                this.state.level++;
+                this.state.nextXp = this.nextXpReq(this.state.level);
+                
+                // Bomb screen clear react whenever player levels up!
+                this.triggerBombReact();
+
+                // Check if any upgrades remain
+                const availableUpgrades = this.getAvailableUpgrades();
+                if (availableUpgrades.length === 0) {
+                    // Nothing left to upgrade: just bomb react and keep going!
+                    return;
+                }
+
+                this.state.keys.clear();
+                this.state.running = false;
+                this.showLevelCards(availableUpgrades);
+            },
+
+            getAvailableUpgrades() {
+                const p = this.state.player;
+                const upgradePool = [];
+
+                const evolvedBaseWeapons = new Set();
+                for (const evoKey in this.DATA.EVOLUTIONS) {
+                    if (p.weapons[evoKey]) {
+                        evolvedBaseWeapons.add(this.DATA.EVOLUTIONS[evoKey].weapon);
+                    }
+                }
+
+                // Evolution ready check
+                for (const key in this.DATA.EVOLUTIONS) {
+                    const evo = this.DATA.EVOLUTIONS[key];
+                    if (!p.weapons[key] &&
+                        p.weapons[evo.weapon]?.level >= this.DATA.WEAPONS[evo.weapon].maxLevel &&
+                        p.passives[evo.passive]?.level >= this.DATA.PASSIVES[evo.passive].maxLevel) {
+                        upgradePool.push({
+                            name: `진화: ${evo.name}`,
+                            detail: evo.detail,
+                            isEvolved: true,
+                            apply: () => {
+                                delete p.weapons[evo.weapon];
+                                p.weapons[key] = { level: 1, cd: 0 };
+                            }
+                        });
+                    }
+                }
+
+                // Normal Weapons
+                for (const key in this.DATA.WEAPONS) {
+                    if (evolvedBaseWeapons.has(key)) continue;
+                    const weapon = p.weapons[key];
+                    const wData = this.DATA.WEAPONS[key];
+                    if (!weapon && Object.keys(p.weapons).filter(k => !k.startsWith('evo_')).length < 4) {
+                        upgradePool.push({
+                            name: `${wData.name} 획득`,
+                            detail: wData.levels[0].detail,
+                            apply: () => { p.weapons[key] = { level: 1, cd: 0 }; }
+                        });
+                    } else if (weapon && weapon.level < wData.maxLevel) {
+                        upgradePool.push({
+                            name: `${wData.name} Lv.${weapon.level + 1}`,
+                            detail: wData.levels[weapon.level].detail,
+                            apply: () => { weapon.level++; weapon.cd = 0; }
+                        });
+                    }
+                }
+
+                // Passives
+                for (const key in this.DATA.PASSIVES) {
+                    const passive = p.passives[key];
+                    const pData = this.DATA.PASSIVES[key];
+                    if (!passive && Object.keys(p.passives).length < 4) {
+                        upgradePool.push({
+                            name: `${pData.name} 획득`,
+                            detail: pData.levels[0].detail,
+                            apply: () => { p.passives[key] = { level: 1 }; this.applyPassive(key, 0); }
+                        });
+                    } else if (passive && passive.level < pData.maxLevel) {
+                        upgradePool.push({
+                            name: `${pData.name} Lv.${passive.level + 1}`,
+                            detail: pData.levels[passive.level].detail,
+                            apply: () => { passive.level++; this.applyPassive(key, passive.level - 1); }
+                        });
+                    }
+                }
+
+                return upgradePool;
+            },
+
+            showLevelCards(pool) {
+                const upgradePool = pool || this.getAvailableUpgrades();
+                if (upgradePool.length === 0) {
+                    this.resume();
+                    return;
+                }
+
+                this.dom.lvlOpts.innerHTML = '';
+                this.dom.lvlup.style.display = 'grid';
+
+                const finalOptions = [];
+                const evolutionOptions = upgradePool.filter(o => o.isEvolved);
+                const normalOptions = upgradePool.filter(o => !o.isEvolved);
+                if (evolutionOptions.length > 0) finalOptions.push(evolutionOptions[0]);
+
+                while (finalOptions.length < 3 && normalOptions.length > 0) {
+                    const idx = Math.floor(Math.random() * normalOptions.length);
+                    finalOptions.push(normalOptions.splice(idx, 1)[0]);
+                }
+
+                for (const opt of finalOptions) {
+                    const div = document.createElement('div');
+                    div.className = 'opt';
+                    if (opt.isEvolved) div.classList.add('evolved');
+                    div.innerHTML = `<div>${opt.name}<div class="muted" style="font-size:12px">${opt.detail}</div></div><button>선택</button>`;
+                    div.onclick = () => {
+                        opt.apply();
+                        this.dom.lvlup.style.display = 'none';
+                        this.resume();
+                    };
+                    this.dom.lvlOpts.appendChild(div);
+                }
+            },
+
+            applyPassive(key, level) {
+                const pData = this.DATA.PASSIVES[key].levels[level];
+                if (key === 'maxHp') {
+                    this.state.player.maxHp += pData.value;
+                    this.state.player.hp += pData.value;
+                }
+            },
+
+            updateUI() {
+                const p = this.state.player;
+                const cleanHp = Math.max(0, p.hp);
+                const hpPct = cleanHp / p.maxHp;
+                this.dom.hpFill.style.inset = `0 ${(1 - hpPct) * 100}% 0 0`;
+                this.dom.hpText.textContent = `${Math.ceil(cleanHp)}/${p.maxHp}`;
+                const xpPct = this.state.xp / this.state.nextXp;
+                this.dom.xpFill.style.inset = `0 ${(1 - xpPct) * 100}% 0 0`;
+                this.dom.lvText.textContent = this.state.level;
+                this.dom.goldText.textContent = this.state.goldEarned;
+                this.dom.killsText.textContent = this.state.totalKills;
+                this.drawMinimap();
+                this.drawFullMap();
+            },
+
+            gameOver() {
+                this.state.running = false;
+                const finalScore = (this.state.totalKills * 10) + (this.state.stageLevel * 500);
+                this.dom.startMenu.innerHTML = `<h2>게임 오버</h2><p>최종 점수: ${finalScore} | 획득 골드: ${this.state.goldEarned}</p><div class="btns"><button id="exitBtn">메인 메뉴로</button></div>`;
+                document.getElementById('exitBtn').onclick = () => this.endGame();
+                this.dom.startMenu.style.display = 'block';
+            },
+
+            endGame() {
+                if (this.onGameEnd) {
+                    const finalScore = (this.state.totalKills * 10) + (this.state.stageLevel * 500);
+                    this.onGameEnd(this.state.goldEarned, finalScore);
+                }
+            },
+
+            pause() {
+                this.state.keys.clear();
+                this.state.running = false;
+                this.dom.startMenu.innerHTML = `<h2>일시정지</h2><p>플레이어 생존 시간: ${this.formatTime(this.state.time)}</p><div class="btns"><button id="resumeBtn">계속하기</button><button id="exitBtnPause" style="background:none;">나가기</button></div>`;
+                document.getElementById('resumeBtn').onclick = () => this.resume();
+                document.getElementById('exitBtnPause').onclick = () => this.endGame();
+                this.dom.startMenu.style.display = 'block';
+            },
+
+            resume() {
+                this.dom.startMenu.style.display = 'none';
+                this.state.lastT = performance.now();
+                this.state.running = true;
+            },
+
+            onKey(e, down) {
+                if (!e || !this.state || !this.state.keys) return;
+                const key = e.key ? e.key.toLowerCase() : "";
+                if (!this.state.running && this.dom.lvlup.style.display === 'none' && !this.statsVisible) {
+                    if (!['p', 'escape', 'i', 'ㅑ', 'tab'].includes(key)) return;
+                }
+
+                if (down) this.state.keys.add(key);
+                else this.state.keys.delete(key);
+
+                if (key === 'tab') {
+                    e.preventDefault();
+                    this.dom.fullMapOverlay.classList.toggle('active', down);
+                }
+
+                if (down && (key === 'i' || key === 'ㅑ')) {
+                    this.toggleStatsPanel();
+                } else if (down && key === 'p') {
+                    this.state.running ? this.pause() : this.resume();
+                } else if (down && key === 'escape') {
+                    if (this.state.running) this.pause();
+                }
+            },
+
+            toggleStatsPanel() {
+                this.statsVisible = !this.statsVisible;
+                if (this.statsVisible) {
+                    this.wasRunningBeforeStats = this.state.running;
+                    if (this.wasRunningBeforeStats) {
+                        this.state.running = false;
+                    }
+                    this.updateStatsUI();
+                    this.dom.statsPanel.style.display = 'block';
+                } else {
+                    this.dom.statsPanel.style.display = 'none';
+                    if (this.wasRunningBeforeStats && this.dom.startMenu.style.display === 'none' && this.dom.lvlup.style.display === 'none') {
+                        this.resume();
+                    }
+                }
+            },
+
+            updateStatsUI() {
+                const p = this.state.player;
+                let html = `<h4>플레이어 상세 스탯 (스크롤 가능)</h4>`;
+                const upgrades = this.currentUser?.upgrades || { maxHp: 0, attack: 0, speed: 0, pickup: 0 };
+                const shopAttackBonus = 1 + ((upgrades.attack || 0) * app.SHOP_DATA.stats.attack.bonusPerLevel);
+                const passiveAttackBonus = 1 + (p.passives.attack?.level || 0) * 0.1;
+                const totalAttackBonus = shopAttackBonus * passiveAttackBonus;
+
+                html += `<div class="stat-row"><span>최대 HP</span> <span class="value">${p.maxHp}</span></div>`;
+                html += `<div class="stat-row"><span>이동 속도</span> <span class="value">${Math.round(p.speed * (1 + (p.passives.speed?.level || 0) * 0.1))}</span></div>`;
+                html += `<div class="stat-row"><span>자력 범위</span> <span class="value">${Math.round(p.pickup + (p.passives.pickup?.level || 0) * 40)}px</span></div>`;
+
+                for (const key in p.weapons) {
+                    html += `<hr style="border:0; border-top:1px solid #223142; margin:10px 0;">`;
+                    const weapon = p.weapons[key];
+                    if (key.startsWith('evo_')) {
+                        const wData = this.DATA.EVOLUTIONS[key];
+                        html += `<div class="stat-row" style="opacity:1"><strong>${wData.name}</strong></div>`;
+                    } else {
+                        const wData = this.DATA.WEAPONS[key];
+                        const spec = wData.levels[weapon.level - 1];
+                        html += `<div class="stat-row" style="opacity:1"><strong>${wData.name} (Lv.${weapon.level})</strong></div>`;
+                        if (spec.dmg) html += `<div class="stat-row"><span>데미지</span> <span class="value">${Math.round(spec.dmg * totalAttackBonus)}</span></div>`;
+                        if (spec.fireRate) html += `<div class="stat-row"><span>쿨타임</span> <span class="value">${(spec.fireRate * (1 - (p.passives.cooldown?.level || 0) * 0.08)).toFixed(2)}s</span></div>`;
+                        if (spec.count) html += `<div class="stat-row"><span>개수</span> <span class="value">${spec.count}</span></div>`;
+                        if (spec.pierce) html += `<div class="stat-row"><span>관통</span> <span class="value">${spec.pierce}</span></div>`;
+                    }
+                }
+                for (const key in p.passives) {
+                    const passive = p.passives[key];
+                    const pData = this.DATA.PASSIVES[key];
+                    html += `<hr style="border:0; border-top:1px solid #223142; margin:10px 0;">`;
+                    html += `<div class="stat-row" style="opacity:1"><strong>${pData.name} (Lv.${passive.level})</strong></div>`;
+                }
+                this.dom.statsPanel.innerHTML = html;
+            },
+
+            toggleDevMode() {
+                this.state.devMode = !this.state.devMode;
+                this.dom.devPanel.classList.toggle('active', this.state.devMode);
+            },
+
+            toggleGodMode() {
+                this.state.player.isInvincible = !this.state.player.isInvincible;
+                this.dom.devGodModeBtn.textContent = `God Mode: ${this.state.player.isInvincible ? 'ON' : 'OFF'}`;
+            },
+
+            devMasterWeapons() {
+                const p = this.state.player;
+                for (const key in this.DATA.WEAPONS) {
+                    p.weapons[key] = { level: this.DATA.WEAPONS[key].maxLevel, cd: 0 };
+                }
+                for (const key in this.DATA.PASSIVES) {
+                    p.passives[key] = { level: this.DATA.PASSIVES[key].maxLevel };
+                    this.applyPassive(key, 0); this.applyPassive(key, 1); this.applyPassive(key, 2);
+                }
+                this.showLevelCards();
+            },
+
+            draw() {
+                if (!this.state || !this.state.player) return;
+                this.ctx.fillStyle = this.state.mapColor;
+                this.ctx.fillRect(0, 0, this.dom.canvas.clientWidth, this.dom.canvas.clientHeight);
+
+                // Draw solid round rocks
+                for (const obs of this.state.obstacles) {
+                    this.ctx.fillStyle = '#4a4a4a';
+                    this.ctx.beginPath();
+                    this.ctx.arc(obs.x, obs.y, obs.r, 0, Math.PI * 2);
+                    this.ctx.fill();
+                    this.ctx.strokeStyle = '#242424';
+                    this.ctx.lineWidth = 3;
+                    this.ctx.stroke();
+                }
+
+                // Draw Room Doors
+                const room = this.state.mapGrid[`${this.state.currentRoomCoords.x},${this.state.currentRoomCoords.y}`];
+                if (room && room.cleared) {
+                    const doorSize = 44;
+                    this.ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                    if (room.doors.N) this.ctx.fillRect(this.state.bounds.w / 2 - doorSize / 2, 0, doorSize, 14);
+                    if (room.doors.S) this.ctx.fillRect(this.state.bounds.w / 2 - doorSize / 2, this.state.bounds.h - 14, doorSize, 14);
+                    if (room.doors.W) this.ctx.fillRect(0, this.state.bounds.h / 2 - doorSize / 2, 14, doorSize);
+                    if (room.doors.E) this.ctx.fillRect(this.state.bounds.w - 14, this.state.bounds.h / 2 - doorSize / 2, 14, doorSize);
+                }
+
+                for (const d of this.state.drops) { this.drawDrop(d); }
+
+                // Draw enemies with distinct high-contrast health bars
+                for (const e of this.state.enemies) {
+                    this.ctx.save();
+                    if (e.hitTimer > 0) this.ctx.filter = 'brightness(2.2)';
+                    this.ctx.fillStyle = '#e05663';
+                    this.ctx.beginPath();
+                    this.ctx.arc(e.x, e.y, 12, 0, Math.PI * 2);
+                    this.ctx.fill();
+                    this.ctx.restore();
+
+                    // Distinct enemy HP bar
+                    const hpPct = Math.max(0, e.displayHp / e.maxHp);
+                    const barWidth = 26;
+                    const barHeight = 5;
+                    const barX = e.x - barWidth / 2;
+                    const barY = e.y - e.r - 10;
+                    this.ctx.fillStyle = '#5a1e23'; // Dark red background
+                    this.ctx.fillRect(barX, barY, barWidth, barHeight);
+                    this.ctx.fillStyle = 'var(--danger)'; // Bright red foreground
+                    this.ctx.fillRect(barX, barY, barWidth * hpPct, barHeight);
+                    this.ctx.strokeStyle = '#05070a';
+                    this.ctx.lineWidth = 1.5;
+                    this.ctx.strokeRect(barX, barY, barWidth, barHeight);
+                }
+
+                this.drawWeapons();
+
+                // Draw Player
+                this.ctx.save();
+                if (this.state.player.hitTimer > 0 && Math.floor(this.state.player.hitTimer * 20) % 2 === 0) {
+                    this.ctx.globalAlpha = 0.5;
+                }
+                const p = this.state.player;
+                this.ctx.fillStyle = '#8be9a6';
+                this.ctx.beginPath();
+                this.ctx.arc(p.x, p.y, 12, 0, Math.PI * 2);
+                this.ctx.fill();
+                this.ctx.restore();
+
+                for (const effect of this.state.effects) { this.drawEffect(effect); }
+
+                for (const dn of this.state.damageNumbers) {
+                    this.ctx.save();
+                    this.ctx.font = 'bold 12px sans-serif';
+                    this.ctx.fillStyle = `rgba(255, 255, 255, ${dn.life / 0.6})`;
+                    this.ctx.strokeStyle = `rgba(0, 0, 0, ${dn.life / 0.6})`;
+                    this.ctx.lineWidth = 2;
+                    this.ctx.strokeText(dn.text, dn.x, dn.y);
+                    this.ctx.fillText(dn.text, dn.x, dn.y);
+                    this.ctx.restore();
+                }
+            },
+
+            drawDrop(d) {
+                this.ctx.save();
+                this.ctx.translate(d.x, d.y);
+                this.ctx.scale(d.r / 8, d.r / 8);
+                const glow = Math.abs(Math.sin(this.state.time * 3)) * 0.5 + 0.5;
+
+                if (d.type === 'xp') {
+                    this.ctx.fillStyle = 'rgba(110,220,255,.9)';
+                    this.ctx.beginPath(); this.ctx.arc(0, 0, 6, 0, Math.PI * 2); this.ctx.fill();
+                } else if (d.type === 'gold') {
+                    this.ctx.fillStyle = '#ffd700';
+                    this.ctx.beginPath(); this.ctx.arc(0, 0, 6, 0, Math.PI * 2); this.ctx.fill();
+                } else if (d.type === 'heart') {
+                    this.ctx.fillStyle = `rgb(255, ${100 + glow * 100}, ${100 + glow * 100})`;
+                    this.ctx.beginPath(); this.ctx.moveTo(0, -3);
+                    this.ctx.bezierCurveTo(-8, -12, -12, 0, 0, 5);
+                    this.ctx.bezierCurveTo(12, 0, 8, -12, 0, -3); this.ctx.fill();
+                } else if (d.type === 'magnet') {
+                    this.ctx.fillStyle = `rgb(${150 + glow * 100}, ${150 + glow * 100}, 255)`;
+                    this.ctx.fillRect(-6, -6, 4, 10); this.ctx.fillRect(2, -6, 4, 10); this.ctx.fillRect(-6, -6, 12, 4);
+                } else if (d.type === 'bomb') {
+                    this.ctx.fillStyle = 'black'; this.ctx.beginPath(); this.ctx.arc(0, 0, 8, 0, Math.PI * 2); this.ctx.fill();
+                    this.ctx.fillStyle = `rgb(255, ${200 - glow * 100}, 50)`; this.ctx.beginPath(); this.ctx.arc(0, 0, 3, 0, Math.PI * 2); this.ctx.fill();
+                }
+                this.ctx.restore();
+            },
+
+            drawEffect(effect) {
+                const lifePct = effect.life / 0.3;
+                if (effect.type === 'death') {
+                    this.ctx.fillStyle = `rgba(255, 255, 255, ${lifePct})`;
+                    for (let i = 0; i < 5; i++) {
+                        const r = effect.r * (1 - lifePct) * 2;
+                        const angle = (i * Math.PI * 2) / 5 + this.state.time * 10;
+                        const x = effect.x + Math.cos(angle) * r;
+                        const y = effect.y + Math.sin(angle) * r;
+                        this.ctx.beginPath(); this.ctx.arc(x, y, 2, 0, Math.PI * 2); this.ctx.fill();
+                    }
+                } else if (effect.type === 'explosion') {
+                    this.ctx.fillStyle = `rgba(255, 200, 80, ${lifePct * 0.8})`;
+                    this.ctx.beginPath(); this.ctx.arc(effect.x, effect.y, (effect.r || 60) * (1 - lifePct * 0.4), 0, Math.PI * 2); this.ctx.fill();
+                } else if (effect.type === 'lightning') {
+                    this.ctx.strokeStyle = `rgba(113, 210, 255, ${effect.life * 2})`;
+                    this.ctx.lineWidth = 3; this.ctx.beginPath();
+                    for (let i = 0; i < 5; i++) { this.ctx.lineTo(effect.x + this.rand(-20, 20), effect.y + this.rand(-20, 20)); }
+                    this.ctx.stroke();
+                }
+            },
+
+            drawWeapons() {
+                if (!this.state.projs) return;
+                for (const b of this.state.projs) {
+                    this.ctx.save();
+                    this.ctx.translate(b.x, b.y);
+                    if (b.type === 'base') {
+                        this.ctx.fillStyle = '#eaf0f6';
+                        this.ctx.beginPath(); this.ctx.arc(0, 0, 4, 0, Math.PI * 2); this.ctx.fill();
+                    } else if (b.type === 'lance') {
+                        const angle = Math.atan2(b.vy, b.vx);
+                        this.ctx.rotate(angle);
+                        this.ctx.fillStyle = '#ffc974'; this.ctx.fillRect(-12, -3, 24, 6);
+                    } else if (b.type === 'blade') {
+                        this.ctx.rotate(this.state.time * 15);
+                        this.ctx.strokeStyle = '#74d2ff'; this.ctx.lineWidth = 3;
+                        this.ctx.beginPath(); this.ctx.arc(0, 0, 10, 0, Math.PI * 1.5); this.ctx.stroke();
+                    } else if (b.type === 'missile') {
+                        const angle = Math.atan2(b.vy, b.vx);
+                        this.ctx.rotate(angle + Math.PI / 2);
+                        this.ctx.fillStyle = b.isEvolved ? '#ff4d4d' : `hsl(${Math.floor(this.state.time * 200) % 360}, 90%, 70%)`;
+                        this.ctx.beginPath(); this.ctx.moveTo(0, -10); this.ctx.lineTo(6, 6); this.ctx.lineTo(-6, 6); this.ctx.closePath(); this.ctx.fill();
+                    } else if (b.type === 'evo_base') {
+                        this.ctx.fillStyle = '#ff6b6b';
+                        this.ctx.beginPath(); this.ctx.arc(0, 0, b.r, 0, Math.PI * 2); this.ctx.fill();
+                    } else if (b.type === 'evo_lance') {
+                        const angle = Math.atan2(b.vy, b.vx);
+                        this.ctx.rotate(angle);
+                        this.ctx.fillStyle = '#71d2ff'; this.ctx.fillRect(-20, -5, 40, 10);
+                    } else if (b.type === 'evo_blade') {
+                        this.ctx.rotate(b.angle + this.state.time * 20);
+                        this.ctx.strokeStyle = '#9bff8a'; this.ctx.lineWidth = 4;
+                        this.ctx.beginPath();
+                        this.ctx.moveTo(-14, 0); this.ctx.lineTo(14, 0);
+                        this.ctx.moveTo(0, -14); this.ctx.lineTo(0, 14);
+                        this.ctx.stroke();
+                    }
+                    this.ctx.restore();
+                }
+
+                // Draw orbiters directly without trail
+                const p = this.state.player;
+                const orbKey = p.weapons.orbiter ? 'orbiter' : (p.weapons.evo_orbiter ? 'evo_orbiter' : null);
+                if (orbKey) {
+                    const isEvo = orbKey === 'evo_orbiter';
+                    const spec = isEvo ? { count: 6, rotSpeed: 7.5, range: 145 } : this.DATA.WEAPONS.orbiter.levels[p.weapons.orbiter.level - 1];
+                    const size = isEvo ? 24 : 15;
+                    const color = isEvo ? '#ff4d6d' : '#ff9a74';
+                    const angleStep = (Math.PI * 2) / spec.count;
+                    for (let i = 0; i < spec.count; i++) {
+                        const angle = this.state.time * spec.rotSpeed + angleStep * i;
+                        const ox = p.x + Math.cos(angle) * spec.range;
+                        const oy = p.y + Math.sin(angle) * spec.range;
+                        this.ctx.fillStyle = color;
+                        this.ctx.beginPath();
+                        this.ctx.arc(ox, oy, size / 2, 0, Math.PI * 2);
+                        this.ctx.fill();
+                    }
+                }
+            },
+
+            drawMinimap() {
+                const ctx = this.minimapCtx;
+                const { width, height } = this.dom.minimapCanvas;
+                ctx.clearRect(0, 0, width, height);
+
+                const roomSize = 10;
+                const padding = 2;
+                const coords = Object.keys(this.state.mapGrid).map(k => k.split(',').map(Number));
+                if (coords.length === 0) return;
+                const minX = Math.min(...coords.map(c => c[0]));
+                const maxX = Math.max(...coords.map(c => c[0]));
+                const minY = Math.min(...coords.map(c => c[1]));
+                const maxY = Math.max(...coords.map(c => c[1]));
+
+                const mapWidth = (maxX - minX + 1) * (roomSize + padding);
+                const mapHeight = (maxY - minY + 1) * (roomSize + padding);
+                const offsetX = (width - mapWidth) / 2;
+                const offsetY = (height - mapHeight) / 2;
+
+                for (const key in this.state.mapGrid) {
+                    const room = this.state.mapGrid[key];
+                    if (!room.discovered) continue;
+                    const [x, y] = key.split(',').map(Number);
+                    const drawX = offsetX + (x - minX) * (roomSize + padding);
+                    const drawY = offsetY + (y - minY) * (roomSize + padding);
+
+                    if (x === this.state.currentRoomCoords.x && y === this.state.currentRoomCoords.y) {
+                        ctx.fillStyle = 'var(--good)';
+                    } else {
+                        switch (room.type) {
+                            case 'shop': ctx.fillStyle = '#ffd700'; break;
+                            case 'boss': ctx.fillStyle = 'var(--danger)'; break;
+                            case 'survival': ctx.fillStyle = '#ff9a74'; break;
+                            default: ctx.fillStyle = '#556677';
+                        }
+                    }
+                    ctx.fillRect(drawX, drawY, roomSize, roomSize);
+                }
+            },
+
+            drawFullMap() {
+                const ctx = this.fullMapCtx;
+                const { width, height } = this.dom.fullMapCanvas;
+                ctx.clearRect(0, 0, width, height);
+
+                const roomSize = 22;
+                const padding = 6;
+                const coords = Object.keys(this.state.mapGrid).map(k => k.split(',').map(Number));
+                if (coords.length === 0) return;
+                const minX = Math.min(...coords.map(c => c[0]));
+                const maxX = Math.max(...coords.map(c => c[0]));
+                const minY = Math.min(...coords.map(c => c[1]));
+                const maxY = Math.max(...coords.map(c => c[1]));
+
+                const mapWidth = (maxX - minX + 1) * (roomSize + padding);
+                const mapHeight = (maxY - minY + 1) * (roomSize + padding);
+                const offsetX = (width - mapWidth) / 2;
+                const offsetY = (height - mapHeight) / 2;
+
+                ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+                ctx.lineWidth = 2;
+
+                for (const key in this.state.mapGrid) {
+                    const room = this.state.mapGrid[key];
+                    if (!room.discovered) continue;
+                    const [x, y] = key.split(',').map(Number);
+                    const drawX = offsetX + (x - minX) * (roomSize + padding);
+                    const drawY = offsetY + (y - minY) * (roomSize + padding);
+
+                    if (room.doors.N) { ctx.beginPath(); ctx.moveTo(drawX + roomSize / 2, drawY); ctx.lineTo(drawX + roomSize / 2, drawY - padding); ctx.stroke(); }
+                    if (room.doors.S) { ctx.beginPath(); ctx.moveTo(drawX + roomSize / 2, drawY + roomSize); ctx.lineTo(drawX + roomSize / 2, drawY + roomSize + padding); ctx.stroke(); }
+                    if (room.doors.W) { ctx.beginPath(); ctx.moveTo(drawX, drawY + roomSize / 2); ctx.lineTo(drawX - padding, drawY + roomSize / 2); ctx.stroke(); }
+                    if (room.doors.E) { ctx.beginPath(); ctx.moveTo(drawX + roomSize, drawY + roomSize / 2); ctx.lineTo(drawX + roomSize + padding, drawY + roomSize / 2); ctx.stroke(); }
+                }
+
+                for (const key in this.state.mapGrid) {
+                    const room = this.state.mapGrid[key];
+                    if (!room.discovered) continue;
+                    const [x, y] = key.split(',').map(Number);
+                    const drawX = offsetX + (x - minX) * (roomSize + padding);
+                    const drawY = offsetY + (y - minY) * (roomSize + padding);
+
+                    if (x === this.state.currentRoomCoords.x && y === this.state.currentRoomCoords.y) {
+                        ctx.fillStyle = 'var(--good)';
+                    } else {
+                        switch (room.type) {
+                            case 'shop': ctx.fillStyle = '#ffd700'; break;
+                            case 'boss': ctx.fillStyle = 'var(--danger)'; break;
+                            case 'survival': ctx.fillStyle = '#ff9a74'; break;
+                            default: ctx.fillStyle = '#556677';
+                        }
+                    }
+                    ctx.fillRect(drawX, drawY, roomSize, roomSize);
+                    ctx.strokeStyle = '#111';
+                    ctx.strokeRect(drawX, drawY, roomSize, roomSize);
+                }
+            },
+
+            clamp(v, min, max) { return Math.max(min, Math.min(max, v)); },
+            rand(a, b) { return Math.random() * (b - a) + a; },
+            dist2(a, b) { const dx = a.x - b.x, dy = a.y - b.y; return dx * dx + dy * dy; },
+            formatTime(sec) {
+                const s = Math.floor(sec % 60).toString().padStart(2, '0');
+                const m = Math.floor(sec / 60).toString().padStart(2, '0');
+                return `${m}:${s}`;
+            }
+        };
+
+        app.init();
+        game.init();
+    });
+    </script>
+
+<!-- ===== 포트폴리오 공개용 추가분 · 원본 게임 코드는 그대로 두고 아래만 덧붙였습니다 ===== -->
+<style>
+  .pf-guest{width:100%;margin-top:12px;background:linear-gradient(45deg,var(--accent),#4aa2ff);color:#0b0f14;border:none}
+  .pf-note{margin:14px 0 0;font-size:12px;opacity:.6;line-height:1.6}
+  .wrap{max-width:min(1100px,calc((100vh - 64px) * 16 / 9 + 40px))}
+  .pf-joy{position:fixed;left:18px;bottom:18px;width:124px;height:124px;border-radius:50%;background:rgba(113,210,255,.10);border:1px solid rgba(113,210,255,.35);z-index:60;display:none;touch-action:none}
+  .pf-joy i{position:absolute;left:50%;top:50%;width:50px;height:50px;margin:-25px 0 0 -25px;border-radius:50%;background:rgba(113,210,255,.45);pointer-events:none}
+  .pf-pause{position:fixed;right:14px;bottom:22px;z-index:60;display:none;font-size:14px;padding:10px 14px}
+  @media (max-width:700px){#main-menu-screen .top-bar,#main-menu-screen .bottom-container{flex-wrap:wrap;gap:12px}.ranking-container{width:100%}#play-btn,#shop-btn{font-size:20px;padding:14px 26px}.controls{display:none}}
+  @media (pointer:coarse){.controls{display:none}}
+  @media (max-width:700px),(max-height:500px){.wrap{padding:10px}header h1{font-size:15px}.top{top:6px;left:6px;right:6px}.chip{font-size:10px;padding:3px 7px}#room-objective{font-size:11px}.bar{width:clamp(50px,18vw,260px)}#room-objective{white-space:nowrap}#minimap-container{transform:scale(.6);transform-origin:top right}}
+</style>
+<script>
+(function () {
+  // 1) 체험 계정: 회원가입 없이 바로 메인 메뉴로 (원래 로그인 흐름은 그대로 남겨 둠)
+  var form = document.querySelector('#auth-screen .form-container');
+  if (form) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'pf-guest'; b.textContent = '체험 계정으로 바로 시작';
+    var n = document.createElement('p');
+    n.className = 'pf-note';
+    n.innerHTML = '포트폴리오 공개용으로 덧붙인 버튼입니다.<br>계정 · 골드 · 기록은 이 브라우저에만 저장됩니다.';
+    form.appendChild(b); form.appendChild(n);
+    b.addEventListener('click', function () {
+      try {
+        var users = JSON.parse(localStorage.getItem('game_users')) || {};
+        if (!users.guest) users.guest = { password: 'guest', profile: { company: '포트폴리오', rank: '방문자', name: '게스트' }, gold: 0, highScore: 0, upgrades: { maxHp: 0, attack: 0, speed: 0, pickup: 0 } };
+        localStorage.setItem('game_users', JSON.stringify(users));
+        localStorage.setItem('lastLoggedInUser', 'guest');
+        location.reload();
+      } catch (e) { b.textContent = '이 브라우저에서는 저장소를 쓸 수 없어요'; }
+    });
+  }
+  // 2) 터치 화면: 가상 조이스틱 → WASD 키 입력으로 바꿔 전달
+  var touch = (window.matchMedia && matchMedia('(pointer: coarse)').matches) || ('ontouchstart' in window);
+  var gc = document.getElementById('game-container');
+  if (!touch || !gc) return;
+  var joy = document.createElement('div'); joy.className = 'pf-joy'; joy.innerHTML = '<i></i>';
+  var pb = document.createElement('button'); pb.type = 'button'; pb.className = 'pf-pause'; pb.textContent = '일시정지';
+  document.body.appendChild(joy); document.body.appendChild(pb);
+  var knob = joy.firstChild, held = {}, pid = null;
+  function key(k, down) { if (!!held[k] === down) return; held[k] = down; window.dispatchEvent(new KeyboardEvent(down ? 'keydown' : 'keyup', { key: k })); }
+  function dir(dx, dy) { var t = 0.35; key('a', dx < -t); key('d', dx > t); key('w', dy < -t); key('s', dy > t); }
+  function move(e) {
+    var r = joy.getBoundingClientRect(), h = r.width / 2;
+    var dx = (e.clientX - r.left - h) / h, dy = (e.clientY - r.top - h) / h, m = Math.hypot(dx, dy);
+    if (m > 1) { dx /= m; dy /= m; }
+    knob.style.transform = 'translate(' + dx * 37 + 'px,' + dy * 37 + 'px)';
+    dir(dx, dy);
+  }
+  function end() { pid = null; knob.style.transform = ''; dir(0, 0); }
+  joy.addEventListener('pointerdown', function (e) { pid = e.pointerId; try { joy.setPointerCapture(pid); } catch (x) {} move(e); e.preventDefault(); });
+  joy.addEventListener('pointermove', function (e) { if (e.pointerId === pid) move(e); });
+  joy.addEventListener('pointerup', end); joy.addEventListener('pointercancel', end);
+  pb.addEventListener('click', function () { key('p', true); key('p', false); });
+  new MutationObserver(function () {
+    var on = gc.classList.contains('active');
+    joy.style.display = pb.style.display = on ? 'block' : 'none';
+    if (!on) end();
+  }).observe(gc, { attributes: true, attributeFilter: ['class'] });
+})();
+</script>
+</body>
+</html>
