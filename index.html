@@ -1573,13 +1573,13 @@ const chShot = (i, cap) => ({ src: `media/chime/shots/${pad2(i)}.webp`, w: 1600,
 const bkImg = (f, w, h, cap) => ({ src: `media/barracks/img/${f}.webp`, w, h, cap });
 const PROJECTS = [
   {
-    id: 'chime', cat: ['ai', 'system', 'proto'], type: 'soon', len: 'MVP 데모', badge: 'UE5', real: true, cover: 'media/chime/cover.webp',
+    id: 'chime', cat: ['ai', 'system', 'proto'], type: 'mp4', len: '8:12', badge: 'UE5', real: true, cover: 'media/chime/cover.webp',
     title: 'CHIME | AI 파이프라인으로 한 달 만에 만든 AAA 지향 언리얼 스텔스 해킹 데모',
     tool: 'UE5 · Claude Code · MCP · Meshy 7', meta2: '2인 팀 · PM · 개발 환경 · 게임 흐름 기획 · 2026.09–10',
     date: '2026.09–10', period: '2인 팀 · 약 1개월 · MVP 완성',
     tags: ['UnrealEngine5', 'AAA', 'ClaudeCode', 'UnrealMCP', 'BlenderMCP', 'Meshy', '하네스엔지니어링', 'PM', '레벨흐름기획', '스텔스', '해킹'],
     media: [
-      { label: '유튜브 영상', type: 'soon', poster: 'media/chime/poster.webp', len: '준비 중', soonTitle: '유튜브 플레이 영상 준비 중', soonSub: 'MVP 데모를 처음부터 끝까지 플레이한 영상이 이 자리에 올라옵니다' },
+      { label: '풀 플레이 · 해설', type: 'mp4', src: 'media/chime/play.mp4', poster: 'media/chime/vposter.webp', len: '8:12', chapters: [[0, '타이틀'], [14, '#1 첫 번째 종 · 인트로'], [27, '고가 상판 잠입'], [70, '첫 메크 · 등 뒤 해킹'], [96, '리프트 · 지상으로'], [126, 'BREACH.CMD · 무선망 크랙'], [167, '라우터 정찰 · 방화벽 돌파'], [222, 'SSH 크랙 · 콘솔 로그인'], [249, '관리자 계정 획득'], [278, '게이트 방화벽'], [305, '외부 인증 uplink'], [351, '개방키 서명 · unlock'], [372, 'ROUTER-OS 장악'], [395, '고정 메크 해킹'], [420, '화물 운반'], [466, '인식대 · 보안문 개방'], [471, '출구']], caption: '#1 첫 번째 종을 처음부터 출구까지 컷 편집 없이 플레이한 영상입니다. 메인 해킹 BREACH.CMD(무선망 → 라우터 → 방화벽 → SSH → 관리자 → uplink → 서명 → unlock) 전 과정과 설계 의도를 자막으로 달았습니다.' },
       { label: '하이라이트 1~2분', type: 'soon', poster: 'media/chime/shots/02.webp', len: '준비 중', soonTitle: '하이라이트 영상 준비 중', soonSub: '1~2분 분량의 실제 플레이 영상이 이 자리에 올라옵니다' },
       { label: '인게임 스크린샷', type: 'slides', dir: 'chime/shots', count: 26, len: '26장', fullThumbs: true },
       { label: '해킹 체험 · 파장 맞추기', type: 'demo', demo: 'wave', len: '웹 데모', caption: '게임 속 AAAHackWaveform.cpp의 간단 모드(적 유닛 인증)를 웹으로 옮겼습니다. 아래 위상 칸의 합성파(빨강)가 평평한 초록이 되도록 파장 · 위상을 맞추고, 로그의 글자가 제자리로 돌아오도록 열을 맞추면 접속됩니다.' }
