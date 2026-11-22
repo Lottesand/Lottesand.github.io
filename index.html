@@ -1476,7 +1476,7 @@ kbd{display:inline-grid;place-items:center;min-width:28px;height:28px;padding:0 
           <button class="p-big" id="pBig" type="button"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg><span id="pBigLabel">재생</span></button>
           <a class="p-big" id="pYt" href="https://www.youtube.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg><span>YouTube에서 보기</span></a>
           <a class="p-ext" id="pExt" href="https://itch.io/" target="_blank" rel="noopener"><span class="p-ext-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8h10a4 4 0 0 1 4 4v1.5a3 3 0 0 1-5.4 1.8L14.5 14h-5l-1.1 1.3A3 3 0 0 1 3 13.5V12a4 4 0 0 1 4-4z"/><path d="M8 10.5v3M6.5 12h3M15.5 11.5h.01M17.5 13h.01"/></svg>itch.io에서 바로 플레이</span><small>HTML5 · 설치 없이 브라우저에서 실행 · 새 탭으로 열려요</small></a>
-          <button class="p-ext p-game" id="pGame" type="button"><span class="p-ext-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8h10a4 4 0 0 1 4 4v1.5a3 3 0 0 1-5.4 1.8L14.5 14h-5l-1.1 1.3A3 3 0 0 1 3 13.5V12a4 4 0 0 1 4-4z"/><path d="M8 10.5v3M6.5 12h3M15.5 11.5h.01M17.5 13h.01"/></svg>브라우저에서 바로 플레이</span><small id="pGameSub"></small></button>
+          <button class="p-ext p-game" id="pGame" type="button"><span class="p-ext-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8h10a4 4 0 0 1 4 4v1.5a3 3 0 0 1-5.4 1.8L14.5 14h-5l-1.1 1.3A3 3 0 0 1 3 13.5V12a4 4 0 0 1 4-4z"/><path d="M8 10.5v3M6.5 12h3M15.5 11.5h.01M17.5 13h.01"/></svg><span id="pGameLbl">브라우저에서 바로 플레이</span></span><small id="pGameSub"></small></button>
           <div class="p-soon" id="pSoon"><span class="ps-badge mono">COMING SOON</span><b id="pSoonT">플레이 영상 준비 중</b><small id="pSoonS"></small></div>
           <div class="p-note" id="pNote" role="status" hidden></div>
           <div class="p-bar">
@@ -1555,7 +1555,7 @@ kbd{display:inline-grid;place-items:center;min-width:28px;height:28px;padding:0 
   </div>
   <div class="gamebox" id="gameBox" role="dialog" aria-modal="true" aria-labelledby="gbTitle" hidden>
     <div class="gb-bar">
-      <span class="gb-tag mono">PLAYABLE</span><b id="gbTitle"></b><span class="gb-keys" id="gbKeys"></span>
+      <span class="gb-tag mono" id="gbTag">PLAYABLE</span><b id="gbTitle"></b><span class="gb-keys" id="gbKeys"></span>
       <a class="gb-btn" id="gbNew" href="#" target="_blank" rel="noopener">새 탭</a>
       <button class="gb-btn close" id="gbClose" type="button">닫기</button>
     </div>
@@ -1738,34 +1738,63 @@ const PROJECTS = [
     title: 'Take, Action! | 감독과 배우를 오가는 블럭 조립 퍼즐 플랫포머 — 레벨 · 사운드 디자인',
     tool: 'UE 5.9 (Lyra) · Claude Code · Unreal Python · PCG · Diversion', meta2: '4인 팀 · 레벨 디자인 · 기획 문서 · 사운드 · 2026.11 게임잼',
     date: '2026.11', period: '4인 팀 · 4일 게임잼',
-    tags: ['게임잼', 'UnrealEngine5', '레벨디자인', '퍼즐플랫포머', '기획문서', '사운드디자인', 'ClaudeCode', 'UnrealPython', 'PCG', 'Diversion', '무성영화'],
+    tags: ['게임잼', 'UnrealEngine5', '레벨디자인', '퍼즐플랫포머', '기획문서', '장치설계', '사운드디자인', 'ClaudeCode', 'UnrealPython', 'PCG', 'Diversion', '무성영화'],
     media: [
       { label: '게임플레이 트레일러', type: 'youtube', youtube: 'ST-9zLMTInE' },
       { label: '게임 받기', type: 'itch', url: 'https://snooy-dev.itch.io/take-action', len: 'itch.io', caption: '게임잼 제출 빌드입니다. itch.io에서 Windows용 빌드(약 1GB)를 받아 바로 실행할 수 있습니다.' },
-      { label: '레벨 시뮬레이터 플레이', type: 'game', src: 'media/takeaction/levelplay.html', poster: 'media/takeaction/poster_play.webp', len: '웹 3D',
-        gTitle: '블럭 레벨 플레이 v4 · 설계 검증용 시뮬레이터', gKeys: 'WASD 이동 · Space 점프(공중 한 번 더) · E 상호작용 · 마우스 드래그 시점 · R 처음부터',
-        gSub: '왼쪽 목록에서 SCENE 정답 조립이나 블럭 하나를 골라 걸어 보세요', gSubTouch: '키보드와 마우스가 필요합니다 · PC 권장',
-        caption: '레벨을 언리얼에 넣기 전에 검증하려고 만든 브라우저 시뮬레이터입니다. 설계 데이터(v4)로 실제 에셋을 놓고, 찰리의 실제 이동 수치로 걸어 보며 정답 경로가 끊기지 않는지, 지름길이 없는지 확인했습니다. 언리얼 물리와 완전히 같지는 않은 근사 시뮬레이터입니다.' },
-      { label: '인게임 스크린샷', type: 'slides', dir: 'takeaction/shots', count: 9, len: '9장', fullThumbs: true }
+      { label: '레벨 설계 도면 v5', type: 'game', src: 'media/takeaction/leveldesign_v5.html', poster: 'media/takeaction/poster_design.webp', len: 'HTML 도면',
+        gTag: 'DOCUMENT', gBtn: '설계 도면 열기', gTitle: '블럭 레벨 설계도 v5 · SCENE 1 경로 증명', gKeys: '왼쪽 목록에서 범례 · 한 길 증명 · 블럭을 골라 보세요',
+        gSub: '게임잼 중 실제로 쓴 레벨 설계 도면 원본입니다', gSubTouch: '넓은 화면에서 보기 좋습니다',
+        caption: '레벨 디자인 도면의 최신판(v5)입니다. 범례 · 치수 기준 · 설계 규칙과 함께, SCENE 1을 “정답 경로 하나가 반드시 이어지는가”로 증명하는 한 길 증명, 블럭마다 칸별 평면도 · 3D 단면 · 장치 일람표를 담았습니다. 게임잼 중 이 도면을 보며 블럭을 만들고 고쳤습니다.' },
+      { label: '인게임 스크린샷', type: 'slides', dir: 'takeaction/shots', count: 8, len: '8장', fullThumbs: true }
     ],
-    facts: [['JAM', '2026 Epic AI Mega Jam · 11.12 – 11.16 (4일)'], ['TEAM', '4인 (나 · 팀원 A · B · C)'], ['MY ROLE', 'SCENE 1~3 레벨 디자인 · 기획 문서 · 사운드 · 장치 아트 연결 · 찰리 이동/카메라'], ['ENGINE', 'Unreal Engine 5.9 Preview · Lyra 기반'], ['AI', 'Claude Code + 언리얼 Python 스크립트 · PCG'], ['VCS', 'Diversion · 내 커밋 36개']],
-    summary: '영화 촬영장이 무대인 퍼즐 플랫포머입니다. 감독 모드에서 블럭을 조립해 세트를 짓고, 연기 모드에서 그 세트 안을 3인칭으로 달려 도착 지점까지 갑니다. 완성한 세트는 통째로 하나의 블럭이 되어 다음 SCENE의 재료가 됩니다. 4일짜리 게임잼에서 저는 확정 기획서와 장치 메커니즘 문서를 쓰고, SCENE 1~3의 레벨 디자인 전체(블럭 23종 · SCENE별 정답 배치)와 사운드를 맡았습니다. 레벨은 “경로부터 설계 → 데이터로 생성 → 자동 검증 → 시뮬레이터로 재생”하는 방식으로 만들었습니다.',
+    facts: [['JAM', '2026 Epic AI Mega Jam · 11.12 – 11.16 (4일)'], ['TEAM', '4인 (나 · 팀원 A · B · C)'], ['MY ROLE', 'SCENE 1~3 레벨 디자인 · 기획서 · 장치 규칙 문서 · 사운드'], ['ENGINE', 'Unreal Engine 5.9 Preview · Lyra 기반'], ['AI', 'Claude Code + 언리얼 Python 스크립트 · PCG'], ['VCS', 'Diversion · 내 커밋 36개 (브랜치 5곳)']],
+    summary: '영화 촬영장이 무대인 퍼즐 플랫포머입니다. 감독 모드에서 블럭을 조립해 세트를 짓고, 연기 모드에서 그 세트 안을 3인칭으로 달려 도착 지점까지 갑니다. 완성한 세트는 통째로 하나의 블럭이 되어 다음 SCENE의 재료가 됩니다. 4일짜리 게임잼에서 저는 확정 기획서와 장치 규칙 문서를 쓰고, SCENE 1~3의 레벨 디자인 전체(블럭 23종 · SCENE별 정답 배치)와 사운드를 맡았습니다. 레벨은 “정답 경로부터 정하고 → 데이터로 만들고 → 자동으로 검증하는” 방식으로 짰고, 도면은 v1부터 v8까지 계속 고쳐 나갔습니다.',
     blocks: [
       { h: '어떤 게임인가', lead: '감독이 되어 세트를 짓고, 배우가 되어 그 세트를 달립니다',
-        p: '찰리의 방에서 스케줄 보드로 SCENE을 고르면 촬영이 시작됩니다. Tab으로 <b>CUT!</b>을 외치면 감독 모드로 바뀌어 블럭을 놓고 돌릴 수 있고, 다시 <b>ACTION!</b>을 외치면 바뀐 배치대로 세트가 재조립된 뒤 연기 모드로 돌아옵니다. 톱니를 모두 모으고, 그리드를 다 채우고, 도착 지점에 닿으면 클리어입니다. 사망하거나 CUT!을 할 때마다 TAKE(필름 예산)가 줄어듭니다.' },
+        p: '찰리의 방에서 스케줄 보드로 SCENE을 고르면 촬영이 시작됩니다. Tab으로 <b>CUT!</b>을 외치면 감독 모드로 바뀌어 블럭을 놓고 24방향으로 돌릴 수 있고, 다시 <b>ACTION!</b>을 외치면 바뀐 배치대로 세트가 재조립된 뒤 연기 모드로 돌아옵니다. 톱니를 모두 모으고, 그리드를 다 채우고, 도착 지점에 닿으면 클리어입니다. 사망하거나 CUT!을 할 때마다 TAKE(필름 예산)가 하나씩 쓰이고, SCENE 3을 깨면 플레이어가 만든 세트를 되감아 보여 주는 “감독판” 엔딩이 나옵니다.' },
       { h: '팀과 내 역할 · 4인 팀', kind: 'role', cols: 3,
         p: '제 포트폴리오라서 아래는 제가 맡은 부분을 중심으로 정리했습니다. 역할은 Diversion 커밋 기록으로 확인한 내용입니다.',
         items: [
-          { who: 'ME', me: true, what: '레벨 디자인 · 기획 문서 · 사운드', note: '확정 기획서 · 장치 메커니즘 · 에셋 크기 문서, SCENE 1~3 레벨 디자인과 정답 배치, 블럭 맵 23종, 장치에 아트 메시 입히기, 찰리 이동·카메라 조정, 사운드 전체를 맡았습니다.' },
+          { who: 'ME', me: true, what: '레벨 디자인 · 기획 문서 · 사운드', note: '확정 기획서 · 장치 규칙 · 에셋 크기 문서, SCENE 1~3 레벨 디자인과 정답 배치, 블럭 맵 23종, 장치에 아트 메시 입히기, 찰리 이동 · 카메라 조정, 사운드 전체를 맡았습니다.' },
           { who: '팀원 A', what: '프로그래밍 · 프로젝트 셋업', note: 'Lyra 기반 프로젝트와 AI 작업 환경을 세우고, 감독 모드 · 다단블럭 · 진행 · 메뉴 · 홈 · 연출 등 게임플레이 코드와 메인 병합을 맡았습니다.' },
           { who: '팀원 B · C', what: '아트 · 장치 플러그인', note: '팀원 B는 찰리 캐릭터와 에셋 · UI · 타이틀 애니메이션을, 팀원 C는 감독 모드 조립 플러그인과 블럭 장치(GAS) 플러그인을 만들었습니다.' }
         ] },
+      { h: '기획 문서 · 장치 규칙', kind: 'table', wrap: true,
+        note: '프로토타입을 검토한 뒤 확정 기획서와 장치 규칙 문서를 썼습니다. 장치는 “입력이 켜면 출력이 움직인다”는 한 가지 문법으로 묶고, 모든 장치의 영향은 자기 블럭 안에서 끝나게 했습니다. 블럭을 어디로 옮기고 돌려도 퍼즐이 깨지지 않게 하려는 규칙입니다.',
+        cols: ['분류', '장치', '규칙'],
+        rows: [
+          ['입력', '레버 · 버튼 · 압력판 · 근접센서 · 기둥 소켓', '레버는 켜짐을 유지, 버튼은 4초 뒤 꺼짐, 압력판은 찰리 · 상자 · 기둥 중 하나라도 올라가 있는 동안 켜짐'],
+          ['출력', '문 · 접이식 다리 · 벽 발판 · 증기 승강기 · 송풍기 · 프레스 · 조명(빛 발판) · 인간대포 · 점프 컷 문', '순간이동 없이 정해진 시간 동안 움직이며 바뀜. 대포는 E로 장전하고 신호가 오면 포신 방향으로 발사'],
+          ['자동', '왕복 발판 · 시계추 발판 · 피스톤 계단 · 회전 들보 · 타이머 문 · 파이프 엘리베이터', '입력 없이 스스로 움직이고, 리듬과 타이밍으로 지나감'],
+          ['위험', '위험 톱니(소 · 중 · 대) · 뜨거운 바닥', '톱니가 맞물리는 지점에 끼거나 뜨거운 바닥에 닿으면 사망. 수집용 톱니(금색)와 색 · 크기로 확실히 구분'],
+          ['공통', '감독 모드 → 연기 모드', '돌아올 때마다 모든 장치가 처음 상태로. 신호는 같은 블럭 안에서만 전달']
+        ] },
+      { h: '블럭을 돌리면 길이 바뀐다', kind: 'table', wrap: true,
+        note: '블럭을 24방향으로 돌릴 수 있어서, 같은 구조물도 놓는 방향에 따라 길이 되기도 하고 벽이 되기도 합니다. 장치 규칙 문서에 이 표를 정리해 두고, 블럭 안 구조물을 고를 때 기준으로 썼습니다.',
+        cols: ['구조물', '바로', '옆으로', '거꾸로'],
+        rows: [
+          ['바닥 타일 / 구멍', '바닥, 구멍으로 떨어짐', '벽 · 구멍은 창문 통로', '천장 · 구멍은 위로 오르는 천창'],
+          ['철골 들보', '외나무다리', '기둥', '놓인 방향에 따라 둘 중 하나'],
+          ['계단 / 경사로', '오르막', '톱니 모양 벽', '천장 계단'],
+          ['뜨거운 바닥', '밟으면 사망', '뜨거운 벽', '천장이라 닿을 일이 거의 없음'],
+          ['상자 더미', '디딤돌', '벽에 붙은 턱', '천장 장애물']
+        ] },
       { h: 'SCENE 1~3 레벨 디자인', kind: 'cards', cols: 3,
-        p: 'SCENE마다 그리드가 커지고(2×2×2 → 3×3×3 → 4×4×4), 이전 SCENE을 통째로 만든 다단블럭을 반드시 써야 풀리도록 짰습니다. 블럭 하나하나가 “방” 하나이고, 방마다 장치 하나가 길을 여는 열쇠가 됩니다.',
+        p: 'SCENE마다 그리드가 커지고(2×2×2 → 3×3×3 → 4×4×4), 이전 SCENE을 통째로 만든 다단블럭을 반드시 써야 풀리도록 짰습니다. 블럭 하나하나가 “방” 하나이고, 방마다 장치 하나가 길을 여는 열쇠가 됩니다. SCENE 2 · 3은 정답 배치를 세 가지씩 두어 플레이어가 다른 길로도 깰 수 있게 했습니다.',
         items: [
-          { t: 'SCENE 1 · 2×2×2', tag: '입문', l: ['슬레이트 무대에서 출발해 포스터 무대로 도착', 'D2-A 사무실(문 두 개) · D2-B 기록실(구덩이와 다리)', 'M1-A 소품 창고(상자와 누름판) · M1-B 촬영 소품실(바닥 해치)'] },
+          { t: 'SCENE 1 · 2×2×2', tag: '정답 1개', l: ['슬레이트 무대에서 출발해 포스터 무대로 도착', 'D2-A 사무실(왕복 발판 · 밸브 증기) · D2-B 기록실(진자 · 인간대포)', 'M1-A 소품 창고(상자와 누름판) · M1-B 촬영 소품실(접이식 다리 · 빛 디딤돌)'] },
           { t: 'SCENE 2 · 3×3×3', tag: '정답 3개', l: ['L3-A 공작실(뜨거운 철판) · L3-C 계단 공방(바람 건너기)', 'I3-A 조립 라인(톱니 관문) · I3-B 포장 라인(프레스 벨트)', 'D2-C 우편실(점프컷 지름길) · M1-C 보일러 창고(증기 승강)'] },
-          { t: 'SCENE 3 · 4×4×4', pick: true, tag: '정답 3개', l: ['O4 보일러 홀(가운데 로터리) · T4 제어실 갈림길', 'I4 긴 조립 라인 · L4 긴 공작 통로 · S4 배관 지그재그', 'B4 승강 탑 — 스패너로 기둥을 뽑아 소켓에 옮겨 세우기'] }
+          { t: 'SCENE 3 · 4×4×4', pick: true, tag: '정답 3개', l: ['O4 보일러 홀(회전 들보 · 증기 기둥) · T4 제어실(센서 문 · 기둥 다리)', 'I4 긴 조립 라인(타이머 문 · 프레스) · L4 긴 공작 통로(회전 들보 · 버튼 문)', 'B4 승강 탑(피스톤 계단 · 송풍기) · S4 배관 지그재그'] }
+        ] },
+      { h: '정답 경로 · 한 길로 이어지게', kind: 'table', wrap: true,
+        note: '블럭 배치가 정답이어도 그 안을 실제로 달려 나갈 수 있어야 정답입니다. SCENE마다 경로를 먼저 정하고, 경로가 지나가는 순서대로 장치를 배치했습니다. 아래는 정답 문서에 적은 경로입니다.',
+        cols: ['정답', '경로'],
+        rows: [
+          ['SCENE 1', 'M1-A 소품 탑(레버로 벽 발판 → 상자를 밀어 누름판 → 둘째 발판) → D2-A 왕복 발판 → 밸브 레버로 증기 → 2층 → M1-B 레버로 다리 → 버튼 → 빛 디딤돌 → D2-B 진자 → 레버로 대포 장전 → 도착 단상'],
+          ['SCENE 3 · A', 'SCENE 2 코스(통블럭) → 도착 무대에서 동쪽 발판으로 점프 → I4 타이머 문 · 프레스 → I3-B 왕복 발판 · 진자 · 엘리베이터 → 4층 O4 톱니 광장 → L4 톱니 십자 · 회전 들보 · 버튼 문 → 도착'],
+          ['SCENE 3 · B', 'SCENE 2 코스 → 통블럭 도착 무대에서 북쪽 발판 → L4 회전 들보 · 버튼 문 → M1-C 상자 증기로 4층 → T4 센서 문 · 스패너 기둥 다리 → O4 톱니 광장 → 도착'],
+          ['SCENE 3 · C', '통블럭은 지형으로만 사용 → 1층 B4 피스톤 계단 · 송풍기 → M1-B 다리 → L3-C 도개교 → M1-C 상자 증기 → L3-A 도개교 · 왕복 발판 → D2-A 밸브 증기 → 4층 I3-B 진자 → 도착']
         ] },
       { h: '레벨을 만든 방식', kind: 'flow',
         p: '4일 안에 블럭 23종과 SCENE 3개를 만들어야 해서, 손으로 배치하는 대신 설계를 데이터로 쓰고 생성 · 검증을 자동으로 돌렸습니다.',
@@ -1773,10 +1802,19 @@ const PROJECTS = [
           ['경로부터 설계', '완성된 정답 경로를 먼저 정하고 그 길을 만드는 블럭과 장치를 거꾸로 배치 (v5부터 “경로 먼저”로 SCENE 1을 다시 짬)'],
           ['데이터로 생성', '설계 JSON을 언리얼 Python 스크립트(block_design_v3.py · block_dressing.py)가 읽어 블럭 맵과 장치를 배치, 장식은 PCG로 깔고 메시로 구움'],
           ['자동 검증', '만든 맵을 설계와 한 조각씩 대조하고, 찰리 캡슐이 지나갈 수 있는지 · 점프로 닿는지 규칙 검사'],
-          ['시뮬레이터로 재생', '브라우저 3D 시뮬레이터에서 정답 배치를 직접 걸어 보고, 장치를 안 써도 되는 우회로를 찾아 막음 (예: 430cm 구덩이 지름길)']
+          ['우회로 막기', '장치를 안 써도 되는 지름길을 찾아 막음 (예: 430cm 구덩이를 점프로 건너뛰는 길)']
         ],
         list: ['원칙: 모든 장치는 반드시 써야 풀린다 — 우회로가 생기면 그 장치는 의미가 없어지기 때문입니다.', '프로토타입의 비율(칸 하나 ≈ 찰리 키의 6.9배)을 유지하도록 칸을 1148cm로 키웠습니다.'] },
-      { h: '치수 기준 · 설계 도면에서', kind: 'table', wrap: true, note: '레벨 설계 도면(BlockLevelDesign v5)에 정리한 기준입니다. 모든 높이와 거리는 이 값 안에서 정했습니다.',
+      { h: '도면 버전 · v1 → v8', kind: 'timeline', items: [
+        ['v1 · v2', '2D 평면 도면과 3D 도면 — 블럭마다 칸별 배치를 그림'],
+        ['v3', '설계를 JSON으로 옮기고 Python 생성기로 블럭 맵 23종을 자동 생성'],
+        ['v4', '도면에 칸별 평면도 · 단면 · 장치 일람표, 신호 파이프 · 감지 범위 표시'],
+        ['v5', '“경로 먼저”로 SCENE 1을 다시 짜고, 정답 길이 하나로 이어지는지 증명'],
+        ['v6', 'SCENE 1을 열린 3D 코스로'],
+        ['v7', 'SCENE 2(3×3×3) 정답 3개'],
+        ['v8', 'SCENE 3(4×4×4) 정답 3개, SCENE 2 · 3 정답 문서 정리']
+      ] },
+      { h: '치수 기준 · 설계 도면에서', kind: 'table', wrap: true, note: '레벨 설계 도면(v5)에 정리한 기준입니다. 모든 높이와 거리는 이 값 안에서 정했습니다. 위 ‘레벨 설계 도면 v5’ 탭에서 원본을 볼 수 있습니다.',
         cols: ['항목', '값', '설계에 쓰는 법'],
         rows: [
           ['칸', '1148 × 1148 × 1148', '바닥은 칸 아랫면, 천장은 위 칸 바닥 · 287 격자(4×4)'],
@@ -1784,33 +1822,36 @@ const PROJECTS = [
           ['오르기', '턱 57 · 1단 점프 122 · 2단 점프 244', '디딤 높이 차는 이 값 안에서 정함 · 2단 점프 가로 약 400'],
           ['계단', '438 × 183 × 324', '발판은 320, 계단 한 층 높이에 맞춰 층을 쌓음']
         ] },
+      { h: '블럭 내부 설계도', kind: 'gallery', items: [
+        { src: 'media/takeaction/plan_O4.webp', cap: 'O4 보일러 홀 — 레버가 증기 기둥을 켜고, 회전 들보가 가운데를 쓺', wide: true },
+        { src: 'media/takeaction/shots/08.webp', cap: 'B4 승강 탑 — 파이프 엘리베이터와 스패너 · 기둥 소켓' },
+        { src: 'media/takeaction/plan_T4.webp', cap: 'T4 제어실 갈림길' },
+        { src: 'media/takeaction/plan_I4.webp', cap: 'I4 긴 조립 라인' }
+      ] },
       { h: '사운드 · 무성영화 테마', kind: 'cards', cols: 2,
         p: '게임잼 마지막 날 사운드 전체를 맡았습니다. 흑백 무성영화 촬영장이라는 콘셉트에 맞춰 소리를 골랐습니다.',
         items: [
-          { t: '연결', l: ['효과음 55종을 골라 BlockDeviceSounds로 모든 장치 · 찰리 행동 · 스튜디오 이벤트에 연결', '톱니 수집 · CUT! 슬레이트 · 프레스 · 공장 앰비언스'] },
-          { t: '연출', l: ['홈 · 감독 모드 음악, ACTION! 순간의 카메라 필름 돌아가는 소리, 2단 점프 휘파람', '감독 무대 리버브와 믹스, 장치 소리 크기 맞추기'] }
+          { t: '연결', l: ['효과음 55종을 골라 BlockDeviceSounds로 모든 장치 · 찰리 행동 · 스튜디오 이벤트에 연결', '톱니 수집 · CUT! 슬레이트 · 프레스 · 공장 앰비언스 · 피아노 BGM'] },
+          { t: '연출', l: ['홈 · 감독 모드 음악, ACTION! 순간의 카메라 필름 돌아가는 소리, 2단 점프 휘파람', '찰리의 방 발소리, 감독 무대 리버브와 믹스, 장치 소리 크기 맞추기'] }
         ] },
-      { h: '스크린샷', kind: 'gallery', items: [
+      { h: '인게임 스크린샷', kind: 'gallery', items: [
         { src: 'media/takeaction/shots/03.webp', cap: '감독 모드 — 4×4×4 세트에 블럭을 놓고 돌리기', wide: true },
         { src: 'media/takeaction/shots/04.webp', cap: 'ACTION! 뒤 재조립된 SCENE 3 세트' },
-        { src: 'media/takeaction/shots/05.webp', cap: '연기 모드 — 증기 · 리프트 · 대포가 있는 블럭 안' },
-        { src: 'media/takeaction/shots/09.webp', cap: '블럭 내부 설계도 (B4 승강 탑)', wide: true },
-        { src: 'media/takeaction/shots/08.webp', cap: '레벨 설계 도면 v5 — 범례와 치수 기준' },
-        { src: 'media/takeaction/shots/07.webp', cap: '브라우저 레벨 시뮬레이터' }
+        { src: 'media/takeaction/shots/05.webp', cap: '연기 모드 — 증기 · 리프트 · 대포가 있는 블럭 안' }
       ] },
       { h: 'AI 활용 내역', kind: 'flow',
         p: 'Claude Code로 언리얼 Python 스크립트를 만들어 레벨을 데이터에서 뽑고, 사람은 설계 · 판정 · 우회로 찾기에 집중했습니다.',
         items: [
-          ['기획 → 데이터', '확정 기획서와 장치 문서를 기준으로 블럭 · 장치 · 정답을 JSON 설계 데이터로 정리'],
-          ['데이터 → 맵', 'Claude Code가 만든 Python 생성기로 블럭 맵 23종을 한 번에 다시 생성'],
+          ['기획 → 데이터', '확정 기획서와 장치 규칙을 기준으로 블럭 · 장치 · 정답을 JSON 설계 데이터로 정리'],
+          ['데이터 → 맵', 'Claude Code가 만든 Python 생성기로 블럭 맵 23종을 몇 번이고 다시 생성'],
           ['검증 자동화', '캡슐 · 도달 규칙 검사와 설계 대조를 스크립트로 반복'],
-          ['도면 · 시뮬레이터', '설계를 사람이 읽는 HTML 도면과, 걸어 보는 3D 시뮬레이터로 함께 출력']
+          ['도면 출력', '같은 데이터에서 사람이 읽는 HTML 도면(칸별 평면도 · 장치 일람표)을 함께 출력']
         ] },
       { h: '작업 기록', kind: 'timeline', items: [
-        ['11.13', '확정 기획서 · 장치 메커니즘 · 에셋 크기 문서'],
-        ['11.14', '장치에 아트 메시 입히기 · 찰리 기본 루프와 필름 룩'],
-        ['11.15', '칸 1148cm로 확대 · 이동 · 카메라 · 블럭 내부 연결 · 블럭 맵 23종 · 도면 v4 · v5'],
-        ['11.16', 'SCENE 1~3 정답 배치 · 사운드 전체 · 감독판 크레딧']
+        ['11.13', '확정 기획서 · 장치 규칙 · 에셋 크기 문서 (뜨거운 바닥 · 정적 구조물 · 밀 상자 추가)'],
+        ['11.14', '장치 24종에 아트 메시 입히기 · 찰리 기본 루프와 필름 룩'],
+        ['11.15', '칸 1148cm로 확대 · 이동 · 공중 제어 · 카메라 · 블럭 내부 연결 · 블럭 맵 23종 · 도면 v4 · v5'],
+        ['11.16', 'SCENE 1~3 정답 배치(v6 ~ v8) · 사운드 전체 · 감독판 크레딧 · 달리기 속도 조정']
       ] }
     ]
   },
@@ -4481,7 +4522,7 @@ function renderPlayer(p, proj) {
   if (p.type === 'pdf') buildReader(p, proj);
   if (p.type === 'youtube') $('#pYt').href = ytUrl(p);
   if (p.type === 'itch') $('#pExt').href = p.url;
-  if (p.type === 'game') $('#pGameSub').textContent = (isTouch() ? p.gSubTouch : p.gSub) || '';
+  if (p.type === 'game') { $('#pGameSub').textContent = (isTouch() ? p.gSubTouch : p.gSub) || ''; $('#pGameLbl').textContent = p.gBtn || '브라우저에서 바로 플레이'; }
   if (p.type === 'mp4') buildVideoPlayer(p, proj);
   if (p.type === 'demo') buildDemo(p.demo);
   if (p.type === 'soon') { $('#pSoonT').textContent = p.soonTitle || '플레이 영상 준비 중'; $('#pSoonS').textContent = p.soonSub || 'MVP 마감 후 녹화해 이 자리에 올립니다'; }
@@ -4750,6 +4791,7 @@ function openGame(m, from) {
   if (!m || m.type !== 'game') return;
   gameFrom = from || null;
   $('#gbTitle').textContent = m.gTitle || m.label;
+  $('#gbTag').textContent = m.gTag || 'PLAYABLE';
   $('#gbKeys').textContent = (isTouch() ? m.gSubTouch : m.gKeys) || '';
   $('#gbNew').href = m.src;
   const box = $('#gbFrame'), f = document.createElement('iframe');
