@@ -1742,10 +1742,14 @@ const PROJECTS = [
     media: [
       { label: '게임플레이 트레일러', type: 'youtube', youtube: 'ST-9zLMTInE' },
       { label: '게임 받기', type: 'itch', url: 'https://snooy-dev.itch.io/take-action', len: 'itch.io', caption: '게임잼 제출 빌드입니다. itch.io에서 Windows용 빌드(약 1GB)를 받아 바로 실행할 수 있습니다.' },
-      { label: '레벨 설계 도면 v5', type: 'game', src: 'media/takeaction/leveldesign_v5.html', poster: 'media/takeaction/poster_design.webp', len: 'HTML 도면',
-        gTag: 'DOCUMENT', gBtn: '설계 도면 열기', gTitle: '블럭 레벨 설계도 v5 · SCENE 1 경로 증명', gKeys: '왼쪽 목록에서 범례 · 한 길 증명 · 블럭을 골라 보세요',
+      { label: '레벨 설계 · SCENE 1~3 (최종)', type: 'game', src: 'media/takeaction/scene_answers.html', poster: 'media/takeaction/poster_answers.webp', len: 'HTML 도면',
+        gTag: 'DOCUMENT', gBtn: '최종 설계 도면 열기', gTitle: '씬 정답 배치 · SCENE 1~3 최종 레벨 설계', gKeys: '층마다 위에서 내려다본 배치 · 정답별 경로',
+        gSub: '게임잼 마지막 날 정리한 최종 레벨 설계 문서입니다', gSubTouch: '넓은 화면에서 보기 좋습니다',
+        caption: 'SCENE 1~3 레벨 설계의 최종판입니다. 층마다 위에서 내려다본 정답 배치 그리드와, 그 배치에서 이어지는 경로를 정리했습니다. SCENE 1은 정답 하나, SCENE 2 · 3은 정답 A · B · C 세 가지이며, 이전 SCENE을 통째로 만든 세트(2×2×2 · 3×3×3)를 어디에 어떻게 돌려 놓는지가 정답마다 다릅니다. 각 정답의 “블럭별 위치와 회전”을 펼치면 블럭마다 기준 칸과 회전값이 나옵니다.' },
+      { label: '블럭 상세 도면 · SCENE 1 (v5)', type: 'game', src: 'media/takeaction/leveldesign_v5.html', poster: 'media/takeaction/poster_design.webp', len: 'HTML 도면',
+        gTag: 'DOCUMENT', gBtn: '설계 도면 열기', gTitle: '블럭 레벨 설계도 v5 · SCENE 1 블럭 상세 · 경로 증명', gKeys: '왼쪽 목록에서 범례 · 한 길 증명 · 블럭을 골라 보세요',
         gSub: '게임잼 중 실제로 쓴 레벨 설계 도면 원본입니다', gSubTouch: '넓은 화면에서 보기 좋습니다',
-        caption: '레벨 디자인 도면의 최신판(v5)입니다. 범례 · 치수 기준 · 설계 규칙과 함께, SCENE 1을 “정답 경로 하나가 반드시 이어지는가”로 증명하는 한 길 증명, 블럭마다 칸별 평면도 · 3D 단면 · 장치 일람표를 담았습니다. 게임잼 중 이 도면을 보며 블럭을 만들고 고쳤습니다.' },
+        caption: 'SCENE 1을 “경로 먼저”로 다시 짤 때 만든 블럭 상세 도면(v5)입니다. 범례 · 치수 기준 · 설계 규칙과 함께, SCENE 1을 “정답 경로 하나가 반드시 이어지는가”로 증명하는 한 길 증명, 블럭마다 칸별 평면도 · 3D 단면 · 장치 일람표를 담았습니다. 게임잼 중 이 도면을 보며 블럭을 만들고 고쳤습니다.' },
       { label: '인게임 스크린샷', type: 'slides', dir: 'takeaction/shots', count: 8, len: '8장', fullThumbs: true }
     ],
     facts: [['JAM', '2026 Epic AI Mega Jam · 11.12 – 11.16 (4일)'], ['TEAM', '4인 (나 · 팀원 A · B · C)'], ['MY ROLE', 'SCENE 1~3 레벨 디자인 · 기획서 · 장치 규칙 문서 · 사운드'], ['ENGINE', 'Unreal Engine 5.9 Preview · Lyra 기반'], ['AI', 'Claude Code + 언리얼 Python 스크립트 · PCG'], ['VCS', 'Diversion · 내 커밋 36개 (브랜치 5곳)']],
@@ -1788,7 +1792,7 @@ const PROJECTS = [
           { t: 'SCENE 3 · 4×4×4', pick: true, tag: '정답 3개', l: ['O4 보일러 홀(회전 들보 · 증기 기둥) · T4 제어실(센서 문 · 기둥 다리)', 'I4 긴 조립 라인(타이머 문 · 프레스) · L4 긴 공작 통로(회전 들보 · 버튼 문)', 'B4 승강 탑(피스톤 계단 · 송풍기) · S4 배관 지그재그'] }
         ] },
       { h: '정답 경로 · 한 길로 이어지게', kind: 'table', wrap: true,
-        note: '블럭 배치가 정답이어도 그 안을 실제로 달려 나갈 수 있어야 정답입니다. SCENE마다 경로를 먼저 정하고, 경로가 지나가는 순서대로 장치를 배치했습니다. 아래는 정답 문서에 적은 경로입니다.',
+        note: '블럭 배치가 정답이어도 그 안을 실제로 달려 나갈 수 있어야 정답입니다. SCENE마다 경로를 먼저 정하고, 경로가 지나가는 순서대로 장치를 배치했습니다. 아래는 정답 문서에 적은 경로이고, 위 ‘레벨 설계 · SCENE 1~3 (최종)’ 탭에서 층별 배치와 함께 볼 수 있습니다.',
         cols: ['정답', '경로'],
         rows: [
           ['SCENE 1', 'M1-A 소품 탑(레버로 벽 발판 → 상자를 밀어 누름판 → 둘째 발판) → D2-A 왕복 발판 → 밸브 레버로 증기 → 2층 → M1-B 레버로 다리 → 버튼 → 빛 디딤돌 → D2-B 진자 → 레버로 대포 장전 → 도착 단상'],
@@ -1814,7 +1818,7 @@ const PROJECTS = [
         ['v7', 'SCENE 2(3×3×3) 정답 3개'],
         ['v8', 'SCENE 3(4×4×4) 정답 3개, SCENE 2 · 3 정답 문서 정리']
       ] },
-      { h: '치수 기준 · 설계 도면에서', kind: 'table', wrap: true, note: '레벨 설계 도면(v5)에 정리한 기준입니다. 모든 높이와 거리는 이 값 안에서 정했습니다. 위 ‘레벨 설계 도면 v5’ 탭에서 원본을 볼 수 있습니다.',
+      { h: '치수 기준 · 설계 도면에서', kind: 'table', wrap: true, note: '레벨 설계 도면(v5)에 정리한 기준입니다. 모든 높이와 거리는 이 값 안에서 정했습니다. 위 ‘블럭 상세 도면 · SCENE 1 (v5)’ 탭에서 원본을 볼 수 있습니다.',
         cols: ['항목', '값', '설계에 쓰는 법'],
         rows: [
           ['칸', '1148 × 1148 × 1148', '바닥은 칸 아랫면, 천장은 위 칸 바닥 · 287 격자(4×4)'],
