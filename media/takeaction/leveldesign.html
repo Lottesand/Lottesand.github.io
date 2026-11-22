@@ -23,13 +23,12 @@
 <nav role="tablist" aria-label="레벨 설계 도면">
   <b>레벨 설계 도면</b>
   <button role="tab" aria-selected="true" data-src="scene_answers.html">SCENE 1~3 정답 배치 · 최종</button>
-  <button role="tab" aria-selected="false" data-src="blocks_v8.html">블럭 상세 · 최종 (SCENE 1~3)</button>
-  <button role="tab" aria-selected="false" data-src="leveldesign_v5.html">SCENE 1 블럭 상세 · v5</button>
+  <button role="tab" aria-selected="false" data-src="blocks_v8.html">블럭 상세 도면 · SCENE 1~3</button>
   <small id="note">층별 정답 배치와 정답마다의 경로</small>
 </nav>
 <iframe id="doc" title="레벨 설계 도면" src="scene_answers.html"></iframe>
 <script>
-  const notes = { 'scene_answers.html': '층별 정답 배치와 정답마다의 경로', 'blocks_v8.html': '블럭 23개 층별 평면도 · 장치 일람표 · 배선', 'leveldesign_v5.html': '칸별 평면도 · 단면 · 장치 일람표 · 한 길 증명' };
+  const notes = { 'scene_answers.html': '층별 정답 배치와 정답마다의 경로', 'blocks_v8.html': '블럭 23개 층별 평면도 · 장치 일람표 · 배선 · 치수 기준' };
   const tabs = document.querySelectorAll('nav button'), doc = document.getElementById('doc'), note = document.getElementById('note');
   tabs.forEach(b => b.addEventListener('click', () => {
     tabs.forEach(t => t.setAttribute('aria-selected', String(t === b)));

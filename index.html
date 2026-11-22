@@ -1743,9 +1743,9 @@ const PROJECTS = [
       { label: '게임플레이 트레일러', type: 'youtube', youtube: 'ST-9zLMTInE' },
       { label: '게임 받기', type: 'itch', url: 'https://snooy-dev.itch.io/take-action', len: 'itch.io', caption: '게임잼 제출 빌드입니다. itch.io에서 Windows용 빌드(약 1GB)를 받아 바로 실행할 수 있습니다.' },
       { label: '레벨 설계 도면', type: 'game', src: 'media/takeaction/leveldesign.html', poster: 'media/takeaction/poster_answers.webp', len: 'HTML',
-        gTag: 'DOCUMENT', gBtn: '레벨 설계 도면 열기', gTitle: 'Take, Action! · 레벨 설계 도면', gKeys: '위쪽 탭: 정답 배치(최종) · 블럭 상세(최종, SCENE 1~3) · SCENE 1 경로 증명(v5)',
+        gTag: 'DOCUMENT', gBtn: '레벨 설계 도면 열기', gTitle: 'Take, Action! · 레벨 설계 도면', gKeys: '위쪽 탭: SCENE 1~3 정답 배치 · SCENE 1~3 블럭 상세 도면',
         gSub: '게임잼 중 실제로 쓴 레벨 설계 문서 원본입니다', gSubTouch: '넓은 화면에서 보기 좋습니다',
-        caption: '레벨 설계 문서 두 개를 한 탭에 묶었습니다. ‘SCENE 1~3 정답 배치 · 최종’은 게임잼 마지막 날 정리한 최종판으로, 층마다 위에서 내려다본 정답 배치와 정답마다 이어지는 경로를 담았습니다(SCENE 1은 정답 하나, SCENE 2 · 3은 A · B · C 세 가지). ‘SCENE 1 블럭 상세 · v5’는 SCENE 1을 “경로 먼저”로 다시 짤 때 만든 도면으로, 블럭마다 칸별 평면도 · 단면 · 장치 일람표와 한 길 증명이 들어 있습니다.' },
+        caption: '레벨 설계 문서를 한 탭에 묶었습니다. ‘SCENE 1~3 정답 배치’는 층마다 위에서 내려다본 정답 배치와 정답마다 이어지는 경로를(SCENE 1은 정답 하나, SCENE 2 · 3은 A · B · C 세 가지), ‘SCENE 1~3 블럭 상세 도면’은 최종 설계 데이터(v8)로 그린 블럭 23개의 층별 평면도 · 장치 일람표 · 배선과 치수 기준 · 설계 규칙을 담았습니다.' },
       { label: '인게임 스크린샷', type: 'slides', dir: 'takeaction/shots', count: 8, len: '8장', fullThumbs: true }
     ],
     facts: [['JAM', '2026 Epic AI Mega Jam · 11.12 – 11.16 (4일)'], ['RANK', '인기순 12위 · 출품작 2,779개 중 (11.22 기준)'], ['TEAM', '4인 (나 · 팀원 A · B · C)'], ['MY ROLE', 'SCENE 1~3 레벨 디자인 · 기획서 · 장치 규칙 문서 · 사운드'], ['ENGINE', 'Unreal Engine 5.9 Preview · Lyra 기반'], ['AI', 'Claude Code + 언리얼 Python 스크립트 · PCG'], ['VCS', 'Diversion · 내 커밋 36개 (브랜치 5곳)']],
@@ -1835,7 +1835,7 @@ const PROJECTS = [
         ['v7', 'SCENE 2(3×3×3) 정답 3개'],
         ['v8', 'SCENE 3(4×4×4) 정답 3개, SCENE 2 · 3 정답 문서 정리']
       ] },
-      { h: '치수 기준 · 설계 도면에서', kind: 'table', wrap: true, note: '레벨 설계 도면(v5)에 정리한 기준입니다. 모든 높이와 거리는 이 값 안에서 정했습니다. 위 ‘레벨 설계 도면’ 탭에서 원본을 볼 수 있습니다.',
+      { h: '치수 기준 · 설계 도면에서', kind: 'table', wrap: true, note: '레벨 설계 도면에 정리한 기준입니다. 모든 높이와 거리는 이 값 안에서 정했습니다. 위 ‘레벨 설계 도면’ 탭에서 원본을 볼 수 있습니다.',
         cols: ['항목', '값', '설계에 쓰는 법'],
         rows: [
           ['칸', '1148 × 1148 × 1148', '바닥은 칸 아랫면, 천장은 위 칸 바닥 · 287 격자(4×4)'],
