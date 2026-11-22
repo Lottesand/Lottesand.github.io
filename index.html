@@ -1752,11 +1752,14 @@ const PROJECTS = [
         caption: 'SCENE 1을 “경로 먼저”로 다시 짤 때 만든 블럭 상세 도면(v5)입니다. 범례 · 치수 기준 · 설계 규칙과 함께, SCENE 1을 “정답 경로 하나가 반드시 이어지는가”로 증명하는 한 길 증명, 블럭마다 칸별 평면도 · 3D 단면 · 장치 일람표를 담았습니다. 게임잼 중 이 도면을 보며 블럭을 만들고 고쳤습니다.' },
       { label: '인게임 스크린샷', type: 'slides', dir: 'takeaction/shots', count: 8, len: '8장', fullThumbs: true }
     ],
-    facts: [['JAM', '2026 Epic AI Mega Jam · 11.12 – 11.16 (4일)'], ['TEAM', '4인 (나 · 팀원 A · B · C)'], ['MY ROLE', 'SCENE 1~3 레벨 디자인 · 기획서 · 장치 규칙 문서 · 사운드'], ['ENGINE', 'Unreal Engine 5.9 Preview · Lyra 기반'], ['AI', 'Claude Code + 언리얼 Python 스크립트 · PCG'], ['VCS', 'Diversion · 내 커밋 36개 (브랜치 5곳)']],
-    summary: '영화 촬영장이 무대인 퍼즐 플랫포머입니다. 감독 모드에서 블럭을 조립해 세트를 짓고, 연기 모드에서 그 세트 안을 3인칭으로 달려 도착 지점까지 갑니다. 완성한 세트는 통째로 하나의 블럭이 되어 다음 SCENE의 재료가 됩니다. 4일짜리 게임잼에서 저는 확정 기획서와 장치 규칙 문서를 쓰고, SCENE 1~3의 레벨 디자인 전체(블럭 23종 · SCENE별 정답 배치)와 사운드를 맡았습니다. 레벨은 “정답 경로부터 정하고 → 데이터로 만들고 → 자동으로 검증하는” 방식으로 짰고, 도면은 v1부터 v8까지 계속 고쳐 나갔습니다.',
+    facts: [['JAM', '2026 Epic AI Mega Jam · 11.12 – 11.16 (4일)'], ['RANK', '인기순 12위 · 출품작 2,779개 중 (11.22 기준)'], ['TEAM', '4인 (나 · 팀원 A · B · C)'], ['MY ROLE', 'SCENE 1~3 레벨 디자인 · 기획서 · 장치 규칙 문서 · 사운드'], ['ENGINE', 'Unreal Engine 5.9 Preview · Lyra 기반'], ['AI', 'Claude Code + 언리얼 Python 스크립트 · PCG'], ['VCS', 'Diversion · 내 커밋 36개 (브랜치 5곳)']],
+    summary: '영화 촬영장이 무대인 퍼즐 플랫포머입니다. 감독 모드에서 블럭을 조립해 세트를 짓고, 연기 모드에서 그 세트 안을 3인칭으로 달려 도착 지점까지 갑니다. 완성한 세트는 통째로 하나의 블럭이 되어 다음 SCENE의 재료가 됩니다. 출품작 2,779개 가운데 인기순 12위(11.22 기준)에 올랐습니다. 4일짜리 게임잼에서 저는 확정 기획서와 장치 규칙 문서를 쓰고, SCENE 1~3의 레벨 디자인 전체(블럭 23종 · SCENE별 정답 배치)와 사운드를 맡았습니다. 레벨은 “정답 경로부터 정하고 → 데이터로 만들고 → 자동으로 검증하는” 방식으로 짰고, 도면은 v1부터 v8까지 계속 고쳐 나갔습니다.',
     blocks: [
       { h: '어떤 게임인가', lead: '감독이 되어 세트를 짓고, 배우가 되어 그 세트를 달립니다',
         p: '찰리의 방에서 스케줄 보드로 SCENE을 고르면 촬영이 시작됩니다. Tab으로 <b>CUT!</b>을 외치면 감독 모드로 바뀌어 블럭을 놓고 24방향으로 돌릴 수 있고, 다시 <b>ACTION!</b>을 외치면 바뀐 배치대로 세트가 재조립된 뒤 연기 모드로 돌아옵니다. 톱니를 모두 모으고, 그리드를 다 채우고, 도착 지점에 닿으면 클리어입니다. 사망하거나 CUT!을 할 때마다 TAKE(필름 예산)가 하나씩 쓰이고, SCENE 3을 깨면 플레이어가 만든 세트를 되감아 보여 주는 “감독판” 엔딩이 나옵니다.' },
+      { h: '결과 · 게임잼 인기순 12위', kind: 'result',
+        stats: [['12위', '인기순 · itch.io 출품작 목록'], ['2,779', '전체 출품작'], ['4일', '제작 기간 · 4인 팀']],
+        rows: [[{ src: 'media/takeaction/jam_rank.webp', w: 1580, h: 1047, cap: '2026 Epic AI MegaJam 출품작 목록 · 인기순 정렬 (2026.11.22 기준) — 노란 테두리가 Take, Action!' }]] },
       { h: '팀과 내 역할 · 4인 팀', kind: 'role', cols: 3,
         p: '제 포트폴리오라서 아래는 제가 맡은 부분을 중심으로 정리했습니다. 역할은 Diversion 커밋 기록으로 확인한 내용입니다.',
         items: [
@@ -2969,7 +2972,7 @@ const TIMELINE = [
   { id: 'subivors', when: '2026.07 – 09', t: 'SUBIVORS', d: '첫 5인 팀 · 첫 메인 기획, 실제 서울 지하철역을 답사해 무대로', chips: ['팀 기획', 'Figma · Notion'] },
   { id: 'seoil-hackathon', when: '2026.09', t: '뜻밖의난관 · 해커톤 대상', d: 'Claude와 Unity를 MCP로 가장 먼저 연결해 무박 2일 만에 멀티플레이 완성', chips: [{ t: '대상', hl: true }, 'Claude + Unity MCP'] },
   { id: 'chime', when: '2026.09 – 10', t: 'CHIME · AAA를 향한 한 달', d: '대상 부상 Claude 한 달로 AI 3종 파이프라인을 엮어 언리얼 MVP 완성', chips: ['MVP 완성', 'Unreal · Blender MCP · Meshy'] },
-  { id: 'take-action', when: '2026.11', t: 'Take, Action! · 4일 게임잼', d: '4인 팀에서 SCENE 1~3 레벨 디자인과 사운드 — 데이터로 생성하고 시뮬레이터로 검증', chips: ['레벨 디자인', 'Unreal · Python · PCG'] },
+  { id: 'take-action', when: '2026.11', t: 'Take, Action! · 4일 게임잼', d: '4인 팀에서 SCENE 1~3 레벨 디자인과 사운드 — 정답 경로부터 짜고 데이터로 생성', chips: [{ t: '인기 12위 / 2,779', hl: true }, '레벨 디자인', 'Unreal · Python · PCG'] },
 ];
 function setupTimeline() {
   const box = $('#ptl'), list = $('#ptlList'); if (!box || !list) return;
