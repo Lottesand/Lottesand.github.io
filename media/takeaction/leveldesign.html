@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Take, Action! · 레벨 설계 도면</title>
+<style>
+  :root { --bg:#14161b; --panel:#1d2027; --line:#2c313b; --fg:#e8eaf0; --muted:#9aa3b2; --accent:#f0b429; }
+  * { box-sizing:border-box; }
+  html, body { margin:0; height:100%; background:var(--bg); color:var(--fg); font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif; }
+  body { display:flex; flex-direction:column; }
+  nav { display:flex; gap:6px; align-items:center; flex-wrap:wrap; padding:10px 14px; background:var(--panel); border-bottom:1px solid var(--line); }
+  nav b { font-size:14px; margin-right:8px; }
+  nav button { font:inherit; font-size:13px; padding:7px 12px; border-radius:8px; border:1px solid var(--line); background:transparent; color:var(--muted); cursor:pointer; }
+  nav button[aria-selected="true"] { background:var(--fg); color:#111; border-color:var(--fg); font-weight:600; }
+  nav button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  nav small { margin-left:auto; color:var(--muted); font-size:12px; }
+  iframe { flex:1; width:100%; border:0; background:var(--bg); }
+  @media (max-width:640px) { nav small { display:none; } }
+</style>
+</head>
+<body>
+<nav role="tablist" aria-label="레벨 설계 도면">
+  <b>레벨 설계 도면</b>
+  <button role="tab" aria-selected="true" data-src="scene_answers.html">SCENE 1~3 정답 배치 · 최종</button>
+  <button role="tab" aria-selected="false" data-src="leveldesign_v5.html">SCENE 1 블럭 상세 · v5</button>
+  <small id="note">층별 정답 배치와 정답마다의 경로</small>
+</nav>
+<iframe id="doc" title="레벨 설계 도면" src="scene_answers.html"></iframe>
+<script>
+  const notes = { 'scene_answers.html': '층별 정답 배치와 정답마다의 경로', 'leveldesign_v5.html': '칸별 평면도 · 단면 · 장치 일람표 · 한 길 증명' };
+  const tabs = document.querySelectorAll('nav button'), doc = document.getElementById('doc'), note = document.getElementById('note');
+  tabs.forEach(b => b.addEventListener('click', () => {
+    tabs.forEach(t => t.setAttribute('aria-selected', String(t === b)));
+    doc.src = b.dataset.src; note.textContent = notes[b.dataset.src] || '';
+  }));
+</script>
+</body>
+</html>
