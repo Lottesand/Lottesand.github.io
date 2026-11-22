@@ -1476,7 +1476,7 @@ kbd{display:inline-grid;place-items:center;min-width:28px;height:28px;padding:0 
           <button class="p-nav next" id="sNext" type="button" aria-label="다음 슬라이드"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
           <button class="p-big" id="pBig" type="button"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg><span id="pBigLabel">재생</span></button>
           <a class="p-big" id="pYt" href="https://www.youtube.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg><span>YouTube에서 보기</span></a>
-          <a class="p-ext" id="pExt" href="https://itch.io/" target="_blank" rel="noopener"><span class="p-ext-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8h10a4 4 0 0 1 4 4v1.5a3 3 0 0 1-5.4 1.8L14.5 14h-5l-1.1 1.3A3 3 0 0 1 3 13.5V12a4 4 0 0 1 4-4z"/><path d="M8 10.5v3M6.5 12h3M15.5 11.5h.01M17.5 13h.01"/></svg>itch.io에서 바로 플레이</span><small>HTML5 · 설치 없이 브라우저에서 실행 · 새 탭으로 열려요</small></a>
+          <a class="p-ext" id="pExt" href="https://itch.io/" target="_blank" rel="noopener"><span class="p-ext-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8h10a4 4 0 0 1 4 4v1.5a3 3 0 0 1-5.4 1.8L14.5 14h-5l-1.1 1.3A3 3 0 0 1 3 13.5V12a4 4 0 0 1 4-4z"/><path d="M8 10.5v3M6.5 12h3M15.5 11.5h.01M17.5 13h.01"/></svg><span id="pExtLbl">itch.io에서 바로 플레이</span></span><small id="pExtSub">HTML5 · 설치 없이 브라우저에서 실행 · 새 탭으로 열려요</small></a>
           <button class="p-ext p-game" id="pGame" type="button"><span class="p-ext-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8h10a4 4 0 0 1 4 4v1.5a3 3 0 0 1-5.4 1.8L14.5 14h-5l-1.1 1.3A3 3 0 0 1 3 13.5V12a4 4 0 0 1 4-4z"/><path d="M8 10.5v3M6.5 12h3M15.5 11.5h.01M17.5 13h.01"/></svg><span id="pGameLbl">브라우저에서 바로 플레이</span></span><small id="pGameSub"></small></button>
           <div class="p-soon" id="pSoon"><span class="ps-badge mono">COMING SOON</span><b id="pSoonT">플레이 영상 준비 중</b><small id="pSoonS"></small></div>
           <div class="p-note" id="pNote" role="status" hidden></div>
@@ -1745,15 +1745,18 @@ const PROJECTS = [
     tags: ['게임잼', 'UnrealEngine5', '레벨디자인', '퍼즐플랫포머', '기획문서', '장치설계', '사운드디자인', 'ClaudeCode', 'UnrealPython', 'PCG', 'Diversion', '무성영화'],
     media: [
       { label: '게임플레이 트레일러', type: 'youtube', youtube: 'ST-9zLMTInE' },
-      { label: '게임 받기', type: 'itch', url: 'https://snooy-dev.itch.io/take-action', len: 'itch.io', caption: '게임잼 제출 빌드입니다. itch.io에서 Windows용 빌드(약 1GB)를 받아 바로 실행할 수 있습니다.' },
+      { label: '게임 받기', type: 'itch', url: 'https://snooy-dev.itch.io/take-action', len: 'itch.io', extSub: 'Windows 빌드 · 약 1GB · 새 탭으로 열려요', caption: '게임잼 제출 빌드입니다. itch.io에서 Windows용 빌드(약 1GB)를 받아 바로 실행할 수 있습니다.' },
+      { label: 'C++ 프로토타입', type: 'itch', url: 'media/takeaction/Charlie_Prototype4.zip', poster: 'media/takeaction/proto_solved.webp', len: 'C++ · OpenGL',
+        extBtn: '4차 프로토타입 받기', extSub: 'Windows · zip 0.7MB · OpenGL 3.3 · 압축을 풀고 Prototype.exe 실행',
+        caption: '언리얼 작업 전에 C++ · OpenGL로 바이브 코딩한 프로토타입입니다(1~4차, main.cpp 3,593줄). 찰리의 방 허브 → 감독 모드 조립 → 연기 모드 플랫포머 → 클리어까지 한 사이클이 돌아갑니다. 소스는 GitHub(Lottesand/Charlie)에 공개되어 있습니다.' },
       { label: '레벨 설계 도면', type: 'game', src: 'media/takeaction/leveldesign.html', poster: 'media/takeaction/poster_answers.webp', len: 'HTML',
         gTag: 'DOCUMENT', gBtn: '레벨 설계 도면 열기', gTitle: 'Take, Action! · 레벨 설계 도면', gKeys: '위쪽 탭: SCENE 1~3 정답 배치 · SCENE 1~3 블럭 상세 도면',
         gSub: '게임잼 중 실제로 쓴 레벨 설계 문서 원본입니다', gSubTouch: '넓은 화면에서 보기 좋습니다',
         caption: '레벨 설계 문서를 한 탭에 묶었습니다. ‘SCENE 1~3 정답 배치’는 층마다 위에서 내려다본 정답 배치와 정답마다 이어지는 경로를(SCENE 1은 정답 하나, SCENE 2 · 3은 A · B · C 세 가지), ‘SCENE 1~3 블럭 상세 도면’은 최종 설계 데이터(v8)로 그린 블럭 23개의 층별 평면도 · 장치 일람표 · 배선과 치수 기준 · 설계 규칙을 담았습니다.' },
       { label: '인게임 스크린샷', type: 'slides', dir: 'takeaction/shots', count: 8, len: '8장', fullThumbs: true }
     ],
-    facts: [['JAM', '2026 Epic AI Mega Jam · 11.12 – 11.16 (4일)'], ['RANK', '인기순 12위 · 출품작 2,779개 중 (11.22 기준)'], ['TEAM', '4인 (나 · 팀원 A · B · C)'], ['MY ROLE', 'SCENE 1~3 레벨 디자인 · 기획서 · 장치 규칙 문서 · 사운드'], ['ENGINE', 'Unreal Engine 5.9 Preview · Lyra 기반'], ['AI', 'Claude Code + 언리얼 Python 스크립트 · PCG'], ['VCS', 'Diversion · 내 커밋 36개 (브랜치 5곳)']],
-    summary: '영화 촬영장이 무대인 퍼즐 플랫포머입니다. 감독 모드에서 블럭을 조립해 세트를 짓고, 연기 모드에서 그 세트 안을 3인칭으로 달려 도착 지점까지 갑니다. 완성한 세트는 통째로 하나의 블럭이 되어 다음 SCENE의 재료가 됩니다. 출품작 2,779개 가운데 인기순 12위(11.22 기준)에 올랐습니다. 4일짜리 게임잼에서 저는 확정 기획서와 장치 규칙 문서를 쓰고, SCENE 1~3의 레벨 디자인 전체(블럭 23종 · SCENE별 정답 배치)와 사운드를 맡았습니다. 레벨은 “정답 경로부터 정하고 → 데이터로 만들고 → 자동으로 검증하는” 방식으로 짰고, 도면은 v1부터 v8까지 계속 고쳐 나갔습니다.',
+    facts: [['JAM', '2026 Epic AI Mega Jam · 11.12 – 11.16 (4일)'], ['RANK', '인기순 12위 · 출품작 2,779개 중 (11.22 기준)'], ['TEAM', '4인 (나 · 팀원 A · B · C)'], ['MY ROLE', 'SCENE 1~3 레벨 디자인 · 기획서 · 장치 규칙 문서 · 사운드'], ['ENGINE', 'Unreal Engine 5.9 Preview · Lyra 기반'], ['AI', 'Claude Code + 언리얼 Python 스크립트 · PCG'], ['PROTOTYPE', 'C++ · OpenGL 1~4차 · main.cpp 3,593줄 (GitHub 공개)'], ['VCS', 'Diversion · 내 커밋 36개 (브랜치 5곳)']],
+    summary: '영화 촬영장이 무대인 퍼즐 플랫포머입니다. 감독 모드에서 블럭을 조립해 세트를 짓고, 연기 모드에서 그 세트 안을 3인칭으로 달려 도착 지점까지 갑니다. 완성한 세트는 통째로 하나의 블럭이 되어 다음 SCENE의 재료가 됩니다. 출품작 2,779개 가운데 인기순 12위(11.22 기준)에 올랐습니다. 4일짜리 게임잼에서 저는 먼저 C++ · OpenGL로 프로토타입을 바이브 코딩해 재미를 확인하고, 그 프로토타입을 문서로 다시 뽑아 확정된 부분만 팀에 넘기는 방식으로 확정 기획서와 장치 규칙 문서를 썼으며, SCENE 1~3의 레벨 디자인 전체(블럭 23종 · SCENE별 정답 배치)와 사운드를 맡았습니다. 레벨은 “정답 경로부터 정하고 → 데이터로 만들고 → 자동으로 검증하는” 방식으로 짰고, 도면은 v1부터 v8까지 계속 고쳐 나갔습니다.',
     blocks: [
       { h: '어떤 게임인가', lead: '감독이 되어 세트를 짓고, 배우가 되어 그 세트를 달립니다',
         p: '찰리의 방에서 스케줄 보드로 SCENE을 고르면 촬영이 시작됩니다. Tab으로 <b>CUT!</b>을 외치면 감독 모드로 바뀌어 블럭을 놓고 24방향으로 돌릴 수 있고, 다시 <b>ACTION!</b>을 외치면 바뀐 배치대로 세트가 재조립된 뒤 연기 모드로 돌아옵니다. 톱니를 모두 모으고, 그리드를 다 채우고, 도착 지점에 닿으면 클리어입니다. 사망하거나 CUT!을 할 때마다 TAKE(필름 예산)가 하나씩 쓰이고, SCENE 3을 깨면 플레이어가 만든 세트를 되감아 보여 주는 “감독판” 엔딩이 나옵니다.' },
@@ -1767,8 +1770,24 @@ const PROJECTS = [
           { who: '팀원 A', what: '프로그래밍 · 프로젝트 셋업', note: 'Lyra 기반 프로젝트와 AI 작업 환경을 세우고, 감독 모드 · 다단블럭 · 진행 · 메뉴 · 홈 · 연출 등 게임플레이 코드와 메인 병합을 맡았습니다.' },
           { who: '팀원 B · C', what: '아트 · 장치 플러그인', note: '팀원 B는 찰리 캐릭터와 에셋 · UI · 타이틀 애니메이션을, 팀원 C는 감독 모드 조립 플러그인과 블럭 장치(GAS) 플러그인을 만들었습니다.' }
         ] },
+      { h: '작업 방식 · 프로토타입 → 확정 문서 → 언리얼', kind: 'flow',
+        p: '팀이 언리얼에서 틀을 잡는 동안, 저는 먼저 C++ · OpenGL로 혼자 돌려 볼 수 있는 프로토타입을 바이브 코딩해 “블럭을 조립하고 그 안을 달린다”는 메커니즘이 재미있는지부터 확인했습니다. 프로토타입은 <a href="https://github.com/Lottesand/Charlie" target="_blank" rel="noopener">GitHub(Lottesand/Charlie)</a>에 공개했고, 위 ‘C++ 프로토타입’ 탭에서 4차 실행 파일을 받을 수 있습니다.',
+        items: [
+          ['C++ 프로토타입', 'C++ · OpenGL로 바이브 코딩. 1차 “모던 타임즈 공장 씬 조립 플랫포머”(main.cpp 2,640줄) → 2차 맵 2.5배 · 블럭별 오르막 경로'],
+          ['문서로 재추출', '3차(영화 촬영장 포장 · 찰리의 방 · 감독/연기 모드)에서 프로토타입을 다시 md 기획서 6종(전체 · 핵심 메커니즘 · 게임 흐름 · 씬 조립 · 플랫포머 · 언리얼 구현, 약 2,400줄)으로 뽑음'],
+          ['확정 / 임시 나누기', '그중 확정된 요소만 확정 기획서(GameDesign.md)로 따로 묶어 팀원에게 전달. 정해지지 않은 것은 “미정 항목”에 이름만 남김'],
+          ['조금씩 넓히기', '4차에서 다단블럭 필수 + 입구/출구 개방 · 스패너 기둥 · 2단 점프를 넣어 보고, 검증된 것만 확정 문서에 추가'],
+          ['프로토타입 중지', '언리얼에서 틀이 잡히자 프로토타입은 멈추고 언리얼 작업으로 넘어감'],
+          ['레벨 디자인', 'PCG 절차 생성과 직접 디자인을 놓고 논의한 끝에, 레벨은 사람이 직접 설계하고 PCG는 장식에만 쓰기로 정해 SCENE 1~3을 완성'],
+          ['사운드', '마지막 날 효과음 55종과 음악을 장치 · 찰리 · 스튜디오 이벤트에 연결']
+        ],
+        rows: [
+          [{ src: 'media/takeaction/proto_room.webp', w: 1280, h: 715, cap: '4차 프로토타입 · 찰리의 방 — 촬영 스케줄 보드에서 SCENE 선택' }, { src: 'media/takeaction/proto_play.webp', w: 1280, h: 720, cap: '연기 모드 시작 — 빈 칸은 어둠, 블럭 2개만 놓인 2×2×2 세트' }],
+          [{ src: 'media/takeaction/proto_director.webp', w: 1280, h: 720, cap: '감독 모드(CUT!) — 그리드와 아래쪽 블럭 슬롯' }, { src: 'media/takeaction/proto_solved.webp', w: 1280, h: 720, cap: '블럭을 모두 채운 2×2×2 세트' }],
+          [{ src: 'media/takeaction/proto_set.webp', w: 1280, h: 720, cap: 'ACTION! 뒤 연기 모드 — 조립한 블럭 안의 발판 · 기둥 · 장치 사이를 달림' }]
+        ] },
       { h: '기획 문서 · 장치 규칙', kind: 'table', wrap: true,
-        note: '프로토타입을 검토한 뒤 확정 기획서와 장치 규칙 문서를 썼습니다. 장치는 “입력이 켜면 출력이 움직인다”는 한 가지 문법으로 묶고, 모든 장치의 영향은 자기 블럭 안에서 끝나게 했습니다. 블럭을 어디로 옮기고 돌려도 퍼즐이 깨지지 않게 하려는 규칙입니다.',
+        note: '3차 프로토타입을 검토한 뒤 확정된 요소만 모아 확정 기획서를 쓰고, 이어서 장치 규칙 문서를 썼습니다. 장치는 “입력이 켜면 출력이 움직인다”는 한 가지 문법으로 묶고, 모든 장치의 영향은 자기 블럭 안에서 끝나게 했습니다. 블럭을 어디로 옮기고 돌려도 퍼즐이 깨지지 않게 하려는 규칙입니다.',
         cols: ['분류', '장치', '규칙'],
         rows: [
           ['입력', '레버 · 버튼 · 압력판 · 근접센서 · 기둥 소켓', '레버는 켜짐을 유지, 버튼은 4초 뒤 꺼짐, 압력판은 찰리 · 상자 · 기둥 중 하나라도 올라가 있는 동안 켜짐'],
@@ -1873,7 +1892,8 @@ const PROJECTS = [
           ['도면 출력', '같은 데이터에서 사람이 읽는 HTML 도면(칸별 평면도 · 장치 일람표)을 함께 출력']
         ] },
       { h: '작업 기록', kind: 'timeline', items: [
-        ['11.13', '확정 기획서 · 장치 규칙 · 에셋 크기 문서 (뜨거운 바닥 · 정적 구조물 · 밀 상자 추가)'],
+        ['11.12', 'C++ · OpenGL 프로토타입 1 ~ 3차 · 프로토타입을 md 기획서 6종으로 재추출'],
+        ['11.13', '4차 프로토타입(다단블럭 필수 · 스패너 기둥 · 2단 점프) · 확정 기획서 · 장치 규칙 · 에셋 크기 문서 (뜨거운 바닥 · 정적 구조물 · 밀 상자 추가)'],
         ['11.14', '장치 24종에 아트 메시 입히기 · 찰리 기본 루프와 필름 룩'],
         ['11.15', '칸 1148cm로 확대 · 이동 · 공중 제어 · 카메라 · 블럭 내부 연결 · 블럭 맵 23종 · 도면 v4 · v5'],
         ['11.16', 'SCENE 1~3 정답 배치(v6 ~ v8) · 사운드 전체 · 감독판 크레딧 · 달리기 속도 조정']
@@ -4726,7 +4746,7 @@ function renderPlayer(p, proj) {
   }
   if (p.type === 'pdf') buildReader(p, proj);
   if (p.type === 'youtube') $('#pYt').href = ytUrl(p);
-  if (p.type === 'itch') $('#pExt').href = p.url;
+  if (p.type === 'itch') { $('#pExt').href = p.url; $('#pExtLbl').textContent = p.extBtn || 'itch.io에서 바로 플레이'; $('#pExtSub').textContent = p.extSub || 'HTML5 · 설치 없이 브라우저에서 실행 · 새 탭으로 열려요'; }
   if (p.type === 'game') { $('#pGameSub').textContent = (isTouch() ? p.gSubTouch : p.gSub) || ''; $('#pGameLbl').textContent = p.gBtn || '브라우저에서 바로 플레이'; }
   if (p.type === 'mp4') buildVideoPlayer(p, proj);
   if (p.type === 'demo') buildDemo(p.demo);
@@ -4817,7 +4837,7 @@ function renderBlock(b, i) {
         (b.codes ? `<p class="sub-label">근거 · 실제 저장소 파일</p><div class="codes two">${b.codes.map(codeBox).join('')}</div>` : ''); break;
     case 'flow':
       body = (b.lead ? `<p class="lead-line">${b.lead}</p>` : '') + (b.p ? `<p>${b.p}</p><div style="height:14px"></div>` : '') + `<ol class="flow" style="--n:${Math.min(4, b.items.length)}">${b.items.map(([t, d], k) => `<li><span class="mono">${pad2(k + 1)}</span><b>${t}</b><p>${d}</p></li>`).join('')}</ol>` +
-        (b.list ? `<ul class="flow-notes">${b.list.map(li => `<li>${li}</li>`).join('')}</ul>` : ''); break;
+        (b.list ? `<ul class="flow-notes">${b.list.map(li => `<li>${li}</li>`).join('')}</ul>` : '') + (b.rows ? '<div style="height:16px"></div>' + photoRows(b.rows) : ''); break;
     case 'result':
       body = `<div class="stats">${b.stats.map(([v, l]) => `<div class="stat"><b>${v}</b><span>${l}</span></div>`).join('')}</div>` + photoRows(b.rows); break;
     case 'decide':
