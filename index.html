@@ -1734,6 +1734,85 @@ const PROJECTS = [
     ]
   },
   {
+    id: 'take-action', cat: ['system', 'ai', 'proto'], type: 'game', len: '레벨 시뮬레이터', badge: 'UE5', real: true, cover: 'media/takeaction/cover.webp',
+    title: 'Take, Action! | 감독과 배우를 오가는 블럭 조립 퍼즐 플랫포머 — 레벨 · 사운드 디자인',
+    tool: 'UE 5.9 (Lyra) · Claude Code · Unreal Python · PCG · Diversion', meta2: '4인 팀 · 레벨 디자인 · 기획 문서 · 사운드 · 2026.11 게임잼',
+    date: '2026.11', period: '4인 팀 · 4일 게임잼',
+    tags: ['게임잼', 'UnrealEngine5', '레벨디자인', '퍼즐플랫포머', '기획문서', '사운드디자인', 'ClaudeCode', 'UnrealPython', 'PCG', 'Diversion', '무성영화'],
+    media: [
+      { label: '레벨 시뮬레이터 플레이', type: 'game', src: 'media/takeaction/levelplay.html', poster: 'media/takeaction/poster_play.webp', len: '웹 3D',
+        gTitle: '블럭 레벨 플레이 v4 · 설계 검증용 시뮬레이터', gKeys: 'WASD 이동 · Space 점프(공중 한 번 더) · E 상호작용 · 마우스 드래그 시점 · R 처음부터',
+        gSub: '왼쪽 목록에서 SCENE 정답 조립이나 블럭 하나를 골라 걸어 보세요', gSubTouch: '키보드와 마우스가 필요합니다 · PC 권장',
+        caption: '레벨을 언리얼에 넣기 전에 검증하려고 만든 브라우저 시뮬레이터입니다. 설계 데이터(v4)로 실제 에셋을 놓고, 찰리의 실제 이동 수치로 걸어 보며 정답 경로가 끊기지 않는지, 지름길이 없는지 확인했습니다. 언리얼 물리와 완전히 같지는 않은 근사 시뮬레이터입니다.' },
+      { label: '인게임 스크린샷', type: 'slides', dir: 'takeaction/shots', count: 9, len: '9장', fullThumbs: true }
+    ],
+    facts: [['JAM', '2026 Epic AI Mega Jam · 11.12 – 11.16 (4일)'], ['TEAM', '4인 (나 · 팀원 A · B · C)'], ['MY ROLE', 'SCENE 1~3 레벨 디자인 · 기획 문서 · 사운드 · 장치 아트 연결 · 찰리 이동/카메라'], ['ENGINE', 'Unreal Engine 5.9 Preview · Lyra 기반'], ['AI', 'Claude Code + 언리얼 Python 스크립트 · PCG'], ['VCS', 'Diversion · 내 커밋 36개']],
+    summary: '영화 촬영장이 무대인 퍼즐 플랫포머입니다. 감독 모드에서 블럭을 조립해 세트를 짓고, 연기 모드에서 그 세트 안을 3인칭으로 달려 도착 지점까지 갑니다. 완성한 세트는 통째로 하나의 블럭이 되어 다음 SCENE의 재료가 됩니다. 4일짜리 게임잼에서 저는 확정 기획서와 장치 메커니즘 문서를 쓰고, SCENE 1~3의 레벨 디자인 전체(블럭 23종 · SCENE별 정답 배치)와 사운드를 맡았습니다. 레벨은 “경로부터 설계 → 데이터로 생성 → 자동 검증 → 시뮬레이터로 재생”하는 방식으로 만들었습니다.',
+    blocks: [
+      { h: '어떤 게임인가', lead: '감독이 되어 세트를 짓고, 배우가 되어 그 세트를 달립니다',
+        p: '찰리의 방에서 스케줄 보드로 SCENE을 고르면 촬영이 시작됩니다. Tab으로 <b>CUT!</b>을 외치면 감독 모드로 바뀌어 블럭을 놓고 돌릴 수 있고, 다시 <b>ACTION!</b>을 외치면 바뀐 배치대로 세트가 재조립된 뒤 연기 모드로 돌아옵니다. 톱니를 모두 모으고, 그리드를 다 채우고, 도착 지점에 닿으면 클리어입니다. 사망하거나 CUT!을 할 때마다 TAKE(필름 예산)가 줄어듭니다.' },
+      { h: '팀과 내 역할 · 4인 팀', kind: 'role', cols: 3,
+        p: '제 포트폴리오라서 아래는 제가 맡은 부분을 중심으로 정리했습니다. 역할은 Diversion 커밋 기록으로 확인한 내용입니다.',
+        items: [
+          { who: 'ME', me: true, what: '레벨 디자인 · 기획 문서 · 사운드', note: '확정 기획서 · 장치 메커니즘 · 에셋 크기 문서, SCENE 1~3 레벨 디자인과 정답 배치, 블럭 맵 23종, 장치에 아트 메시 입히기, 찰리 이동·카메라 조정, 사운드 전체를 맡았습니다.' },
+          { who: '팀원 A', what: '프로그래밍 · 프로젝트 셋업', note: 'Lyra 기반 프로젝트와 AI 작업 환경을 세우고, 감독 모드 · 다단블럭 · 진행 · 메뉴 · 홈 · 연출 등 게임플레이 코드와 메인 병합을 맡았습니다.' },
+          { who: '팀원 B · C', what: '아트 · 장치 플러그인', note: '팀원 B는 찰리 캐릭터와 에셋 · UI · 타이틀 애니메이션을, 팀원 C는 감독 모드 조립 플러그인과 블럭 장치(GAS) 플러그인을 만들었습니다.' }
+        ] },
+      { h: 'SCENE 1~3 레벨 디자인', kind: 'cards', cols: 3,
+        p: 'SCENE마다 그리드가 커지고(2×2×2 → 3×3×3 → 4×4×4), 이전 SCENE을 통째로 만든 다단블럭을 반드시 써야 풀리도록 짰습니다. 블럭 하나하나가 “방” 하나이고, 방마다 장치 하나가 길을 여는 열쇠가 됩니다.',
+        items: [
+          { t: 'SCENE 1 · 2×2×2', tag: '입문', l: ['슬레이트 무대에서 출발해 포스터 무대로 도착', 'D2-A 사무실(문 두 개) · D2-B 기록실(구덩이와 다리)', 'M1-A 소품 창고(상자와 누름판) · M1-B 촬영 소품실(바닥 해치)'] },
+          { t: 'SCENE 2 · 3×3×3', tag: '정답 3개', l: ['L3-A 공작실(뜨거운 철판) · L3-C 계단 공방(바람 건너기)', 'I3-A 조립 라인(톱니 관문) · I3-B 포장 라인(프레스 벨트)', 'D2-C 우편실(점프컷 지름길) · M1-C 보일러 창고(증기 승강)'] },
+          { t: 'SCENE 3 · 4×4×4', pick: true, tag: '정답 3개', l: ['O4 보일러 홀(가운데 로터리) · T4 제어실 갈림길', 'I4 긴 조립 라인 · L4 긴 공작 통로 · S4 배관 지그재그', 'B4 승강 탑 — 스패너로 기둥을 뽑아 소켓에 옮겨 세우기'] }
+        ] },
+      { h: '레벨을 만든 방식', kind: 'flow',
+        p: '4일 안에 블럭 23종과 SCENE 3개를 만들어야 해서, 손으로 배치하는 대신 설계를 데이터로 쓰고 생성 · 검증을 자동으로 돌렸습니다.',
+        items: [
+          ['경로부터 설계', '완성된 정답 경로를 먼저 정하고 그 길을 만드는 블럭과 장치를 거꾸로 배치 (v5부터 “경로 먼저”로 SCENE 1을 다시 짬)'],
+          ['데이터로 생성', '설계 JSON을 언리얼 Python 스크립트(block_design_v3.py · block_dressing.py)가 읽어 블럭 맵과 장치를 배치, 장식은 PCG로 깔고 메시로 구움'],
+          ['자동 검증', '만든 맵을 설계와 한 조각씩 대조하고, 찰리 캡슐이 지나갈 수 있는지 · 점프로 닿는지 규칙 검사'],
+          ['시뮬레이터로 재생', '브라우저 3D 시뮬레이터에서 정답 배치를 직접 걸어 보고, 장치를 안 써도 되는 우회로를 찾아 막음 (예: 430cm 구덩이 지름길)']
+        ],
+        list: ['원칙: 모든 장치는 반드시 써야 풀린다 — 우회로가 생기면 그 장치는 의미가 없어지기 때문입니다.', '프로토타입의 비율(칸 하나 ≈ 찰리 키의 6.9배)을 유지하도록 칸을 1148cm로 키웠습니다.'] },
+      { h: '치수 기준 · 설계 도면에서', kind: 'table', wrap: true, note: '레벨 설계 도면(BlockLevelDesign v5)에 정리한 기준입니다. 모든 높이와 거리는 이 값 안에서 정했습니다.',
+        cols: ['항목', '값', '설계에 쓰는 법'],
+        rows: [
+          ['칸', '1148 × 1148 × 1148', '바닥은 칸 아랫면, 천장은 위 칸 바닥 · 287 격자(4×4)'],
+          ['찰리 캡슐', '폭 80 · 키 180', '서는 자리 위 200 이상, 지나는 틈 110 이상'],
+          ['오르기', '턱 57 · 1단 점프 122 · 2단 점프 244', '디딤 높이 차는 이 값 안에서 정함 · 2단 점프 가로 약 400'],
+          ['계단', '438 × 183 × 324', '발판은 320, 계단 한 층 높이에 맞춰 층을 쌓음']
+        ] },
+      { h: '사운드 · 무성영화 테마', kind: 'cards', cols: 2,
+        p: '게임잼 마지막 날 사운드 전체를 맡았습니다. 흑백 무성영화 촬영장이라는 콘셉트에 맞춰 소리를 골랐습니다.',
+        items: [
+          { t: '연결', l: ['효과음 55종을 골라 BlockDeviceSounds로 모든 장치 · 찰리 행동 · 스튜디오 이벤트에 연결', '톱니 수집 · CUT! 슬레이트 · 프레스 · 공장 앰비언스'] },
+          { t: '연출', l: ['홈 · 감독 모드 음악, ACTION! 순간의 카메라 필름 돌아가는 소리, 2단 점프 휘파람', '감독 무대 리버브와 믹스, 장치 소리 크기 맞추기'] }
+        ] },
+      { h: '스크린샷', kind: 'gallery', items: [
+        { src: 'media/takeaction/shots/03.webp', cap: '감독 모드 — 4×4×4 세트에 블럭을 놓고 돌리기', wide: true },
+        { src: 'media/takeaction/shots/04.webp', cap: 'ACTION! 뒤 재조립된 SCENE 3 세트' },
+        { src: 'media/takeaction/shots/05.webp', cap: '연기 모드 — 증기 · 리프트 · 대포가 있는 블럭 안' },
+        { src: 'media/takeaction/shots/09.webp', cap: '블럭 내부 설계도 (B4 승강 탑)', wide: true },
+        { src: 'media/takeaction/shots/08.webp', cap: '레벨 설계 도면 v5 — 범례와 치수 기준' },
+        { src: 'media/takeaction/shots/07.webp', cap: '브라우저 레벨 시뮬레이터' }
+      ] },
+      { h: 'AI 활용 내역', kind: 'flow',
+        p: 'Claude Code로 언리얼 Python 스크립트를 만들어 레벨을 데이터에서 뽑고, 사람은 설계 · 판정 · 우회로 찾기에 집중했습니다.',
+        items: [
+          ['기획 → 데이터', '확정 기획서와 장치 문서를 기준으로 블럭 · 장치 · 정답을 JSON 설계 데이터로 정리'],
+          ['데이터 → 맵', 'Claude Code가 만든 Python 생성기로 블럭 맵 23종을 한 번에 다시 생성'],
+          ['검증 자동화', '캡슐 · 도달 규칙 검사와 설계 대조를 스크립트로 반복'],
+          ['도면 · 시뮬레이터', '설계를 사람이 읽는 HTML 도면과, 걸어 보는 3D 시뮬레이터로 함께 출력']
+        ] },
+      { h: '작업 기록', kind: 'timeline', items: [
+        ['11.13', '확정 기획서 · 장치 메커니즘 · 에셋 크기 문서'],
+        ['11.14', '장치에 아트 메시 입히기 · 찰리 기본 루프와 필름 룩'],
+        ['11.15', '칸 1148cm로 확대 · 이동 · 카메라 · 블럭 내부 연결 · 블럭 맵 23종 · 도면 v4 · v5'],
+        ['11.16', 'SCENE 1~3 정답 배치 · 사운드 전체 · 감독판 크레딧']
+      ] }
+    ]
+  },
+  {
     id: 'katana-zero', cat: 'proto', type: 'youtube', youtube: 'hMtahu8OvoI', len: '플레이 영상', real: true,
     cover: 'media/katana/cover.webp', poster: 'media/katana/poster.webp',
     repo: 'https://github.com/Lottesand/2026_WindowProgramming_Project',
@@ -2842,7 +2921,8 @@ const TIMELINE = [
   { id: 'katana-zero', when: '2026.05 – 06', t: 'Katana Zero Rebirth', d: 'Gemini CLI로 만든 Win32 API 2D 액션 모작 — 스레드 로딩 · 색 충돌맵', chips: ['CLI로 개발', 'C++ · Win32 API'] },
   { id: 'subivors', when: '2026.07 – 09', t: 'SUBIVORS', d: '첫 5인 팀 · 첫 메인 기획, 실제 서울 지하철역을 답사해 무대로', chips: ['팀 기획', 'Figma · Notion'] },
   { id: 'seoil-hackathon', when: '2026.09', t: '뜻밖의난관 · 해커톤 대상', d: 'Claude와 Unity를 MCP로 가장 먼저 연결해 무박 2일 만에 멀티플레이 완성', chips: [{ t: '대상', hl: true }, 'Claude + Unity MCP'] },
-  { id: 'chime', when: '2026.09 – 10', t: 'CHIME · AAA를 향한 한 달', d: '대상 부상 Claude 한 달로 AI 3종 파이프라인을 엮어 언리얼 MVP 완성', chips: ['MVP 완성', 'Unreal · Blender MCP · Meshy'] }
+  { id: 'chime', when: '2026.09 – 10', t: 'CHIME · AAA를 향한 한 달', d: '대상 부상 Claude 한 달로 AI 3종 파이프라인을 엮어 언리얼 MVP 완성', chips: ['MVP 완성', 'Unreal · Blender MCP · Meshy'] },
+  { id: 'take-action', when: '2026.11', t: 'Take, Action! · 4일 게임잼', d: '4인 팀에서 SCENE 1~3 레벨 디자인과 사운드 — 데이터로 생성하고 시뮬레이터로 검증', chips: ['레벨 디자인', 'Unreal · Python · PCG'] },
 ];
 function setupTimeline() {
   const box = $('#ptl'), list = $('#ptlList'); if (!box || !list) return;
