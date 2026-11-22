@@ -1179,6 +1179,31 @@ kbd{display:inline-grid;place-items:center;min-width:28px;height:28px;padding:0 
 .evo-h b{font-size:15.5px;color:var(--fg)}
 .evo>li>p{margin:0 0 10px!important;font-size:13.5px;color:var(--muted)!important}
 .player[data-type="slides"] #pImg{object-fit:contain;background:#000}
+/* CHIME 해킹 미리보기 — 캡챠 (AAAHackCaptcha.cpp 색 그대로) */
+.demo-captcha{background:#00060f;outline:none}
+.cp{position:absolute;inset:0;display:flex;flex-direction:column;gap:8px;padding:12px;color:#eef1d7;font-family:var(--font-body);
+  background:linear-gradient(rgba(0,6,18,.86),rgba(0,4,12,.94)),url(media/chime/img/establishing.webp) center/cover}
+.cp-head{display:flex;align-items:center;gap:8px;min-height:24px}
+.cp-head b{font-size:13.5px;font-weight:600}
+.cp-miss{margin-left:auto;font-size:11.5px;color:#8db3e8}
+.cp-miss.bad{color:#e8665d}
+.cp-hint{margin:0;font-size:12px;color:#8db3e8}
+.cp-hint b{color:#eef1d7;font-weight:600}
+.cp-stage{position:relative;flex:1 1 0;min-height:120px;border-radius:8px;background:rgba(0,1,4,.62);box-shadow:inset 0 0 0 1px rgba(63,116,192,.35);overflow:hidden}
+.cp-cv{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:pointer}
+.cp-toast{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:8px 16px;border-radius:10px;background:rgba(0,10,26,.92);font-size:13px;font-weight:600;white-space:nowrap;pointer-events:none}
+.cp-focus{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);font-size:11px;color:#e6dd8e;background:rgba(0,10,26,.85);padding:3px 10px;border-radius:6px;pointer-events:none}
+.cp-foot{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.cp-slots{display:flex;gap:6px;align-items:center}
+.cp-slots i{display:grid;place-items:center;width:32px;height:36px;border-radius:7px;border:1.2px solid rgba(63,116,192,.75);background:rgba(0,12,32,.7);font-style:normal;font-weight:700;font-size:16px;color:#62aef2}
+.cp-slots i.on{background:rgba(98,174,242,.2);border-color:#62aef2}
+.cp-space{--fill:0%;position:relative;min-width:84px;height:36px;margin-left:6px;border-radius:8px;border:1.2px solid rgba(63,116,192,.75);color:#8db3e8;font-size:12px;cursor:pointer;
+  background:linear-gradient(90deg,#3fd6aa var(--fill),rgba(0,12,32,.7) var(--fill))}
+.cp-space.ready{border-color:#e6dd8e;color:#e6dd8e;animation:cpPulse 1s ease-in-out infinite}
+@keyframes cpPulse{50%{box-shadow:0 0 0 3px rgba(230,221,142,.25)}}
+.cp-held{margin-left:auto;font-size:12px;color:#c6d3ea}
+@media (max-width:760px){.cp{padding:8px;gap:6px}.cp-hint{font-size:11px}.cp-held{margin-left:0}}
+@media (prefers-reduced-motion:reduce){.cp-space.ready{animation:none}}
 /* CHIME 해킹 미리보기 — 파장 맞추기 (게임 속 AAATheme 색을 그대로 씀) */
 .demo-wave{background:#00060f}
 .wv{position:absolute;inset:0;display:flex;flex-direction:column;gap:8px;padding:12px;color:#eef1d7;font-family:var(--font-body);
@@ -1582,7 +1607,7 @@ const PROJECTS = [
       { label: '트레일러', type: 'mp4', src: 'media/chime/trailer.mp4', poster: 'media/chime/tposter.webp', len: '0:38', caption: '해킹과 폐허 도시의 분위기를 38초에 담은 트레일러입니다. 모든 장면은 실제 게임 화면(언리얼 5 실시간 렌더링)입니다.' },
       { label: '풀 플레이 · 해설', type: 'mp4', src: 'media/chime/play.mp4', poster: 'media/chime/vposter.webp', len: '10:32', chapters: [[0, '타이틀'], [15, '#1 첫 번째 종 · 인트로'], [27, '설정 · 실시간 화면 효과'], [68, 'PLAYER-OS · 메신저 · 사진'], [86, '고가 상판 잠입'], [90, '독립망 단말 · 주파수 해독'], [168, '앉기 · 점프 구간'], [195, '첫 메크 · 등 뒤 해킹'], [215, 'MECH-OS 광학 기록'], [235, '리프트 · 지상으로'], [265, 'BREACH.CMD · 무선망 크랙'], [305, '라우터 정찰 · 방화벽 돌파'], [360, 'SSH 크랙 · 콘솔 로그인'], [387, '관리자 계정 획득'], [416, '게이트 방화벽'], [444, '외부 인증 uplink'], [489, '개방키 서명 · unlock'], [509, 'ROUTER-OS 장악'], [532, '고정 메크 해킹'], [558, '화물 운반'], [604, '인식대 · 보안문 개방'], [610, '출구']], caption: '#1 첫 번째 종을 처음부터 출구까지 컷 편집 없이 이어서 담은 영상입니다. 설정 창의 실시간 화면 효과, PLAYER-OS·MECH-OS 같은 세계관 장치, 독립망 단말 주파수 해독, 메인 해킹 BREACH.CMD(무선망 → 라우터 → 방화벽 → SSH → 관리자 → uplink → 서명 → unlock) 전 과정과 설계 의도를 자막으로 달았습니다.' },
       { label: '인게임 스크린샷', type: 'slides', dir: 'chime/shots', count: 26, len: '26장', fullThumbs: true },
-      { label: '해킹 체험 · 파장 맞추기', type: 'demo', demo: 'wave', len: '웹 데모', caption: '게임 속 AAAHackWaveform.cpp의 간단 모드(적 유닛 인증)를 웹으로 옮겼습니다. 아래 위상 칸의 합성파(빨강)가 평평한 초록이 되도록 파장 · 위상을 맞추고, 로그의 글자가 제자리로 돌아오도록 열을 맞추면 접속됩니다.' }
+      { label: '해킹 체험 · 파장 맞추기', type: 'demo', demo: 'wave', len: '웹 데모', caption: '게임 속 AAAHackWaveform.cpp의 간단 모드(적 유닛 인증)를 웹으로 옮겼습니다. 아래 위상 칸의 합성파(빨강)가 평평한 초록이 되도록 파장 · 위상을 맞추고, 로그의 글자가 제자리로 돌아오도록 열을 맞추면 접속됩니다.' }, { label: '해킹 체험 · 캡챠', type: 'demo', demo: 'captcha', len: '웹 데모', caption: '게임 속 AAAHackCaptcha.cpp를 적 유닛용 짧은 버전(3글자)으로 웹에 옮겼습니다. 흘러가는 글자 줄마다 하얀 선이 이어 준 글자를 맨 아래부터 차례로 눌러 계속 누르고 있다가, 스페이스바를 누르고 3초를 버티면 접속됩니다. 틀리거나 손을 떼면 처음부터입니다. (터치는 선이 이어진 글자를 누르고 있기, 마우스는 클릭하면 고정)' }
     ],
     facts: [['TEAM', '2인 (나 · 팀원 B)'], ['MY ROLE', 'PM · 개발 환경 구축 · 게임 흐름 기획 · AI 에셋 파이프라인'], ['TEAM B', '해킹 미니게임 기획 · 그래픽 레퍼런스 · 시안 · 씬 1 레벨 엑셀'], ['ENGINE', 'Unreal Engine 5.8.2 · C++ 약 2.4만 줄'], ['AI', '제작 Claude Code + Unreal MCP · 에셋 Claude + Blender MCP + Meshy 7'], ['VCS', 'Diversion (언리얼 플러그인)'], ['PERIOD', '2026.09 – 10 · 약 1개월 · MVP 완성'], ['BENCH', '그래픽 Warframe · 레벨 구조 Stellar Blade']],
     summary: '해커톤 대상 부상으로 받은 Claude 한 달 요금제로 “AI가 어디까지 해 줄 수 있을까”를 끝까지 밀어 본 프로젝트입니다. 학업과 함께 하느라 혼자서는 어렵다고 보고 2인 팀으로 꾸렸고, 저는 PM으로서 개발 환경(Unreal MCP 연동 · Diversion 버전 관리 · AI 규칙 문서)을 세우고, 1시간 분량 데모를 기준으로 언제 어떤 정보와 장비를 얻는지 게임 전체 흐름을 기획했으며, Claude · Blender · Meshy 7을 엮어 모델링을 뽑아내는 에셋 파이프라인을 만들었습니다. 언리얼을 거의 모르던 상태에서 한 달 만에, AAA급 그래픽의 발끝이라도 따라간 MVP 데모를 완성했습니다.',
@@ -2938,7 +2963,7 @@ function buildDemo(kind) {
   const el = document.createElement('div');
   el.className = `p-demo demo-${kind}`;
   stage.appendChild(el);
-  demoStop = kind === 'voice' ? voiceDemo(el) : kind === 'cootie' ? cootieDemo(el) : kind === 'wave' ? waveDemo(el) : detoxDemo(el);
+  demoStop = kind === 'voice' ? voiceDemo(el) : kind === 'cootie' ? cootieDemo(el) : kind === 'wave' ? waveDemo(el) : kind === 'captcha' ? captchaDemo(el) : detoxDemo(el);
 }
 
 /* 1) 음성 비서: api.py 의 render_animation() · 상태 문구 · 시스템 메시지를 그대로 옮김 */
@@ -4162,6 +4187,184 @@ function waveDemo(el) {
   io.observe(el);
   newSession(); fit(cvCh, gCh, 'ch'); fit(cvSn, gSn, 'sn'); run();
   return () => { alive = false; cancelAnimationFrame(raf); raf = 0; ro.disconnect(); io.disconnect(); timers.forEach(clearTimeout); timers.clear(); };
+}
+
+/* 7) CHIME 해킹 미리보기 — 캡챠 (선 따라 누르기)
+   게임 속 AAAHackCaptcha.cpp의 '적 유닛용 짧은 체인'(3글자)을 그대로 옮김:
+   - 줄마다 글자가 흘러가고, 줄마다 이번 문제의 글자 하나를 하얀 선이 이어 준다 (가운데에 가까운 같은 글자로 선이 옮겨 감)
+   - 맨 아래 줄부터 선을 따라 키를 차례로 눌러 '계속 누르고' 있다가 Space → 3초 인증
+   - 틀린 글자를 누르거나, 누르던 글자에서 손을 떼거나, 포커스를 잃으면 처음부터
+   - 터치·마우스: 선이 이어진 글자를 누르고 있으면 그 키를 누른 것으로 친다 (마우스는 한 번 누르면 고정) */
+function captchaDemo(el) {
+  const CHAIN = 3, VERIFY = 3, ALPHA = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const C = { bg: '#00122b', glyph: '#8db3e8', line: '#62aef2', dim: '#4f6d96', text: '#eef1d7', ok: '#3fd6aa', bad: '#e8665d', warn: '#e6dd8e' };
+  const rnd = (a, b) => a + Math.random() * (b - a), rch = () => ALPHA[Math.random() * 26 | 0];
+  const rchEx = ex => { let c; do { c = rch(); } while (c === ex); return c; };
+  el.tabIndex = 0;
+  el.innerHTML = `<div class="cp">
+    <div class="cp-head"><span class="wv-tag mono">CAPTCHA</span><b>unit_02 · 유닛 인증 — 캡챠</b><span class="cp-miss mono">실수 0</span></div>
+    <p class="cp-hint">맨 아래 글자부터 하얀 선을 따라 ${CHAIN}개를 차례로 누르고 <b>계속 누르고</b> 있다가, 스페이스바를 한 번 → 3초 인증</p>
+    <div class="cp-stage"><canvas class="cp-cv" aria-label="흘러가는 글자 줄과 이번 문제 글자를 잇는 하얀 선"></canvas><div class="cp-toast" hidden></div><div class="cp-focus" hidden>여기를 클릭하면 키보드로 할 수 있어요</div></div>
+    <div class="cp-foot">
+      <div class="cp-slots">${Array.from({ length: CHAIN }, () => '<i class="mono"></i>').join('')}<button class="cp-space mono" type="button">Space</button></div>
+      <span class="cp-held mono">눌린 키 —</span>
+    </div>
+    <div class="wv-res" hidden><b class="mono">ACCESS GRANTED</b><span>unit_02 인증 통과 — 유닛 OS로 접속합니다</span><button type="button">다시 하기</button></div>
+  </div>`;
+  const cv = el.querySelector('.cp-cv'), g = cv.getContext('2d');
+  const slots = Array.from(el.querySelectorAll('.cp-slots i')), spaceBtn = el.querySelector('.cp-space'), heldEl = el.querySelector('.cp-held');
+  const toastEl = el.querySelector('.cp-toast'), missEl = el.querySelector('.cp-miss'), res = el.querySelector('.wv-res'), focusEl = el.querySelector('.cp-focus');
+  let W = 0, H = 0, font = 22, base = 24, spacing = 220, top = 0, bottom = 0, bandH = 0, phase = 0;
+  let lanes = [], letters = [], nextId = 1, chars = [], links = [], disp = [], need = [];
+  let progress = 0, state = 'play', verifyT = 0, doneT = 0, miss = 0, missFlash = 0, toastT = 0, held = new Set(), latched = new Set();
+  let raf = 0, last = 0, alive = true;
+
+  const speedAt = y => base * (1 + 0.2 * Math.sin((y / Math.max(H, 1)) * Math.PI * 2.2 + phase));
+  const gap = () => rnd(font * 1.7, font * 3.4);
+  const pickChar = (band, x) => {
+    const c = chars[band]; let right = -1e9;
+    for (const L of letters) if (L.band === band && L.ch === c && L.x > right) right = L.x;
+    if (x - right >= need[band]) { need[band] = spacing * rnd(0.8, 1.2); return c; }
+    return rchEx(c);
+  };
+  const spawn = (lane, x, fade) => letters.push({ id: nextId++, x, y: lane.y + rnd(-font * .18, font * .18), ch: chars.length ? pickChar(lane.band, x) : rch(), v: lane.v, band: lane.band, scale: rnd(.86, 1.14), alpha: rnd(.55, .95), fade });
+  const newRound = () => {
+    const pool = ALPHA.split('').sort(() => Math.random() - .5); chars = pool.slice(0, CHAIN);
+    for (const L of letters) { L.ch = rch(); L.fade = .35; }
+    for (let b = 0; b < CHAIN; b++) {
+      const c = chars[b], inBand = letters.filter(L => L.band === b).sort((a, z) => a.x - z.x);
+      let lastX = rnd(-spacing, 0), nd = spacing * rnd(.8, 1.2);
+      for (const L of inBand) { if (L.x - lastX >= nd) { L.ch = c; lastX = L.x; nd = spacing * rnd(.8, 1.2); } else if (L.ch === c) L.ch = rchEx(c); }
+      need[b] = spacing * rnd(.8, 1.2); links[b] = 0; disp[b] = null;
+    }
+    progress = 0; state = 'play'; verifyT = 0; latched.clear(); held.clear(); paintFoot();
+  };
+  const resize = () => {
+    const r = cv.getBoundingClientRect(), dpr = Math.min(2, window.devicePixelRatio || 1);
+    if (r.width < 10 || r.height < 10) return false;
+    W = r.width; H = r.height; cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    font = Math.round(Math.max(16, Math.min(28, H * 0.09))); base = Math.max(18, W * 0.022); spacing = Math.max(140, Math.min(300, W * 0.26));
+    top = H * 0.08; bottom = H * 0.92; bandH = (bottom - top) / CHAIN; phase = rnd(0, Math.PI * 2);
+    lanes = []; for (let b = 0; b < CHAIN; b++) { const yc = bottom - (b + .5) * bandH; for (const k of [-.25, .25]) { const y = yc + k * bandH; lanes.push({ y, band: b, v: speedAt(y) * rnd(.96, 1.04), gapLeft: 0 }); } }
+    letters = []; for (const ln of lanes) { let x = rnd(-30, 10); while (x < W + 40) { spawn(ln, x, 0); x += gap(); } ln.gapLeft = x - (W + 40); }
+    newRound(); return true;
+  };
+  const find = id => letters.find(L => L.id === id);
+  const updateLinks = dt => {
+    const cx = W / 2, minX = font, maxX = W - font, k = 1 - Math.exp(-dt * 14);
+    for (let b = 0; b < CHAIN; b++) {
+      let best = null, bestD = 1e9;
+      for (const L of letters) { if (L.band !== b || L.ch !== chars[b] || L.x < minX || L.x > maxX) continue; const d = Math.abs(L.x - cx); if (d < bestD) { bestD = d; best = L; } }
+      const cur = find(links[b]), curOk = cur && cur.ch === chars[b] && cur.x >= minX && cur.x <= maxX;
+      if (!curOk) links[b] = best ? best.id : 0;
+      else if (best && best !== cur && bestD < Math.abs(cur.x - cx) - 24) links[b] = best.id;
+      const L = find(links[b]); if (!L) continue;
+      if (!disp[b]) disp[b] = [L.x, L.y]; else { disp[b][0] += (L.x - disp[b][0]) * k; disp[b][1] += (L.y - disp[b][1]) * k; }
+    }
+  };
+  const toast = msg => { toastEl.textContent = msg; toastEl.hidden = false; toastT = 1.6; };
+  const missReset = msg => { progress = 0; state = 'play'; verifyT = 0; miss++; missFlash = .45; latched.clear(); missEl.textContent = `실수 ${miss}`; missEl.classList.add('bad'); toast(msg); paintFoot(); };
+  const paintFoot = () => {
+    slots.forEach((s, i) => { s.textContent = i < progress ? chars[i] : ''; s.classList.toggle('on', i < progress); });
+    spaceBtn.classList.toggle('ready', state === 'play' && progress === CHAIN);
+    const keys = [...new Set([...held, ...latched])];
+    heldEl.textContent = `눌린 키 ${keys.length ? keys.join(' ') : '—'}`;
+  };
+  const press = c => {
+    if (state === 'done') return;
+    if (state === 'play' && progress < CHAIN && c === chars[progress]) { progress++; if (progress === CHAIN) toast('스페이스바를 한 번 누르세요'); }
+    else missReset(`${c}는 지금 누를 글자가 아니에요. 처음부터 다시`);
+    paintFoot();
+  };
+  const release = c => { if (state === 'done') return; const i = chars.indexOf(c); if (i >= 0 && i < progress) missReset(`${c}에서 손을 뗐어요. 처음부터 다시`); paintFoot(); };
+  const space = () => {
+    if (state !== 'play') return;
+    if (progress === CHAIN) { state = 'verify'; verifyT = 0; toast('인증 중입니다. 키를 계속 누르고 있으세요'); }
+    else toast(`${CHAIN}개를 모두 누른 다음 스페이스바를 누르세요`);
+    paintFoot();
+  };
+
+  const onDown = e => {
+    if (e.ctrlKey || e.altKey || e.metaKey) return;
+    if (e.code === 'Space') { e.preventDefault(); if (!e.repeat) space(); return; }
+    const c = (e.key || '').toUpperCase(); if (c.length !== 1 || c < 'A' || c > 'Z') return;
+    e.preventDefault(); if (e.repeat || held.has(c)) return; held.add(c); press(c);
+  };
+  const onUp = e => { const c = (e.key || '').toUpperCase(); if (c.length !== 1 || c < 'A' || c > 'Z') return; if (held.delete(c)) release(c); };
+  const onBlur = () => { focusEl.hidden = false; held.clear(); if (state !== 'done' && progress > 0 && !latched.size) { progress = 0; state = 'play'; verifyT = 0; toast('포커스를 잃었어요. 화면을 클릭하고 다시'); paintFoot(); } };
+  const onFocus = () => { focusEl.hidden = true; };
+  // 포인터: 선이 이어진 글자를 누르면 그 글자 키 (터치는 누르는 동안, 마우스는 고정)
+  const linkedAt = (x, y) => { for (let b = 0; b < CHAIN; b++) { const L = find(links[b]); if (L && Math.hypot(L.x - x, L.y - y) < font * 0.9) return L.ch; } return null; };
+  const ptr = new Map();
+  const onPtrDown = e => {
+    el.focus({ preventScroll: true });
+    const r = cv.getBoundingClientRect(), c = linkedAt(e.clientX - r.left, e.clientY - r.top); if (!c) return;
+    e.preventDefault();
+    if (e.pointerType === 'mouse') { if (latched.has(c)) { latched.delete(c); release(c); } else { latched.add(c); press(c); } return; }
+    ptr.set(e.pointerId, c); held.add(c); press(c);
+  };
+  const onPtrUp = e => { const c = ptr.get(e.pointerId); if (!c) return; ptr.delete(e.pointerId); held.delete(c); release(c); };
+  el.addEventListener('keydown', onDown); el.addEventListener('keyup', onUp); el.addEventListener('blur', onBlur); el.addEventListener('focus', onFocus);
+  cv.addEventListener('pointerdown', onPtrDown); window.addEventListener('pointerup', onPtrUp); window.addEventListener('pointercancel', onPtrUp);
+  spaceBtn.addEventListener('click', () => { el.focus({ preventScroll: true }); space(); });
+  res.querySelector('button').addEventListener('click', () => { res.hidden = true; miss = 0; missEl.textContent = '실수 0'; missEl.classList.remove('bad'); newRound(); el.focus({ preventScroll: true }); run(); });
+
+  const curve = pts => {
+    // Catmull-Rom (게임과 같은 곡선)
+    const out = [];
+    for (let i = 0; i < pts.length - 1; i++) {
+      const p0 = pts[Math.max(i - 1, 0)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(i + 2, pts.length - 1)];
+      for (let s = 0; s < 14; s++) { const t = s / 14, t2 = t * t, t3 = t2 * t;
+        out.push([0.5 * (2 * p1[0] + (-p0[0] + p2[0]) * t + (2 * p0[0] - 5 * p1[0] + 4 * p2[0] - p3[0]) * t2 + (-p0[0] + 3 * p1[0] - 3 * p2[0] + p3[0]) * t3),
+          0.5 * (2 * p1[1] + (-p0[1] + p2[1]) * t + (2 * p0[1] - 5 * p1[1] + 4 * p2[1] - p3[1]) * t2 + (-p0[1] + 3 * p1[1] - 3 * p2[1] + p3[1]) * t3)]); }
+    }
+    out.push(pts[pts.length - 1]); return out;
+  };
+  const stroke = (pts, n, col, w, a) => { if (n < 2) return; g.globalAlpha = a; g.strokeStyle = col; g.lineWidth = w; g.lineCap = 'round'; g.lineJoin = 'round'; g.beginPath(); g.moveTo(pts[0][0], pts[0][1]); for (let i = 1; i < Math.min(n, pts.length); i++) g.lineTo(pts[i][0], pts[i][1]); g.stroke(); g.globalAlpha = 1; };
+  const draw = () => {
+    g.clearRect(0, 0, W, H);
+    const linkIdx = new Map(); links.forEach((id, b) => { if (id) linkIdx.set(id, b); });
+    const letter = (L, b) => {
+      const on = b != null && (b < progress || state === 'done'), fs = font * L.scale, fm = L.fade > 0 ? 1 - L.fade / .35 : 1;
+      if (b != null) { g.fillStyle = C.bg; g.beginPath(); g.arc(L.x, L.y, font * .62, 0, 7); g.fill(); if (on) { g.strokeStyle = C.line; g.lineWidth = 2; g.stroke(); } }
+      g.globalAlpha = (on ? 1 : L.alpha) * Math.max(0, Math.min(1, fm)); g.fillStyle = on ? C.line : C.glyph;
+      g.font = `700 ${fs | 0}px "IBM Plex Mono",monospace`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(L.ch, L.x, L.y); g.globalAlpha = 1;
+    };
+    for (const L of letters) if (!linkIdx.has(L.id) && L.x > -60 && L.x < W + 60) letter(L, null);
+    if (disp.every(Boolean) && links.every(Boolean)) {
+      const pts = curve([[W / 2, H + 4], ...disp.map(d => [d[0], d[1]]), [W / 2, -4]]);
+      const sx = missFlash > 0 ? Math.sin(missFlash * 70) * 4 * (missFlash / .45) : 0; pts.forEach(p => { p[0] += sx; });
+      if (missFlash <= 0) stroke(pts, pts.length, C.line, 7, .16);
+      stroke(pts, pts.length, missFlash > 0 ? C.dim : C.line, 2, .9);
+      const heldTo = state === 'done' ? pts.length : progress > 0 ? progress * 14 + 1 : 0;
+      if (heldTo > 1) { stroke(pts, heldTo, C.line, 12, .26); stroke(pts, heldTo, C.line, 4, 1); }
+      if (state === 'verify' || state === 'done') { const f = state === 'done' ? 1 : Math.min(1, verifyT / VERIFY), n = Math.max(2, Math.round(f * (pts.length - 1)) + 1); stroke(pts, n, C.ok, 18, .3); stroke(pts, n, C.ok, 7, 1); }
+    }
+    for (const L of letters) if (linkIdx.has(L.id)) letter(L, linkIdx.get(L.id));
+    if (state === 'verify' || state === 'done') { const f = state === 'done' ? 1 : verifyT / VERIFY; spaceBtn.style.setProperty('--fill', `${Math.round(f * 100)}%`); } else spaceBtn.style.setProperty('--fill', '0%');
+  };
+  const tick = now => {
+    if (!alive) return;
+    if (!W && !resize()) { raf = requestAnimationFrame(tick); return; }
+    const dt = Math.min(0.05, last ? (now - last) / 1000 : 0.016); last = now;
+    for (const L of letters) { L.x -= L.v * dt; if (L.fade > 0) L.fade -= dt; }
+    for (const ln of lanes) { ln.gapLeft -= ln.v * dt; while (ln.gapLeft <= 0) { spawn(ln, W + 40 + ln.gapLeft, 0); ln.gapLeft += gap(); } }
+    letters = letters.filter(L => L.x > -60);
+    updateLinks(dt);
+    if (missFlash > 0) missFlash -= dt;
+    if (toastT > 0) { toastT -= dt; if (toastT <= 0) toastEl.hidden = true; }
+    if (state === 'verify') { verifyT += dt; if (verifyT >= VERIFY) { state = 'done'; doneT = 1.2; toast('인증 완료'); paintFoot(); } }
+    else if (state === 'done' && doneT > 0) { doneT -= dt; if (doneT <= 0) res.hidden = false; }
+    draw();
+    raf = requestAnimationFrame(tick);
+  };
+  const run = () => { if (!raf && alive) { last = 0; raf = requestAnimationFrame(tick); } };
+  const ro = new ResizeObserver(() => { W = 0; });
+  ro.observe(cv);
+  const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) run(); else { cancelAnimationFrame(raf); raf = 0; } });
+  io.observe(el);
+  run();
+  return () => { alive = false; cancelAnimationFrame(raf); raf = 0; ro.disconnect(); io.disconnect(); window.removeEventListener('pointerup', onPtrUp); window.removeEventListener('pointercancel', onPtrUp); };
 }
 
 /* 짧은 모션 클립: 화면에 보일 때만 소리 없이 반복 재생 (움직임 줄이기 설정이면 컨트롤만) */
