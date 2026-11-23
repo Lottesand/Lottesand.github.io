@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 960">
+<defs>
+ <linearGradient id="wall" x2="0" y2="1"><stop stop-color="#e6eedb"/><stop offset="1" stop-color="#9fbcb0"/></linearGradient>
+ <linearGradient id="wood" x2="0" y2="1"><stop stop-color="#845d3d"/><stop offset="1" stop-color="#483a2c"/></linearGradient>
+ <radialGradient id="light"><stop stop-color="#fff8d8" stop-opacity=".8"/><stop offset="1" stop-color="#fff8d8" stop-opacity="0"/></radialGradient>
+ <pattern id="grain" width="13" height="13" patternUnits="userSpaceOnUse"><circle cx="2" cy="3" r=".7" fill="#493727" opacity=".08"/><circle cx="10" cy="8" r=".6" fill="#493727" opacity=".07"/></pattern>
+ <g id="gear" fill="#b88d45" stroke="#71563b" stroke-width="4"><circle r="66"/><g fill="#caa35b"><path d="M-12-85h24v35h-24zM-12 50h24v35h-24zM-85-12h35v24h-35zM50-12h35v24H50z"/><path d="M-12-85h24v35h-24zM-12 50h24v35h-24zM-85-12h35v24h-35zM50-12h35v24H50z" transform="rotate(45)"/></g><circle r="44" fill="#e4c782"/><circle r="16" fill="#66543c"/><path d="M0-43v26M0 17v26M-43 0h26M17 0h26" stroke="#af8544" stroke-width="10"/></g>
+ <g id="cabinet"><rect x="-112" y="-166" width="224" height="270" rx="95" fill="#e9d8ab" stroke="#5c5948" stroke-width="9"/><path d="M-98 72V-62a98 98 0 0 1 196 0V72" fill="#9aaea0" stroke="#b5c4ad" stroke-width="5"/><rect x="-124" y="72" width="248" height="30" rx="5" fill="url(#wood)"/><path d="M-100 100v100M100 100v100" stroke="#564333" stroke-width="22"/><rect x="-76" y="126" width="152" height="32" rx="4" fill="#d8bd79"/><path d="M-46 142h92" stroke="#846b45" stroke-width="3"/></g>
+</defs>
+<rect width="1440" height="960" fill="#efe6cd"/>
+<path d="M72 110Q720-65 1368 110V740H72Z" fill="url(#wall)"/>
+<path d="M75 690H1365V752H75Z" fill="#688576"/>
+<path d="M0 740H1440V960H0Z" fill="#c9b48a"/>
+<path d="M0 806H1440M0 892H1440M200 740L90 960M440 740L388 960M720 740V960M1000 740L1052 960M1240 740L1350 960" stroke="#a68f68" stroke-width="3" opacity=".6"/>
+<path d="M48 760V110Q720-100 1392 110V760" fill="none" stroke="#5b7566" stroke-width="36"/>
+<path d="M58 760V120Q720-88 1382 120V760" fill="none" stroke="#d4bc7b" stroke-width="7"/>
+<ellipse cx="718" cy="390" rx="450" ry="400" fill="url(#light)"/>
+<path d="M720 0v122M650 150Q720 80 790 150Z" fill="#8e794e" stroke="#5d5943" stroke-width="8"/>
+<circle cx="720" cy="153" r="18" fill="#fff3bd"/>
+<rect x="512" y="220" width="416" height="310" rx="170" fill="#516c5c" stroke="#b99a61" stroke-width="13"/>
+<circle cx="720" cy="365" r="118" fill="#f0e3bb" stroke="#80633f" stroke-width="12"/>
+<g transform="translate(720 365) scale(.94)"><use href="#gear"/><path d="M0 0L-48-50M0 0L46-8" stroke="#3c5146" stroke-width="10" stroke-linecap="round"/></g>
+<g transform="translate(266 470)"><use href="#cabinet"/><use href="#gear" transform="translate(-28 -40) scale(.66)"/><use href="#gear" transform="translate(58 7) scale(.45)"/></g>
+<g transform="translate(1174 470)"><use href="#cabinet"/><rect x="-73" y="-83" width="146" height="148" rx="12" fill="#526f63" stroke="#d1b478" stroke-width="8"/><circle cy="-10" r="31" fill="#b89757" stroke="#574e3b" stroke-width="5"/><path d="M0-32v44M-22-10h44" stroke="#574e3b" stroke-width="8"/></g>
+<path d="M520 604Q720 564 920 604L956 722H484Z" fill="#82684a" stroke="#574733" stroke-width="8"/>
+<path d="M536 608Q720 577 904 608L925 692H515Z" fill="#e9d8ad"/>
+<path d="M720 592v108M545 638h137M758 638h131M555 665h115M758 665h120" stroke="#a79875" stroke-width="3"/>
+<rect x="540" y="720" width="22" height="113" fill="#5b4935"/><rect x="878" y="720" width="22" height="113" fill="#5b4935"/>
+<path d="M78 284h88M1274 284h88" stroke="#b69d61" stroke-width="11"/>
+<path d="M90 285l-20 75h77l-20-75M1313 285l-20 75h77l-20-75" fill="#e8d7aa" stroke="#b49c65" stroke-width="5"/>
+<g fill="#5d7961"><ellipse cx="127" cy="656" rx="22" ry="63" transform="rotate(-35 127 656)"/><ellipse cx="151" cy="652" rx="21" ry="65" transform="rotate(24 151 652)"/><ellipse cx="1295" cy="656" rx="22" ry="63" transform="rotate(-35 1295 656)"/><ellipse cx="1319" cy="652" rx="21" ry="65" transform="rotate(24 1319 652)"/></g>
+<path d="M97 696h82l-12 90h-58M1265 696h82l-12 90h-58" fill="#a97c56" stroke="#765b40" stroke-width="5"/>
+<rect width="1440" height="960" fill="url(#grain)"/>
+</svg>

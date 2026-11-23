@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" fill="none">
+<defs><radialGradient id="g"><stop stop-color="#405345"/><stop offset="1" stop-color="#101e1a"/></radialGradient><linearGradient id="p" x2="0" y2="1"><stop stop-color="#dfc68b"/><stop offset="1" stop-color="#8a7044"/></linearGradient></defs>
+<path fill="url(#g)" d="M0 0h600v800H0z"/><path d="M30 30h540v740H30zM42 42h516v716H42z" stroke="#ad935d" stroke-opacity=".5"/>
+<path d="M94 570V220a206 206 0 0 1 412 0v350M109 570V220a191 191 0 0 1 382 0v350" stroke="#a68f5c" stroke-opacity=".45"/>
+<path d="M165 469V310q0-34 34-34h202q34 0 34 34v159" fill="#15231d" stroke="#b5995f" stroke-width="5"/>
+<path d="m95 484-69 190h548l-69-190z" fill="#3c3525" stroke="#a68f5c" stroke-width="2"/>
+<path d="m126 518-25 42h75l17-42zm96 0-13 42h75l5-42zm96 0 5 42h75l-13-42zm96 0 17 42h75l-25-42z" fill="#d7c59b"/>
+<path d="M259 455h82v66h-82z" fill="#856d43"/><path d="m250 455 50-74 50 74z" fill="url(#p)"/><circle cx="300" cy="449" r="17" fill="#14231c" stroke="#dfc68b" stroke-width="3"/><path d="M300 438v12l9 7" stroke="#dfc68b" stroke-width="2"/>
+<circle cx="259" cy="600" r="17" fill="#8f553e"/><circle cx="300" cy="600" r="17" fill="#8f553e"/><circle cx="341" cy="600" r="17" fill="#8f553e"/>
+<path d="m259 591-6 15h12zm41 0-6 15h12zm41 0-6 15h12z" stroke="#d7b67b"/>
+<text x="300" y="135" fill="#d6c59a" font-family="Georgia,serif" font-size="12" text-anchor="middle" letter-spacing="5">THE LAST EXAMINER’S WILL</text>
+<text x="300" y="206" fill="#f1e4c4" font-family="serif" font-weight="600" font-size="42" text-anchor="middle">마지막 출제자의</text><text x="300" y="260" fill="#f1e4c4" font-family="serif" font-weight="600" font-size="42" text-anchor="middle">유언</text>
+<path d="M240 702h120" stroke="#b59b65"/><text x="300" y="734" fill="#c3b48c" font-family="sans-serif" font-size="13" text-anchor="middle" letter-spacing="3">이름을 되찾는 여섯 번의 시험</text>
+</svg>
