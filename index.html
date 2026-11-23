@@ -1700,30 +1700,31 @@ const PROJECTS = [
     ]
   },
   {
-    id: 'onyourmark', cat: ['contest', 'ai'], type: 'slides', len: '피치 · 스크린샷', badge: 'UNITY', real: true, cover: 'media/oym/cover.webp',
-    repo: 'https://github.com/Architecture-UnityAIGameJam2026/UnityAIGameJam2026',
-    title: 'ON YOUR MARK | 서로의 HUD를 대신 봐 주는 1인칭 2인 협동 액션 — Unity AI 게임잼',
-    tool: 'Unity 6 · HDRP · Netcode · Claude Code', meta2: '4인 팀 · 기획 · 브랜치 통합 · 2026.11 게임잼',
-    date: '2026.11', period: '4인 팀 · 게임잼',
-    tags: ['게임잼', 'Unity6', 'HDRP', 'NetcodeForGameObjects', '협동', 'FPS', 'HUD', 'ClaudeCode', 'Meshy', 'ElevenLabs'],
-    media: [
-      { label: '피치 덱', type: 'slides', dir: 'oym/pitch', count: 11, len: '11장', fullThumbs: true },
-      { label: '인게임 장면', type: 'slides', dir: 'oym/shots', count: 8, len: '8장', fullThumbs: true, caption: '타이틀 · 도착 컷신 · 보스 인트로 장면을 녹화한 GIF에서 뽑은 화면입니다.' }
-    ],
-    facts: [['JAM', 'Unity AI Game Jam 2026 · 테마 “Collaboration”'], ['WHEN', '2026.11.18 – 11.19'], ['TEAM', '4인 · 팀 Architecture'], ['MY ROLE', '기획 · 브랜치 통합 · 씬 통합 도구 · HUD 연결'], ['ENGINE', 'Unity 6000.3 · HDRP 17.3 · Netcode for GameObjects'], ['AI', 'Claude Code · Meshy · ElevenLabs · OpenRouter']],
-    summary: '“협동”이라는 테마를 몸으로 나누는 일이 아니라 감각을 나누는 일, 즉 “인지적 공생”으로 읽은 게임잼 작품입니다. 슈트 고장으로 두 플레이어의 HUD가 서로 바뀌어, 내 체력과 탄약을 파트너에게 물어봐야 하는 1인칭 2인 협동 액션입니다. 4인 팀에서 저는 기획으로 참여했고, 함께 팀원들의 브랜치를 하나로 합치는 통합을 맡아 HDRP를 유지한 채 네트워크 프로토타입을 병합하고 UI · 3D 에셋을 아레나 씬에 넣는 편집기 도구와 HUD를 네트워크 상태에 잇는 연결 코드를 만들었습니다.',
+    id: "onyourmark",
+    cat: ["contest", "system", "ai"],
+    type: "mp4",
+    len: "트레일러 · 웹 플레이 · 기획서",
+    badge: "UNITY",
+    real: true,
+    cover: "media/oym/cover.webp",
+    repo: "https://github.com/Architecture-UnityAIGameJam2026/UnityAIGameJam2026",
+    repoLabel: "팀 저장소",
+    title: "ON YOUR MARK | 서로의 HUD를 대신 봐 주는 1인칭 2인 협동 액션 — Unity AI 게임잼 · 기획 리드",
+    tool: "Unity 6 · HDRP · Netcode · Claude Code",
+    meta2: "4인 팀 · 기획 리드(피치 · 기획서 · 수치) · 브랜치 통합 · 2026.11 게임잼",
+    date: "2026.11",
+    period: "4인 팀 · 2일 게임잼 · 웹 · Windows 출시",
+    tags: ["게임잼", "기획", "레벨플로우", "수치설계", "Unity6", "HDRP", "URP", "NetcodeForGameObjects", "UnityRelay", "WebGL", "협동", "FPS", "HUD", "ClaudeCode", "Meshy", "ElevenLabs"],
+    media: [{"label": "트레일러", "type": "mp4", "src": "media/oym/trailer.mp4", "poster": "media/oym/tposter.webp", "len": "0:39", "caption": "게임잼 제출 빌드의 실제 플레이 화면으로 만든 트레일러입니다. 검을 든 KESTREL과 레일건을 든 ORBIT FRAME이 우주 잔해 지대를 돌파하고, 무전 AI Jev가 상황을 중계합니다."}, {"label": "웹에서 플레이", "type": "itch", "url": "https://play.unity.com/en/games/99b51aa1-8c3c-4abf-a2a9-02037c0accd6/onyourmark", "poster": "media/oym/tr_hud.webp", "len": "Unity Play", "dpLabel": "Unity Play에서 플레이", "extBtn": "Unity Play에서 바로 플레이", "extSub": "WebGL · 설치 없이 브라우저에서 · 싱글(AI 동료) · 2인 온라인 멀티 · 새 탭으로 열려요", "caption": "게임잼 이후 Windows 빌드와 같은 커밋으로 만든 웹 버전입니다. 혼자면 AI 동료와, 둘이면 방 코드로 온라인 협동이 됩니다. 데이터가 커서 처음 불러오는 데 시간이 걸립니다."}, {"label": "Windows 빌드", "type": "itch", "url": "https://github.com/Architecture-UnityAIGameJam2026/UnityAIGameJam2026/releases/tag/build-2026-11-19-coop", "poster": "media/oym/shots/01.webp", "len": "GitHub 릴리즈", "extBtn": "Windows 빌드 받기 (OYM_Coop)", "extSub": "GitHub 릴리즈 · zip 776MB · 압축을 풀고 OnYourMark.exe 실행 · LAN 2인 / AI 동료", "caption": "게임잼에 제출한 원본 Windows 빌드(HDRP)입니다. 같은 Wi-Fi(LAN)에서 6자리 방 코드로 2인 협동을 할 수 있습니다."}, {"label": "최종 기획서", "type": "pdf", "dir": "oym/pitch", "count": 11, "len": "11쪽", "fullThumbs": true}, {"label": "첫 피치 · 팀 모집", "type": "pdf", "dir": "oym/pitch0", "count": 7, "len": "7쪽", "fullThumbs": true}, {"label": "인게임 장면", "type": "slides", "dir": "oym/shots", "count": 8, "len": "8장", "fullThumbs": true, "caption": "타이틀 · 도착 컷신 · 보스 인트로 장면을 녹화한 GIF에서 뽑은 화면입니다."}],
+    facts: [["JAM", "Unity AI Game Jam 2026 · 테마 “Collaboration”"], ["WHEN", "2026.11.18 – 11.19 (2일)"], ["TEAM", "4인 · 팀 Architecture"], ["MY ROLE", "기획 리드 — 3분 피치 · 팀 모집 · 기획서 5판 · 수치 설계 · 브랜치 통합"], ["RELEASE", "Windows (HDRP · LAN) · Web (Unity Play · Relay 온라인)"], ["ENGINE", "Unity 6000.3 · HDRP 17.3 · Netcode for GameObjects"], ["AI", "Claude Code · Meshy · ElevenLabs · OpenRouter"]],
+    summary: "게임잼 첫날 아침, 3분 피치로 “HUD를 맞바꾸는 협동 FPS”를 제안해 팀을 모은 작품입니다. “협동”이라는 테마를 몸으로 나누는 분업이 아니라 감각을 나누는 “인지적 공생”으로 읽고, 슈트 고장으로 두 플레이어의 HUD가 서로 바뀌어 내 체력과 탄약을 파트너에게 물어봐야 하는 1인칭 2인 협동 액션으로 설계했습니다. 저는 기획 리드로 피치와 팀 모집, 그날 하루 동안 다섯 번 고친 기획서와 Unity 구현 스펙(이동 · 무기 · 스킬 · 교차 HUD 수치)을 맡았고, 팀원 브랜치를 하나로 합치는 통합까지 했습니다. 잼 이후에는 Windows 빌드와 같은 커밋으로 웹 버전을 만들어 Unity Play에 올렸습니다.",
     blocks: [
-      { h: '어떤 게임인가', lead: '내 눈(HUD)을 파트너에게 맡기고, 검과 총으로 돌파한다',
-        p: '검을 든 KESTREL과 레일건을 든 ORBIT FRAME, 두 파일럿이 우주 잔해 지대를 돌파합니다. 미션 도중 슈트가 고장 나면 체력 · 미니맵, 탄약 · 대시, 스킬 세 파츠의 HUD가 서로 바뀌어 내 상태를 볼 수 없게 됩니다. 바뀐 동안에는 파트너를 조준해 원격 치유하거나 탄약을 150%까지 과충전해 주고, 둘이 5초 안에 같은 1/2/3 키를 눌러 파츠를 돌려받으면 그 능력이 각성합니다. LAN 2인 협동이나 AI 동료와 솔로로 플레이합니다.' },
-      { h: '내 역할', kind: 'role', cols: 3, items: [
-        { who: 'ME · 김헌수', me: true, what: '기획 · 브랜치 통합', note: '기획으로 참여했습니다(기획 문서는 추가 예정). 통합 작업으로는 팀원 브랜치 4개를 병합하고, HDRP 17.3을 유지한 채 Netcode 프로토타입을 main에 합쳤습니다(머티리얼 14종 URP → HDRP 변환). UI · 3D 에셋 64종을 아레나에 넣는 편집기 도구, 락온 조준점, HUD 네트워크 연결을 만들었습니다.' },
-        { who: 'TEAMMATE A', what: 'HUD · 3D 프리팹 · AI 보이스', note: 'Figma로 설계한 HUD와 조준점 · 자막, HDRP 프리팹, 동료 FSM과 무전 보이스' },
-        { who: 'TEAMMATE B · C', what: '네트워크 게임플레이 · 아트 · 연출', note: '플레이어 컨트롤러와 Netcode 협동, 교차 HUD, 타이틀 · 컷신 · 쇼케이스 레벨과 최적화' }
-      ] },
-      { h: '스크린샷', kind: 'gallery', rows: [
-        [{ src: 'media/oym/shots/01.webp', w: 560, h: 315, cap: '타이틀 · 파일럿 선택' }, { src: 'media/oym/shots/02.webp', w: 560, h: 315, cap: 'ORBIT FRAME 타이틀' }],
-        [{ src: 'media/oym/shots/05.webp', w: 560, h: 315, cap: '도착 컷신 · 무전 대사' }, { src: 'media/oym/shots/07.webp', w: 560, h: 315, cap: '보스 CITADEL 인트로' }]
-      ] },
+      {"h": "시작 · 3분 피치로 팀을 모으다", "kind": "cards", "cols": 3, "media": 4, "lead": "“물리적 분업이 아닌 ‘감각의 교차와 반환’” — 잼 첫날 아침, 직접 만든 7장짜리 피치", "items": [{"t": "교차된 시야 · Swap", "l": ["상대 HUD가 내 화면에 출력", "내 체력 · 탄약은 파트너만 볼 수 있다"]}, {"t": "주체성 반환 · Return", "l": ["목표를 달성하면 HUD를 돌려받는다", "돌려받은 파츠만큼 개인 능력이 각성"]}, {"t": "AI 삼각 연대 · Bridge", "l": ["두 사람의 전투 신호를 AI 중재자가 읽고 개입", "혼자면 AI가 빈자리를 채운다"]}], "foot": "피치 마지막 장에서 클라이언트 · 네트워크, UI/UX · 셰이더 담당을 모집했고, 그렇게 모인 4인이 팀 Architecture가 됐습니다."},
+      {"h": "어떤 게임인가", "lead": "내 눈(HUD)을 파트너에게 맡기고, 검과 총으로 돌파한다", "media": 0, "p": "검을 든 KESTREL과 레일건을 든 ORBIT FRAME, 두 파일럿이 우주 잔해 지대를 돌파합니다. 미션 도중 슈트가 고장 나면 체력 · 미니맵, 탄창 · 대시, 스킬 세 파츠의 HUD가 서로 바뀌어 내 상태를 볼 수 없게 됩니다. 바뀐 동안에는 파트너를 조준해 원격 치유하거나 탄창을 150%까지 과충전해 주고, 둘이 5초 안에 같은 1/2/3 키를 눌러 파츠를 돌려받으면 그 능력이 각성합니다. 4페이즈 15~20분 미션을 2인 협동이나 AI 동료와 솔로로 플레이합니다.", "rows": [[{"src": "media/oym/tr_launch.webp", "w": 1280, "h": 720, "cap": "출격 — KESTREL과 ORBIT FRAME"}, {"src": "media/oym/tposter.webp", "w": 1280, "h": 720, "cap": "레일건 시점 · 교차 HUD와 무전 자막"}], [{"src": "media/oym/tr_hud.webp", "w": 1280, "h": 720, "cap": "대시 · 미니맵 · 무전 AI Jev"}, {"src": "media/oym/tr_boss.webp", "w": 1280, "h": 720, "cap": "보스 CITADEL"}]]},
+      {"h": "기획 문서 흐름 · 하루 동안 다섯 번", "kind": "timeline", "media": 3, "items": [["11.18 09:37", "3분 피치 — 교차 · 반환 · AI 연대 세 축과 팀 모집"], ["14:47", "기획안 1차 — MVP 우선순위 4개 확정: HUD 해금 · 합의 교환 → 위기 자동 요청 → 원격 지원 · 에임 보정 → 빈사 · 소생"], ["15:41", "Unity 구현 스펙 — 1 unit = 1m 기준 이동 · 점프 · 호버 · 대시 수치표, 테스트 적 2종, 그레이박스 배치 규격"], ["21:57", "패치 노트 — 시선 방향 추진 호버, R 원격 재장전, Q/E 포지션 스킬, 교차 HUD 3파츠를 ‘체력+미니맵 / 탄창·대시 / 스킬’로 재편"], ["22:33", "2 · 3번 파츠 명세 — 150% 오버차지, 킬 게이지 역전과 원격 궁극기 대리 발동"], ["11.19", "제출 빌드 · 최종 기획서 11쪽 — 4페이즈 레벨 플로우, 조작 · 시스템 · AI 활용 정리"]]},
+      {"h": "교차 HUD 3파츠 — 돌려받기 전엔 돕고, 돌려받으면 각성", "kind": "table", "wrap": true, "media": 3, "note": "기획안 1차의 생체 · 지도 · 소모품 구분을, 저녁 패치 노트에서 체력+미니맵 / 탄창·대시 / 스킬로 다시 묶고 파츠마다 “돕는 행동”과 “각성”을 짝지었습니다.", "cols": ["파츠", "교차 상태 (파트너가 쥐고 있을 때)", "반환 상태 (내가 돌려받았을 때)"], "rows": [["1 · 체력 + 미니맵", "파트너 화면에 내 체력바와 미니맵 — 파트너가 나를 조준해 원격 치유", "내 화면 복구 + 적 처치 시 최대 HP 5% 흡수"], ["2 · 탄창 / 대시", "나는 재장전 불가 — 파트너의 R로 100% 충전 + 오버차지 (총: 탄창 150% · 대미지 +30% / 검: 1초 무한 대시)", "자가 재장전 복구 + 검: 처치마다 대시 +1 / 총: 대시하면 자동 장전"], ["3 · 스킬 (Q / E)", "킬 게이지 역전 — 내가 잡으면 파트너 Q가 차고, 파트너의 궁극기는 내가 눌러 대리 발동", "Q 요구 킬 15 → 10 + 검: 패링 성공 시 나노 강화 2.5초 / 총: 레일건 궁극기 350 대미지 광역 폭발"]]},
+      {"h": "수치로 설계한 비대칭 — 검과 레일건", "kind": "table", "wrap": true, "note": "같은 조작 체계 위에서 역할만 갈리도록, 두 포지션의 수치를 한 표에서 맞물리게 잡았습니다.", "cols": ["", "P1 KESTREL · 검 (근접 돌파)", "P2 ORBIT FRAME · 레일건 (원거리 엄호)"], "rows": [["이동 · 점프", "7.5 m/s · 2.2 m · 중력 −22", "5.0 m/s (줌 2.5) · 1.5 m · 중력 −18"], ["호버 (시선 방향 추진)", "9.0 m/s · 2.5초", "6.0 m/s · 3.5초"], ["대시", "9 m / 0.2초 · 3스택 (Q 중 5스택)", "5 m / 0.25초 · 1스택"], ["기본 공격", "참격 3.2 × 2.8 m 광역 · 40", "AR 40발 · 18 / RAIL 6발 관통 · 110 · 60 m"], ["E", "패링 1.5초 — 레이저를 조준선 방향으로 120 반사, 성공 시 대시 +1", "모드 전환 AR ↔ RAIL (선딜 1.8초 → 각성 시 0.4초)"], ["Q (15킬)", "나노 강화 8초 — 공격 +50% · 공속 +40% · 이속 +20%", "스마트 락온 5초 — 40° 자동 조준"]]},
+      {"h": "내 역할", "kind": "role", "cols": 3, "items": [{"who": "ME · 김헌수", "me": true, "what": "기획 리드 · 브랜치 통합", "note": "3분 피치로 컨셉을 제안해 팀을 모으고, 기획안 → Unity 구현 스펙 → 패치 노트 → 파츠 명세로 이어지는 문서를 하루 동안 다섯 번 고쳐 구현과 맞췄습니다. 통합 작업으로는 팀원 브랜치 4개를 병합하고, HDRP 17.3을 유지한 채 Netcode 프로토타입을 main에 합쳤습니다(머티리얼 14종 URP → HDRP). UI · 3D 에셋 64종을 아레나에 넣는 편집기 도구, 락온 조준점, HUD 네트워크 연결을 만들었습니다."}, {"who": "TEAMMATE A", "what": "HUD · 3D 프리팹 · AI 보이스", "note": "Figma로 설계한 HUD와 조준점 · 자막, HDRP 프리팹, 동료 FSM과 무전 보이스"}, {"who": "TEAMMATE B · C", "what": "네트워크 게임플레이 · 아트 · 연출", "note": "플레이어 컨트롤러와 Netcode 협동, 교차 HUD, 타이틀 · 컷신 · 쇼케이스 레벨과 최적화"}]},
       { h: '기술 포인트', kind: 'tech', items: [
         { title: '다시 돌려도 같은 결과가 나오는 씬 통합 도구', area: '편집기 도구 · GaramArenaIntegration.cs',
           summary: '팀원이 만든 에셋 64종을 분류별로 배치하고 HUD · 조준점 · 자막을 붙이고 적 프리팹을 패치하는 과정을 메뉴 하나로 묶었습니다. 다시 실행하면 통합 루트를 지우고 새로 만들어, 브랜치가 바뀔 때마다 배치 모드로 다시 돌릴 수 있습니다.',
@@ -1735,7 +1736,8 @@ const PROJECTS = [
           summary: 'Netcode로 스폰된 오브젝트에서 내 플레이어와 파트너를 찾아 체력 · 탄약을 HUD에 넘깁니다. 이후 팀원이 이 연결에 교차 HUD 소유권을 얹어 HUD 교환 글리치를 붙였습니다.',
           code: { file: 'Assets/_Project/Scripts/Garam/HudPlayerBridge.cs', lang: 'C#', src: 'foreach (var obj in nm.SpawnManager.SpawnedObjectsList)\n    if (obj.IsPlayerObject && obj != local) { partner = obj; break; }\n...\nhud.SetPartnerTelemetry(h ? Mathf.Clamp01(h.Ratio) : 1f, a ? Mathf.RoundToInt(a.Ratio * AmmoSlots) : AmmoSlots);' } }
       ] },
-      { h: '게임 안의 AI, 게임을 만든 AI', list: ['게임 안: 무전 AI “Jev”가 OpenRouter로 미리 녹음한 대사 중 하나를 고르고, ElevenLabs 음성과 Scribe 음성 인식으로 무전(V)을 받습니다.', '제작: Meshy로 적 6종 · 보스 · 소품 44종, ElevenLabs · Qwen3로 음성, Claude Code와 Unity CLI로 브랜치 통합 · HDRP 변환 · 배치 모드 씬 빌드와 테스트를 돌렸습니다.'] }
+      {"h": "잼 이후 · 웹 버전으로 Unity Play 출시", "kind": "flow", "media": 1, "lead": "Windows 원본과 같은 게임을, 설치 없이 브라우저에서", "p": "제출한 Windows 빌드(OYM_Coop)가 어느 커밋에서 나왔는지 exe의 스크립트 어셈블리로 찾아내 같은 커밋에서 웹 버전을 만들었습니다. Claude Code와 함께 Unity 배치 모드로 변환 · 빌드 · 스크린샷 비교를 반복했습니다.", "items": [["렌더링", "HDRP → URP 변환 — 물리 광원 단위를 노출값 기준으로 환산, HDRP 셰이더 12종을 URP로 다시 쓰고 하늘 기반 안개 패스를 RenderGraph로 이식"], ["멀티플레이", "LAN 소켓 대신 Unity Relay(WSS) — 방 코드 = Relay 참가 코드, 싱글(AI 동료)은 그대로"], ["웹 제약", "OS 글꼴이 없는 웹에 한글 폰트 번들 · 마이크 무전 비활성 · 디버그 표시 기본 숨김"], ["용량", "노멀맵 압축 · 텍스처 크기 제한으로 1.1GB → 413MB, Gzip 빌드"]]},
+      {"h": "게임 안의 AI, 게임을 만든 AI", "list": ["게임 안: 무전 AI “Jev”가 OpenRouter로 미리 녹음한 대사 중 하나를 고르고, ElevenLabs 음성과 Scribe 음성 인식으로 무전(V)을 받습니다. 혼자 하면 AI 동료(FSM)가 빈자리를 채웁니다.", "제작: Meshy로 적 6종 · 보스 · 소품 44종, ElevenLabs · Qwen3로 음성, Claude Code와 Unity CLI로 브랜치 통합 · HDRP 변환 · 배치 모드 씬 빌드와 테스트, 웹 이식을 돌렸습니다."]}
     ]
   },
   {
@@ -3179,7 +3181,7 @@ const TIMELINE = [
   { id: 'chime', when: '2026.09 – 10', t: 'CHIME · AAA를 향한 한 달', d: '대상 부상 Claude 한 달로 AI 3종 파이프라인을 엮어 언리얼 MVP 완성', chips: ['MVP 완성', 'Unreal · Blender MCP · Meshy'] },
   { id: 'rezn', when: '2026.10', t: 'Rezn · Croche AI 해커톤 본선', d: '아이디어 지원서만으로 235팀 중 20팀 본선 · 48시간 만에 AI 추리 게임 플랫폼으로 — 3인 협동 작품 “수직의 바벨”을 처음부터 끝까지', chips: ['웹 3D 멀티', 'React · three.js · Croche'] },
   { id: 'take-action', when: '2026.11', t: 'Take, Action! · 4일 게임잼', d: '4인 팀에서 SCENE 1~3 레벨 디자인과 사운드 — 정답 경로부터 짜고 데이터로 생성', chips: [{ t: '인기 12위 / 2,779', hl: true }, '레벨 디자인', 'Unreal · Python · PCG'] },
-  { id: 'onyourmark', when: '2026.11', t: 'ON YOUR MARK · Unity AI 게임잼', d: '서로의 HUD를 대신 봐 주는 2인 협동 액션 — 4인 팀에서 기획과 브랜치 통합', chips: ['기획', 'Unity 6 · HDRP · Netcode'] },
+  { id: 'onyourmark', when: '2026.11', t: 'ON YOUR MARK · Unity AI 게임잼', d: '3분 피치로 팀을 모은 HUD 교환 2인 협동 액션 — 기획 리드 · 브랜치 통합, 잼 이후 Unity Play 웹 출시', chips: ['기획 리드', 'Unity 6 · HDRP · Netcode', 'WebGL · Relay'] },
   { id: 'cube', when: '2026.10 – 12', t: 'CUBE (가제) · 메커니즘 설계 데모', d: '큐브 한 면을 돌리면 방과 중력이 함께 도는 FPS — 회전 행렬 하나로 세계 전체를 움직인다', chips: ['메커니즘 설계', 'C++ · OpenGL'] },
   { id: 'popup', when: '2026.11 – 12', t: 'PoP_uP · 1인 2D 액션', d: '바탕화면에 갇힌 커서가 창을 발판 삼고 버튼을 뜯어 싸우는 OS 메타 플랫포머', chips: ['1인 개발', 'Python · pico2d'] },
 ];
@@ -4915,7 +4917,7 @@ function showDetail(id) {
   const yt = $('#dYt'); yt.hidden = !p.youtube; if (p.youtube) yt.href = ytUrl(p);
   const itch = mediaList(p).find(m => m.type === 'itch'), game = mediaList(p).find(m => m.type === 'game'), dp = $('#dPlay');
   dp.hidden = !itch && !game; dp.onclick = null;
-  if (itch && !(game && mediaList(p).indexOf(game) < mediaList(p).indexOf(itch))) { dp.href = itch.url; $('#dPlayLbl').textContent = /^https?:/.test(itch.url) ? 'itch.io에서 플레이' : (itch.dpLabel || '체험판 받기'); }
+  if (itch && !(game && mediaList(p).indexOf(game) < mediaList(p).indexOf(itch))) { dp.href = itch.url; $('#dPlayLbl').textContent = itch.dpLabel || (/^https?:/.test(itch.url) ? 'itch.io에서 플레이' : '체험판 받기'); }
   else if (game) {
     dp.href = game.src; $('#dPlayLbl').textContent = '바로 플레이';
     dp.onclick = e => { if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return; e.preventDefault(); setMedia(mediaList(p).indexOf(game)); openGame(game, dp); };
