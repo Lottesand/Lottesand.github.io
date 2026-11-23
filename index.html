@@ -1386,6 +1386,7 @@ kbd{display:inline-grid;place-items:center;min-width:28px;height:28px;padding:0 
           <button class="tab" role="tab" type="button" data-tab="system" aria-selected="false">시스템 기획</button>
           <button class="tab" role="tab" type="button" data-tab="ai" aria-selected="false">AI 워크플로우</button>
           <button class="tab" role="tab" type="button" data-tab="proto" aria-selected="false">프로토타입</button>
+<button class="tab" role="tab" type="button" data-tab="contest" aria-selected="false">해커톤 · 게임잼</button>
           <button class="tab" role="tab" type="button" data-tab="about" aria-selected="false">정보</button>
           <span class="tab-ind" id="tabInd" aria-hidden="true"></span>
         </div>
@@ -1589,7 +1590,7 @@ function rrect(g, x, y, w, h, r) {
 /* =========================================================
    1. 프로젝트 데이터
    ========================================================= */
-const CATS = { analysis: '게임 분석', system: '시스템 기획', ai: 'AI 워크플로우', proto: '프로토타입' };
+const CATS = { analysis: '게임 분석', system: '시스템 기획', ai: 'AI 워크플로우', proto: '프로토타입', contest: '해커톤 · 게임잼' };
 const catsOf = p => [].concat(p.cat), catName = p => catsOf(p).map(c => CATS[c]).join(' · ');
 const pad2 = n => String(n).padStart(2, '0');
 /* type: youtube(새 탭 재생) · slides(사이트 안에서 넘겨보기) · pdf(사이트 안에서 스크롤로 둘러보기) · video/play(예시 자리)
@@ -1699,7 +1700,7 @@ const PROJECTS = [
     ]
   },
   {
-    id: 'onyourmark', cat: ['proto', 'ai'], type: 'slides', len: '피치 · 스크린샷', badge: 'UNITY', real: true, cover: 'media/oym/cover.webp',
+    id: 'onyourmark', cat: ['contest', 'ai'], type: 'slides', len: '피치 · 스크린샷', badge: 'UNITY', real: true, cover: 'media/oym/cover.webp',
     repo: 'https://github.com/Architecture-UnityAIGameJam2026/UnityAIGameJam2026',
     title: 'ON YOUR MARK | 서로의 HUD를 대신 봐 주는 1인칭 2인 협동 액션 — Unity AI 게임잼',
     tool: 'Unity 6 · HDRP · Netcode · Claude Code', meta2: '4인 팀 · 기획 · 브랜치 통합 · 2026.11 게임잼',
@@ -1738,7 +1739,7 @@ const PROJECTS = [
     ]
   },
   {
-    id: 'take-action', cat: ['system', 'ai', 'proto'], type: 'youtube', youtube: 'ST-9zLMTInE', len: '트레일러', badge: 'UE5', real: true, cover: 'media/takeaction/cover.webp',
+    id: 'take-action', cat: ['contest', 'system', 'ai'], type: 'youtube', youtube: 'ST-9zLMTInE', len: '트레일러', badge: 'UE5', real: true, cover: 'media/takeaction/cover.webp',
     title: 'Take, Action! | 감독과 배우를 오가는 블럭 조립 퍼즐 플랫포머 — 레벨 · 사운드 디자인',
     tool: 'UE 5.9 (Lyra) · Claude Code · Unreal Python · PCG · Diversion', meta2: '4인 팀 · 레벨 디자인 · 기획 문서 · 사운드 · 2026.11 게임잼',
     date: '2026.11', period: '4인 팀 · 4일 게임잼',
@@ -1902,7 +1903,7 @@ const PROJECTS = [
   },
   {
     id: "rezn",
-    cat: ["proto", "ai", "system"],
+    cat: ["contest", "ai", "system"],
     type: "game",
     len: "웹 플레이 · 발표 PDF",
     badge: "WEB",
@@ -2067,7 +2068,7 @@ const PROJECTS = [
     ]
   },
   {
-    id: 'seoil-hackathon', cat: 'ai', type: 'mp4', len: '3:09', real: true,
+    id: 'seoil-hackathon', cat: ['contest', 'ai'], type: 'mp4', len: '3:09', real: true,
     cover: 'media/hackathon/cover.webp', poster: 'media/hackathon/poster.webp',
     repo: 'https://github.com/Smin1004/260905Hackathon', repoLabel: '팀 저장소',
     award: { title: '대상', event: 'AI 써먹는 인디게임 챌린지 2026 해커톤', date: '2026.09.06', note: '서일대학교 AI게임융합학과 주최 · (주)상상력집단 주관 · 부상 Claude Max 5x 1개월' },
