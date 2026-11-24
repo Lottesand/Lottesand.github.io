@@ -1700,47 +1700,102 @@ const PROJECTS = [
     ]
   },
   {
-    id: "onyourmark",
-    cat: ["contest", "system", "ai"],
-    type: "mp4",
-    len: "트레일러 · 웹 플레이 · 기획서",
-    badge: "UNITY",
-    real: true,
-    cover: "media/oym/cover.webp",
-    repo: "https://github.com/Architecture-UnityAIGameJam2026/UnityAIGameJam2026",
-    repoLabel: "팀 저장소",
-    title: "ON YOUR MARK | 서로의 HUD를 대신 봐 주는 1인칭 2인 협동 액션 — Unity AI 게임잼 · 기획 리드",
-    tool: "Unity 6 · HDRP · Netcode · Claude Code",
-    meta2: "4인 팀 · 기획 리드(피치 · 기획서 · 수치) · 브랜치 통합 · 2026.11 게임잼",
-    date: "2026.11",
-    period: "4인 팀 · 2일 게임잼 · 웹 · Windows 출시",
-    tags: ["게임잼", "기획", "레벨플로우", "수치설계", "Unity6", "HDRP", "URP", "NetcodeForGameObjects", "UnityRelay", "WebGL", "협동", "FPS", "HUD", "ClaudeCode", "Meshy", "ElevenLabs"],
-    media: [{"label": "트레일러", "type": "mp4", "src": "media/oym/trailer.mp4", "poster": "media/oym/tposter.webp", "len": "0:39", "caption": "게임잼 제출 빌드의 실제 플레이 화면으로 만든 트레일러입니다. 검을 든 KESTREL과 레일건을 든 ORBIT FRAME이 우주 잔해 지대를 돌파하고, 무전 AI Jev가 상황을 중계합니다."}, {"label": "웹에서 플레이", "type": "itch", "url": "https://play.unity.com/en/games/99b51aa1-8c3c-4abf-a2a9-02037c0accd6/onyourmark", "poster": "media/oym/tr_hud.webp", "len": "Unity Play", "dpLabel": "Unity Play에서 플레이", "extBtn": "Unity Play에서 바로 플레이", "extSub": "WebGL · 설치 없이 브라우저에서 · 싱글(AI 동료) · 2인 온라인 멀티 · 새 탭으로 열려요", "caption": "게임잼 이후 Windows 빌드와 같은 커밋으로 만든 웹 버전입니다. 혼자면 AI 동료와, 둘이면 방 코드로 온라인 협동이 됩니다. 데이터가 커서 처음 불러오는 데 시간이 걸립니다."}, {"label": "Windows 빌드", "type": "itch", "url": "https://github.com/Architecture-UnityAIGameJam2026/UnityAIGameJam2026/releases/tag/build-2026-11-19-coop", "poster": "media/oym/shots/01.webp", "len": "GitHub 릴리즈", "extBtn": "Windows 빌드 받기 (OYM_Coop)", "extSub": "GitHub 릴리즈 · zip 776MB · 압축을 풀고 OnYourMark.exe 실행 · LAN 2인 / AI 동료", "caption": "게임잼에 제출한 원본 Windows 빌드(HDRP)입니다. 같은 Wi-Fi(LAN)에서 6자리 방 코드로 2인 협동을 할 수 있습니다."}, {"label": "최종 기획서", "type": "pdf", "dir": "oym/pitch", "count": 11, "len": "11쪽", "fullThumbs": true}, {"label": "첫 피치 · 팀 모집", "type": "pdf", "dir": "oym/pitch0", "count": 7, "len": "7쪽", "fullThumbs": true}, {"label": "인게임 장면", "type": "slides", "dir": "oym/shots", "count": 8, "len": "8장", "fullThumbs": true, "caption": "타이틀 · 도착 컷신 · 보스 인트로 장면을 녹화한 GIF에서 뽑은 화면입니다."}],
-    facts: [["JAM", "Unity AI Game Jam 2026 · 테마 “Collaboration”"], ["WHEN", "2026.11.18 – 11.19 (2일)"], ["TEAM", "4인 · 팀 Architecture"], ["MY ROLE", "기획 리드 — 3분 피치 · 팀 모집 · 기획서 5판 · 수치 설계 · 브랜치 통합"], ["RELEASE", "Windows (HDRP · LAN) · Web (Unity Play · Relay 온라인)"], ["ENGINE", "Unity 6000.3 · HDRP 17.3 · Netcode for GameObjects"], ["AI", "Claude Code · Meshy · ElevenLabs · OpenRouter"]],
-    summary: "게임잼 첫날 아침, 3분 피치로 “HUD를 맞바꾸는 협동 FPS”를 제안해 팀을 모은 작품입니다. “협동”이라는 테마를 몸으로 나누는 분업이 아니라 감각을 나누는 “인지적 공생”으로 읽고, 슈트 고장으로 두 플레이어의 HUD가 서로 바뀌어 내 체력과 탄약을 파트너에게 물어봐야 하는 1인칭 2인 협동 액션으로 설계했습니다. 저는 기획 리드로 피치와 팀 모집, 그날 하루 동안 다섯 번 고친 기획서와 Unity 구현 스펙(이동 · 무기 · 스킬 · 교차 HUD 수치)을 맡았고, 팀원 브랜치를 하나로 합치는 통합까지 했습니다. 잼 이후에는 Windows 빌드와 같은 커밋으로 웹 버전을 만들어 Unity Play에 올렸습니다.",
+    id: 'onyourmark', cat: ['contest', 'system', 'ai'], type: 'mp4', len: '트레일러 · 웹 플레이', badge: 'UNITY', real: true, cover: 'media/oym/cover.webp', repo: 'https://github.com/Architecture-UnityAIGameJam2026/UnityAIGameJam2026', repoLabel: '팀 저장소',
+    title: 'ON YOUR MARK | 서로의 HUD를 대신 봐 주는 1인칭 2인 협동 액션 — 기획 · 브랜치 통합',
+    tool: 'Unity 6 · HDRP · Netcode · Claude Code',
+    meta2: '4인 팀 · 기획 리드 · 수치 설계 · 브랜치 통합 · 2026.11 게임잼',
+    date: '2026.11',
+    period: '4인 팀 · 2일 게임잼',
+    tags: ['게임잼', 'Unity6', '기획', '수치설계', '협동', 'FPS', 'HUD', 'Netcode', 'UnityRelay', 'WebGL', 'ClaudeCode', 'Meshy', 'ElevenLabs'],
+    media: [
+      { label: '트레일러', type: 'mp4', src: 'media/oym/trailer.mp4', poster: 'media/oym/tposter.webp', len: '0:39', caption: '게임잼 제출 빌드의 실제 플레이 화면으로 만든 트레일러입니다. 검을 든 KESTREL과 레일건을 든 ORBIT FRAME이 우주 잔해 지대를 돌파하고, 무전 AI Jev가 상황을 중계합니다.' },
+      { label: '웹에서 플레이', type: 'itch', url: 'https://play.unity.com/en/games/99b51aa1-8c3c-4abf-a2a9-02037c0accd6/onyourmark', poster: 'media/oym/tr_hud.webp', len: 'Unity Play', dpLabel: 'Unity Play에서 플레이', extBtn: 'Unity Play에서 바로 플레이', extSub: 'WebGL · 설치 없이 브라우저에서 · 싱글(AI 동료) · 2인 온라인 멀티 · 새 탭으로 열려요', caption: '게임잼 이후 Windows 빌드와 같은 커밋으로 만든 웹 버전입니다. 혼자면 AI 동료와, 둘이면 방 코드로 온라인 협동이 됩니다. 데이터가 커서 처음 불러오는 데 시간이 걸립니다.' },
+      { label: '최종 기획서', type: 'pdf', dir: 'oym/pitch', count: 11, len: '11쪽', fullThumbs: true },
+      { label: '첫 피치 · 팀 모집', type: 'pdf', dir: 'oym/pitch0', count: 7, len: '7쪽', fullThumbs: true },
+      { label: '인게임 장면', type: 'slides', dir: 'oym/shots', count: 8, len: '8장', fullThumbs: true, caption: '타이틀 · 도착 컷신 · 보스 인트로 장면을 녹화한 GIF에서 뽑은 화면입니다.' }
+    ],
+    facts: [
+      ['JAM', 'Unity AI Game Jam 2026 · 11.18 – 11.19 (2일) · 테마 “Collaboration”'],
+      ['TEAM', '4인 (나 · 팀원 A · B · C) · 팀 Architecture'],
+      ['MY ROLE', '기획 리드 — 3분 피치 · 팀 모집 · 기획서 5판 · 수치 설계 · 브랜치 통합'],
+      ['ENGINE', 'Unity 6000.3 · HDRP 17.3 · Netcode for GameObjects'],
+      ['AI', 'Claude Code · Meshy · ElevenLabs · OpenRouter'],
+      ['RELEASE', '웹 (Unity Play · Relay 온라인)']
+    ],
+    summary: '게임잼 첫날 아침, 3분 피치로 “HUD를 맞바꾸는 협동 FPS”를 제안해 팀을 모은 작품입니다. “협동”이라는 테마를 몸으로 나누는 분업이 아니라 감각을 나누는 “인지적 공생”으로 읽고, 슈트 고장으로 두 플레이어의 HUD가 서로 바뀌어 내 체력과 탄약을 파트너에게 물어봐야 하는 1인칭 2인 협동 액션으로 설계했습니다. 저는 기획 리드로 피치와 팀 모집, 그날 하루 동안 다섯 번 고친 기획서와 Unity 구현 스펙(이동 · 무기 · 스킬 · 교차 HUD 수치)을 맡았고, 팀원 브랜치를 하나로 합치는 통합까지 했습니다. 잼 이후에는 Windows 빌드와 같은 커밋으로 웹 버전을 만들어 Unity Play에 올렸습니다.',
     blocks: [
-      {"h": "시작 · 3분 피치로 팀을 모으다", "kind": "cards", "cols": 3, "media": 4, "lead": "“물리적 분업이 아닌 ‘감각의 교차와 반환’” — 잼 첫날 아침, 직접 만든 7장짜리 피치", "items": [{"t": "교차된 시야 · Swap", "l": ["상대 HUD가 내 화면에 출력", "내 체력 · 탄약은 파트너만 볼 수 있다"]}, {"t": "주체성 반환 · Return", "l": ["목표를 달성하면 HUD를 돌려받는다", "돌려받은 파츠만큼 개인 능력이 각성"]}, {"t": "AI 삼각 연대 · Bridge", "l": ["두 사람의 전투 신호를 AI 중재자가 읽고 개입", "혼자면 AI가 빈자리를 채운다"]}], "foot": "피치 마지막 장에서 클라이언트 · 네트워크, UI/UX · 셰이더 담당을 모집했고, 그렇게 모인 4인이 팀 Architecture가 됐습니다."},
-      {"h": "어떤 게임인가", "lead": "내 눈(HUD)을 파트너에게 맡기고, 검과 총으로 돌파한다", "media": 0, "p": "검을 든 KESTREL과 레일건을 든 ORBIT FRAME, 두 파일럿이 우주 잔해 지대를 돌파합니다. 미션 도중 슈트가 고장 나면 체력 · 미니맵, 탄창 · 대시, 스킬 세 파츠의 HUD가 서로 바뀌어 내 상태를 볼 수 없게 됩니다. 바뀐 동안에는 파트너를 조준해 원격 치유하거나 탄창을 150%까지 과충전해 주고, 둘이 5초 안에 같은 1/2/3 키를 눌러 파츠를 돌려받으면 그 능력이 각성합니다. 4페이즈 15~20분 미션을 2인 협동이나 AI 동료와 솔로로 플레이합니다.", "rows": [[{"src": "media/oym/tr_launch.webp", "w": 1280, "h": 720, "cap": "출격 — KESTREL과 ORBIT FRAME"}, {"src": "media/oym/tposter.webp", "w": 1280, "h": 720, "cap": "레일건 시점 · 교차 HUD와 무전 자막"}], [{"src": "media/oym/tr_hud.webp", "w": 1280, "h": 720, "cap": "대시 · 미니맵 · 무전 AI Jev"}, {"src": "media/oym/tr_boss.webp", "w": 1280, "h": 720, "cap": "보스 CITADEL"}]]},
-      {"h": "기획 문서 흐름 · 하루 동안 다섯 번", "kind": "timeline", "media": 3, "items": [["11.18 09:37", "3분 피치 — 교차 · 반환 · AI 연대 세 축과 팀 모집"], ["14:47", "기획안 1차 — MVP 우선순위 4개 확정: HUD 해금 · 합의 교환 → 위기 자동 요청 → 원격 지원 · 에임 보정 → 빈사 · 소생"], ["15:41", "Unity 구현 스펙 — 1 unit = 1m 기준 이동 · 점프 · 호버 · 대시 수치표, 테스트 적 2종, 그레이박스 배치 규격"], ["21:57", "패치 노트 — 시선 방향 추진 호버, R 원격 재장전, Q/E 포지션 스킬, 교차 HUD 3파츠를 ‘체력+미니맵 / 탄창·대시 / 스킬’로 재편"], ["22:33", "2 · 3번 파츠 명세 — 150% 오버차지, 킬 게이지 역전과 원격 궁극기 대리 발동"], ["11.19", "제출 빌드 · 최종 기획서 11쪽 — 4페이즈 레벨 플로우, 조작 · 시스템 · AI 활용 정리"]]},
-      {"h": "교차 HUD 3파츠 — 돌려받기 전엔 돕고, 돌려받으면 각성", "kind": "table", "wrap": true, "media": 3, "note": "기획안 1차의 생체 · 지도 · 소모품 구분을, 저녁 패치 노트에서 체력+미니맵 / 탄창·대시 / 스킬로 다시 묶고 파츠마다 “돕는 행동”과 “각성”을 짝지었습니다.", "cols": ["파츠", "교차 상태 (파트너가 쥐고 있을 때)", "반환 상태 (내가 돌려받았을 때)"], "rows": [["1 · 체력 + 미니맵", "파트너 화면에 내 체력바와 미니맵 — 파트너가 나를 조준해 원격 치유", "내 화면 복구 + 적 처치 시 최대 HP 5% 흡수"], ["2 · 탄창 / 대시", "나는 재장전 불가 — 파트너의 R로 100% 충전 + 오버차지 (총: 탄창 150% · 대미지 +30% / 검: 1초 무한 대시)", "자가 재장전 복구 + 검: 처치마다 대시 +1 / 총: 대시하면 자동 장전"], ["3 · 스킬 (Q / E)", "킬 게이지 역전 — 내가 잡으면 파트너 Q가 차고, 파트너의 궁극기는 내가 눌러 대리 발동", "Q 요구 킬 15 → 10 + 검: 패링 성공 시 나노 강화 2.5초 / 총: 레일건 궁극기 350 대미지 광역 폭발"]]},
-      {"h": "수치로 설계한 비대칭 — 검과 레일건", "kind": "table", "wrap": true, "note": "같은 조작 체계 위에서 역할만 갈리도록, 두 포지션의 수치를 한 표에서 맞물리게 잡았습니다.", "cols": ["", "P1 KESTREL · 검 (근접 돌파)", "P2 ORBIT FRAME · 레일건 (원거리 엄호)"], "rows": [["이동 · 점프", "7.5 m/s · 2.2 m · 중력 −22", "5.0 m/s (줌 2.5) · 1.5 m · 중력 −18"], ["호버 (시선 방향 추진)", "9.0 m/s · 2.5초", "6.0 m/s · 3.5초"], ["대시", "9 m / 0.2초 · 3스택 (Q 중 5스택)", "5 m / 0.25초 · 1스택"], ["기본 공격", "참격 3.2 × 2.8 m 광역 · 40", "AR 40발 · 18 / RAIL 6발 관통 · 110 · 60 m"], ["E", "패링 1.5초 — 레이저를 조준선 방향으로 120 반사, 성공 시 대시 +1", "모드 전환 AR ↔ RAIL (선딜 1.8초 → 각성 시 0.4초)"], ["Q (15킬)", "나노 강화 8초 — 공격 +50% · 공속 +40% · 이속 +20%", "스마트 락온 5초 — 40° 자동 조준"]]},
-      {"h": "내 역할", "kind": "role", "cols": 3, "items": [{"who": "ME · 김헌수", "me": true, "what": "기획 리드 · 브랜치 통합", "note": "3분 피치로 컨셉을 제안해 팀을 모으고, 기획안 → Unity 구현 스펙 → 패치 노트 → 파츠 명세로 이어지는 문서를 하루 동안 다섯 번 고쳐 구현과 맞췄습니다. 통합 작업으로는 팀원 브랜치 4개를 병합하고, HDRP 17.3을 유지한 채 Netcode 프로토타입을 main에 합쳤습니다(머티리얼 14종 URP → HDRP). UI · 3D 에셋 64종을 아레나에 넣는 편집기 도구, 락온 조준점, HUD 네트워크 연결을 만들었습니다."}, {"who": "TEAMMATE A", "what": "HUD · 3D 프리팹 · AI 보이스", "note": "Figma로 설계한 HUD와 조준점 · 자막, HDRP 프리팹, 동료 FSM과 무전 보이스"}, {"who": "TEAMMATE B · C", "what": "네트워크 게임플레이 · 아트 · 연출", "note": "플레이어 컨트롤러와 Netcode 협동, 교차 HUD, 타이틀 · 컷신 · 쇼케이스 레벨과 최적화"}]},
-      { h: '기술 포인트', kind: 'tech', items: [
-        { title: '다시 돌려도 같은 결과가 나오는 씬 통합 도구', area: '편집기 도구 · GaramArenaIntegration.cs',
-          summary: '팀원이 만든 에셋 64종을 분류별로 배치하고 HUD · 조준점 · 자막을 붙이고 적 프리팹을 패치하는 과정을 메뉴 하나로 묶었습니다. 다시 실행하면 통합 루트를 지우고 새로 만들어, 브랜치가 바뀔 때마다 배치 모드로 다시 돌릴 수 있습니다.',
-          code: { file: 'Assets/_Project/Editor/GaramArenaIntegration.cs', lang: 'C#', src: '/// 다시 실행하면 "Garam Integration" 루트를 지우고 새로 만든다.\n[MenuItem("Tools/On Your Mark/Apply Garam Elements To Arena")]\n...\nint placed = BuildShowcase(root.transform, arena, floorTop);\nBuildHud(root.transform); BuildReticle(root.transform); BuildSubtitles(root.transform);\nint targets = PatchTargets(); PatchPlayerCrosshair();' } },
-        { title: '깜빡이지 않는 락온', area: '조준점 · ReticleAutoLock.cs',
-          summary: '12° 안에서 잠그고 20°를 벗어나야 풀며, 새 대상이 지금 대상보다 2° 이상 나을 때만 바꿔 대상 사이를 오가며 떨리지 않게 했습니다.',
-          code: { file: 'Assets/_Project/Scripts/Garam/ReticleAutoLock.cs', lang: 'C#', src: 'if (current && Score(cam, current, releaseAngle) < 0f) { reticle.ReleaseTarget(); current = null; }\n...\nif (best && best != current && (!current || bestScore + 2f < Score(cam, current, releaseAngle)))\n    reticle.LockOn(best);' } },
-        { title: '네트워크 상태 → HUD 연결', area: 'HUD · HudPlayerBridge.cs',
-          summary: 'Netcode로 스폰된 오브젝트에서 내 플레이어와 파트너를 찾아 체력 · 탄약을 HUD에 넘깁니다. 이후 팀원이 이 연결에 교차 HUD 소유권을 얹어 HUD 교환 글리치를 붙였습니다.',
-          code: { file: 'Assets/_Project/Scripts/Garam/HudPlayerBridge.cs', lang: 'C#', src: 'foreach (var obj in nm.SpawnManager.SpawnedObjectsList)\n    if (obj.IsPlayerObject && obj != local) { partner = obj; break; }\n...\nhud.SetPartnerTelemetry(h ? Mathf.Clamp01(h.Ratio) : 1f, a ? Mathf.RoundToInt(a.Ratio * AmmoSlots) : AmmoSlots);' } }
-      ] },
-      {"h": "잼 이후 · 웹 버전으로 Unity Play 출시", "kind": "flow", "media": 1, "lead": "Windows 원본과 같은 게임을, 설치 없이 브라우저에서", "p": "제출한 Windows 빌드(OYM_Coop)가 어느 커밋에서 나왔는지 exe의 스크립트 어셈블리로 찾아내 같은 커밋에서 웹 버전을 만들었습니다. Claude Code와 함께 Unity 배치 모드로 변환 · 빌드 · 스크린샷 비교를 반복했습니다.", "items": [["렌더링", "HDRP → URP 변환 — 물리 광원 단위를 노출값 기준으로 환산, HDRP 셰이더 12종을 URP로 다시 쓰고 하늘 기반 안개 패스를 RenderGraph로 이식"], ["멀티플레이", "LAN 소켓 대신 Unity Relay(WSS) — 방 코드 = Relay 참가 코드, 싱글(AI 동료)은 그대로"], ["웹 제약", "OS 글꼴이 없는 웹에 한글 폰트 번들 · 마이크 무전 비활성 · 디버그 표시 기본 숨김"], ["용량", "노멀맵 압축 · 텍스처 크기 제한으로 1.1GB → 413MB, Gzip 빌드"]]},
-      {"h": "게임 안의 AI, 게임을 만든 AI", "list": ["게임 안: 무전 AI “Jev”가 OpenRouter로 미리 녹음한 대사 중 하나를 고르고, ElevenLabs 음성과 Scribe 음성 인식으로 무전(V)을 받습니다. 혼자 하면 AI 동료(FSM)가 빈자리를 채웁니다.", "제작: Meshy로 적 6종 · 보스 · 소품 44종, ElevenLabs · Qwen3로 음성, Claude Code와 Unity CLI로 브랜치 통합 · HDRP 변환 · 배치 모드 씬 빌드와 테스트, 웹 이식을 돌렸습니다."]}
+      { h: '어떤 게임인가', lead: '내 눈(HUD)을 파트너에게 맡기고, 검과 총으로 돌파한다', media: 0, p: '검을 든 KESTREL과 레일건을 든 ORBIT FRAME, 두 파일럿이 우주 잔해 지대를 돌파합니다. 미션 도중 슈트가 고장 나면 체력 · 미니맵, 탄창 · 대시, 스킬 세 파츠의 HUD가 서로 바뀌어 내 상태를 볼 수 없게 됩니다. 바뀐 동안에는 파트너를 조준해 원격 치유하거나 탄창을 150%까지 과충전해 주고, 둘이 5초 안에 같은 1/2/3 키를 눌러 파츠를 돌려받으면 그 능력이 각성합니다. 4페이즈 15~20분 미션을 2인 협동이나 AI 동료와 솔로로 플레이합니다.',
+        rows: [
+          [{ src: 'media/oym/tr_launch.webp', w: 1280, h: 720, cap: '출격 — KESTREL과 ORBIT FRAME' }, { src: 'media/oym/tposter.webp', w: 1280, h: 720, cap: '레일건 시점 · 교차 HUD와 무전 자막' }],
+          [{ src: 'media/oym/tr_hud.webp', w: 1280, h: 720, cap: '대시 · 미니맵 · 무전 AI Jev' }, { src: 'media/oym/tr_boss.webp', w: 1280, h: 720, cap: '보스 CITADEL' }]
+        ] },
+      { h: '팀과 내 역할 · 4인 팀', kind: 'role', cols: 3, p: '제 포트폴리오라서 아래는 제가 맡은 부분을 중심으로 정리했습니다.',
+        items: [
+          { who: 'ME', me: true, what: '기획 리드 · 브랜치 통합', note: '3분 피치로 컨셉을 제안해 팀을 모으고, 기획안 → Unity 구현 스펙 → 패치 노트 → 파츠 명세로 이어지는 문서를 하루 동안 다섯 번 고쳐 구현과 맞췄습니다. 통합 작업으로는 팀원 브랜치 4개를 병합하고, HDRP 17.3을 유지한 채 Netcode 프로토타입을 main에 합쳤습니다(머티리얼 14종 URP → HDRP). UI · 3D 에셋 64종을 아레나에 넣는 편집기 도구, 락온 조준점, HUD 네트워크 연결을 만들었습니다.' },
+          { who: '팀원 A', what: 'HUD · 3D 프리팹 · AI 보이스', note: 'Figma로 설계한 HUD와 조준점 · 자막, HDRP 프리팹, 동료 FSM과 무전 보이스' },
+          { who: '팀원 B · C', what: '네트워크 게임플레이 · 아트 · 연출', note: '플레이어 컨트롤러와 Netcode 협동, 교차 HUD, 타이틀 · 컷신 · 쇼케이스 레벨과 최적화' }
+        ] },
+      { h: '시작 · 3분 피치로 팀을 모으다', kind: 'cards', cols: 3, media: 3, lead: '“물리적 분업이 아닌 ‘감각의 교차와 반환’” — 잼 첫날 아침, 직접 만든 7장짜리 피치', foot: '피치 마지막 장에서 클라이언트 · 네트워크, UI/UX · 셰이더 담당을 모집했고, 그렇게 모인 4인이 팀 Architecture가 됐습니다.',
+        items: [
+          { t: '교차된 시야 · Swap', l: ['상대 HUD가 내 화면에 출력', '내 체력 · 탄약은 파트너만 볼 수 있다'] },
+          { t: '주체성 반환 · Return', l: ['목표를 달성하면 HUD를 돌려받는다', '돌려받은 파츠만큼 개인 능력이 각성'] },
+          { t: 'AI 삼각 연대 · Bridge', l: ['두 사람의 전투 신호를 AI 중재자가 읽고 개입', '혼자면 AI가 빈자리를 채운다'] }
+        ] },
+      { h: '기획 문서 흐름 · 하루 동안 다섯 번', kind: 'timeline', media: 2,
+        items: [
+          ['11.18 09:37', '3분 피치 — 교차 · 반환 · AI 연대 세 축과 팀 모집'],
+          ['14:47', '기획안 1차 — MVP 우선순위 4개 확정: HUD 해금 · 합의 교환 → 위기 자동 요청 → 원격 지원 · 에임 보정 → 빈사 · 소생'],
+          ['15:41', 'Unity 구현 스펙 — 1 unit = 1m 기준 이동 · 점프 · 호버 · 대시 수치표, 테스트 적 2종, 그레이박스 배치 규격'],
+          ['21:57', '패치 노트 — 시선 방향 추진 호버, R 원격 재장전, Q/E 포지션 스킬, 교차 HUD 3파츠를 ‘체력+미니맵 / 탄창·대시 / 스킬’로 재편'],
+          ['22:33', '2 · 3번 파츠 명세 — 150% 오버차지, 킬 게이지 역전과 원격 궁극기 대리 발동'],
+          ['11.19', '제출 빌드 · 최종 기획서 11쪽 — 4페이즈 레벨 플로우, 조작 · 시스템 · AI 활용 정리']
+        ] },
+      { h: '교차 HUD 3파츠 · 돌려받기 전엔 돕고, 돌려받으면 각성', kind: 'table', wrap: true, media: 2, note: '기획안 1차의 생체 · 지도 · 소모품 구분을, 저녁 패치 노트에서 체력+미니맵 / 탄창·대시 / 스킬로 다시 묶고 파츠마다 “돕는 행동”과 “각성”을 짝지었습니다.', cols: ['파츠', '교차 상태 (파트너가 쥐고 있을 때)', '반환 상태 (내가 돌려받았을 때)'],
+        rows: [
+          ['1 · 체력 + 미니맵', '파트너 화면에 내 체력바와 미니맵 — 파트너가 나를 조준해 원격 치유', '내 화면 복구 + 적 처치 시 최대 HP 5% 흡수'],
+          ['2 · 탄창 / 대시', '나는 재장전 불가 — 파트너의 R로 100% 충전 + 오버차지 (총: 탄창 150% · 대미지 +30% / 검: 1초 무한 대시)', '자가 재장전 복구 + 검: 처치마다 대시 +1 / 총: 대시하면 자동 장전'],
+          ['3 · 스킬 (Q / E)', '킬 게이지 역전 — 내가 잡으면 파트너 Q가 차고, 파트너의 궁극기는 내가 눌러 대리 발동', 'Q 요구 킬 15 → 10 + 검: 패링 성공 시 나노 강화 2.5초 / 총: 레일건 궁극기 350 대미지 광역 폭발']
+        ] },
+      { h: '수치로 설계한 비대칭 · 검과 레일건', kind: 'table', wrap: true, note: '같은 조작 체계 위에서 역할만 갈리도록, 두 포지션의 수치를 한 표에서 맞물리게 잡았습니다.', cols: ['', 'P1 KESTREL · 검 (근접 돌파)', 'P2 ORBIT FRAME · 레일건 (원거리 엄호)'],
+        rows: [
+          ['이동 · 점프', '7.5 m/s · 2.2 m · 중력 −22', '5.0 m/s (줌 2.5) · 1.5 m · 중력 −18'],
+          ['호버 (시선 방향 추진)', '9.0 m/s · 2.5초', '6.0 m/s · 3.5초'],
+          ['대시', '9 m / 0.2초 · 3스택 (Q 중 5스택)', '5 m / 0.25초 · 1스택'],
+          ['기본 공격', '참격 3.2 × 2.8 m 광역 · 40', 'AR 40발 · 18 / RAIL 6발 관통 · 110 · 60 m'],
+          ['E', '패링 1.5초 — 레이저를 조준선 방향으로 120 반사, 성공 시 대시 +1', '모드 전환 AR ↔ RAIL (선딜 1.8초 → 각성 시 0.4초)'],
+          ['Q (15킬)', '나노 강화 8초 — 공격 +50% · 공속 +40% · 이속 +20%', '스마트 락온 5초 — 40° 자동 조준']
+        ] },
+      { h: '기술 포인트', kind: 'tech',
+        items: [
+          { title: '다시 돌려도 같은 결과가 나오는 씬 통합 도구', area: '편집기 도구 · GaramArenaIntegration.cs', summary: '팀원이 만든 에셋 64종을 분류별로 배치하고 HUD · 조준점 · 자막을 붙이고 적 프리팹을 패치하는 과정을 메뉴 하나로 묶었습니다. 다시 실행하면 통합 루트를 지우고 새로 만들어, 브랜치가 바뀔 때마다 배치 모드로 다시 돌릴 수 있습니다.', code: { file: 'Assets/_Project/Editor/GaramArenaIntegration.cs', lang: 'C#', src: '/// 다시 실행하면 "Garam Integration" 루트를 지우고 새로 만든다.\n[MenuItem("Tools/On Your Mark/Apply Garam Elements To Arena")]\n...\nint placed = BuildShowcase(root.transform, arena, floorTop);\nBuildHud(root.transform); BuildReticle(root.transform); BuildSubtitles(root.transform);\nint targets = PatchTargets(); PatchPlayerCrosshair();' } },
+          { title: '깜빡이지 않는 락온', area: '조준점 · ReticleAutoLock.cs', summary: '12° 안에서 잠그고 20°를 벗어나야 풀며, 새 대상이 지금 대상보다 2° 이상 나을 때만 바꿔 대상 사이를 오가며 떨리지 않게 했습니다.', code: { file: 'Assets/_Project/Scripts/Garam/ReticleAutoLock.cs', lang: 'C#', src: 'if (current && Score(cam, current, releaseAngle) < 0f) { reticle.ReleaseTarget(); current = null; }\n...\nif (best && best != current && (!current || bestScore + 2f < Score(cam, current, releaseAngle)))\n    reticle.LockOn(best);' } },
+          { title: '네트워크 상태 → HUD 연결', area: 'HUD · HudPlayerBridge.cs', summary: 'Netcode로 스폰된 오브젝트에서 내 플레이어와 파트너를 찾아 체력 · 탄약을 HUD에 넘깁니다. 이후 팀원이 이 연결에 교차 HUD 소유권을 얹어 HUD 교환 글리치를 붙였습니다.', code: { file: 'Assets/_Project/Scripts/Garam/HudPlayerBridge.cs', lang: 'C#', src: 'foreach (var obj in nm.SpawnManager.SpawnedObjectsList)\n    if (obj.IsPlayerObject && obj != local) { partner = obj; break; }\n...\nhud.SetPartnerTelemetry(h ? Mathf.Clamp01(h.Ratio) : 1f, a ? Mathf.RoundToInt(a.Ratio * AmmoSlots) : AmmoSlots);' } }
+        ] },
+      { h: '잼 이후 · Unity Play 웹 출시', kind: 'flow', media: 1, lead: 'Windows 원본과 같은 게임을, 설치 없이 브라우저에서', p: '제출한 Windows 빌드(OYM_Coop)가 어느 커밋에서 나왔는지 exe의 스크립트 어셈블리로 찾아내 같은 커밋에서 웹 버전을 만들었습니다. Claude Code와 함께 Unity 배치 모드로 변환 · 빌드 · 스크린샷 비교를 반복했습니다.',
+        items: [
+          ['렌더링', 'HDRP → URP 변환 — 물리 광원 단위를 노출값 기준으로 환산, HDRP 셰이더 12종을 URP로 다시 쓰고 하늘 기반 안개 패스를 RenderGraph로 이식'],
+          ['멀티플레이', 'LAN 소켓 대신 Unity Relay(WSS) — 방 코드 = Relay 참가 코드, 싱글(AI 동료)은 그대로'],
+          ['웹 제약', 'OS 글꼴이 없는 웹에 한글 폰트 번들 · 마이크 무전 비활성 · 디버그 표시 기본 숨김'],
+          ['용량', '노멀맵 압축 · 텍스처 크기 제한으로 1.1GB → 413MB, Gzip 빌드']
+        ] },
+      { h: 'AI 활용 내역', kind: 'ai', now: 2, p: '게임 안에서는 무전 AI와 AI 동료가 빈자리를 채우고, 만드는 쪽에서는 Claude Code와 Unity 배치 모드로 통합 · 변환 · 빌드를 반복했습니다.',
+        steps: [
+          ['24–25', '바이브 코딩', 'Gemini 웹 · THE BARRACKS'],
+          ['26-1', 'CLI로 개발', 'Gemini CLI · 카타나 제로'],
+          ['26-2', 'MCP 연동 · 하네스 엔지니어링', '해커톤 · CHIME → Claude Code + Unity 배치 모드 · 이 프로젝트']
+        ],
+        story: [
+          '게임 안: 무전 AI “Jev”가 OpenRouter로 미리 녹음한 대사 중 하나를 고르고, ElevenLabs 음성과 Scribe 음성 인식으로 무전(V)을 받습니다. 혼자 하면 AI 동료(FSM)가 빈자리를 채웁니다.',
+          '제작: Meshy로 적 6종 · 보스 · 소품 44종, ElevenLabs · Qwen3로 음성, Claude Code와 Unity CLI로 브랜치 통합 · HDRP 변환 · 배치 모드 씬 빌드와 테스트, 웹 이식을 돌렸습니다.'
+        ] },
+      { h: '작업 기록', kind: 'timeline',
+        items: [
+          ['11.18', '3분 피치 · 팀 모집 → 기획안 1차 → Unity 구현 스펙 → 패치 노트 → 2 · 3번 파츠 명세'],
+          ['11.19', '팀원 브랜치 4개 병합 · HDRP를 유지한 채 Netcode 프로토타입 통합 · 씬 통합 도구 · 제출 빌드와 최종 기획서'],
+          ['잼 이후', '같은 커밋에서 HDRP → URP 변환 · Unity Relay 온라인 · Unity Play 웹 출시']
+        ] }
     ]
-  },
-  {
+  },  {
     id: 'take-action', cat: ['contest', 'system', 'ai'], type: 'youtube', youtube: 'ST-9zLMTInE', len: '트레일러', badge: 'UE5', real: true, cover: 'media/takeaction/cover.webp',
     title: 'Take, Action! | 감독과 배우를 오가는 블럭 조립 퍼즐 플랫포머 — 레벨 · 사운드 디자인',
     tool: 'UE 5.9 (Lyra) · Claude Code · Unreal Python · PCG · Diversion', meta2: '4인 팀 · 레벨 디자인 · 기획 문서 · 사운드 · 2026.11 게임잼',
@@ -1904,36 +1959,132 @@ const PROJECTS = [
     ]
   },
   {
-    id: "rezn",
-    cat: ["contest", "ai", "system"],
-    type: "game",
-    len: "웹 플레이 · 발표 PDF",
-    badge: "WEB",
-    real: true,
-    cover: "media/rezn/cover.webp",
-    repo: "https://github.com/snooy-dev/snu-croche-2026",
-    title: "Rezn | 매 판, 새로 쓰이는 추리 — Croche AI 추리 게임 플랫폼 · SNU × Croche 해커톤 본선",
-    tool: "React · three.js · Socket.IO · Croche AI",
-    meta2: "팀 AI괴물 3인 · 팀장 · 기획 · 개발 · 2026.10 해커톤 본선",
-    date: "2026.10",
-    period: "3인 팀 · 서류 235팀 중 20팀 본선 · 48시간 개발",
-    tags: ["해커톤", "본선진출", "웹게임", "threejs", "React", "SocketIO", "멀티플레이", "방탈출", "추리", "AI", "Croche", "LLM", "JSONSchema", "TypeScript"],
-    media: [{"label": "웹에서 바로 플레이", "type": "game", "src": "media/rezn/play/index.html", "poster": "media/rezn/panorama.webp", "len": "웹 체험판", "gTitle": "Rezn · 웹 체험판 (AI 꺼짐)", "gKeys": "닉네임으로 시작 → 작품 구매(체험 와트) → 혼자 플레이", "gSub": "추천: 수직의 바벨 · 사설 도박장 · 드래그로 시야 회전, 사물 클릭으로 조사", "gSubTouch": "가로 화면 권장 · 드래그로 시야 회전, 사물 터치로 조사", "caption": "해커톤 서버(Express · Socket.IO)의 실제 코드 — 작품 규칙 · 계정 · 방 · 행동 처리 — 를 브라우저 안으로 옮겨, 서버 없이 이 페이지에서 바로 돌아가게 했습니다. Croche AI는 꺼 두었기 때문에 각 작품은 미리 써 둔 대본과 검증된 기본 세트로 진행합니다. 계정 · 구매 · 진행은 이 브라우저에만 저장됩니다."}, {"label": "본선 발표 PDF", "type": "pdf", "dir": "rezn/deck", "count": 14, "len": "14쪽", "fullThumbs": true}, {"label": "Windows 로컬판", "type": "itch", "url": "media/rezn/Rezn_Local.zip", "poster": "media/rezn/panorama.webp", "len": "zip 55MB", "extBtn": "로컬 서버판 받기", "extSub": "Windows · zip 55MB · 압축을 풀고 “Rezn 실행.cmd” 실행 · Node.js 포함", "caption": "원래 구조 그대로(Node 서버 + 웹) 내 컴퓨터에서 띄우는 판입니다. 일반 창과 시크릿 창으로 각각 들어가 초대 코드로 멀티도 해 볼 수 있습니다."}],
-    facts: [["EVENT", "SNU × Croche AI 앱 해커톤 2026 · 서울대 창업지원단 · H1R AI"], ["SELECTION", "서류(아이디어) 235팀 → 본선 20팀"], ["WHEN", "2026.10.14 개발 시작 – 10.17 본선 발표"], ["TEAM", "AI괴물 · 3인 (팀장)"], ["MY ROLE", "팀장 · 지원서 기획 · 수직의 바벨 전체 · 사설 도박장 AI 동료 · 스튜디오 · QR 초대"], ["MY CODE", "커밋 22개 · +6,347줄 · 테스트 6파일 1,106줄"], ["STACK", "TypeScript · React 19 · three.js · Express · Socket.IO · Zod"], ["AI", "Croche SDK 0.5 (서버 전용) · Claude Code"]],
-    summary: "서울대 창업지원단 × H1R AI의 Croche AI 앱 해커톤에, 코드 한 줄 없이 아이디어 지원서만으로 235팀 중 20팀 본선에 올랐습니다. 본선 48시간 동안 그 아이디어를 “Rezn”으로 만들었습니다 — 작품을 고르면 Croche가 그 판의 사건을 새로 쓰고, 빈자리는 AI NPC가 채우는 AI 추리 게임 플랫폼입니다. 핵심 원칙은 하나였습니다. AI는 출제와 연기만, 정답과 판정은 서버가. 그래서 Croche의 모든 응답은 JSON Schema로 형태를 묶고, 서버가 다시 검증하고, 실패하면 미리 쓴 대본으로 끝까지 갑니다. 저는 팀장으로 지원서를 기획했고, 3인 협동 방탈출 “수직의 바벨”을 서버 규칙 · AI 연동 · 3D 장면까지 처음부터 끝까지, 사설 도박장의 AI 동료, 이용자가 작품을 만드는 스튜디오를 만들었습니다. 지금은 서버 코드를 브라우저 안으로 옮겨, 이 페이지에서 AI 없이 바로 해 볼 수 있습니다.",
+    id: 'rezn', cat: ['contest', 'ai', 'system'], type: 'game', len: '웹 플레이 · 발표 PDF', badge: 'WEB', real: true, cover: 'media/rezn/cover.webp', repo: 'https://github.com/snooy-dev/snu-croche-2026',
+    title: 'Rezn | 매 판, 새로 쓰이는 AI 추리 게임 플랫폼 — 팀장 · 기획 · 개발',
+    tool: 'React · three.js · Socket.IO · Croche AI',
+    meta2: '3인 팀 · 팀장 · 기획 · 개발 · 2026.10 해커톤 본선',
+    date: '2026.10',
+    period: '3인 팀 · 48시간 해커톤 본선',
+    tags: ['해커톤', '본선진출', 'Croche', 'AI', '추리', '방탈출', '웹게임', '멀티플레이', 'TypeScript', 'React', 'threejs', 'SocketIO'],
+    media: [
+      { label: '웹에서 바로 플레이', type: 'game', src: 'media/rezn/play/index.html', poster: 'media/rezn/panorama.webp', len: '웹 체험판', gTitle: 'Rezn · 웹 체험판 (AI 꺼짐)', gKeys: '닉네임으로 시작 → 작품 구매(체험 와트) → 혼자 플레이', gSub: '추천: 수직의 바벨 · 사설 도박장 · 드래그로 시야 회전, 사물 클릭으로 조사', gSubTouch: '가로 화면 권장 · 드래그로 시야 회전, 사물 터치로 조사', caption: '해커톤 서버(Express · Socket.IO)의 실제 코드 — 작품 규칙 · 계정 · 방 · 행동 처리 — 를 브라우저 안으로 옮겨, 서버 없이 이 페이지에서 바로 돌아가게 했습니다. Croche AI는 꺼 두었기 때문에 각 작품은 미리 써 둔 대본과 검증된 기본 세트로 진행합니다. 계정 · 구매 · 진행은 이 브라우저에만 저장됩니다.' },
+      { label: '본선 발표 PDF', type: 'pdf', dir: 'rezn/deck', count: 14, len: '14쪽', fullThumbs: true }
+    ],
+    facts: [
+      ['HACKATHON', 'SNU × Croche AI 앱 해커톤 2026 · 10.14 – 10.17 · 서울대 창업지원단 · H1R AI'],
+      ['RESULT', '서류(아이디어) 235팀 → 본선 20팀'],
+      ['TEAM', '3인 (나 · 팀원 A · B) · 팀 AI괴물 · 팀장'],
+      ['MY ROLE', '지원서 기획 · 수직의 바벨 전체 · 사설 도박장 AI 동료 · 스튜디오 · QR 초대'],
+      ['MY CODE', '커밋 22개 · +6,347줄 · 테스트 6파일 1,106줄'],
+      ['STACK', 'TypeScript · React 19 · three.js · Express · Socket.IO · Zod'],
+      ['AI', 'Croche SDK 0.5 (서버 전용) · Claude Code']
+    ],
+    summary: '작품을 고르면 Croche AI가 그 판의 사건을 새로 쓰고, 빈자리는 AI NPC가 채우는 웹 추리 게임 플랫폼입니다. 코드 없이 아이디어 지원서만으로 235팀 중 20팀 본선에 올라, 48시간 동안 3인 팀으로 만들었습니다. 원칙은 “AI는 출제와 연기만, 정답과 판정은 서버가”였습니다. Croche의 모든 응답을 JSON Schema로 묶고 서버가 다시 검증하며, 실패하면 미리 쓴 대본으로 끝까지 갑니다. 저는 팀장으로 지원서를 기획했고, 3인 협동 방탈출 “수직의 바벨”을 서버 규칙 · AI 연동 · 3D 장면까지 처음부터 끝까지 만들고, 사설 도박장 AI 동료와 이용자 창작 스튜디오를 맡았습니다. 지금은 서버 코드를 브라우저로 옮겨 이 페이지에서 AI 없이 바로 해 볼 수 있습니다.',
     blocks: [
-      {"h": "본선 진출 · 아이디어만으로 235 : 20", "kind": "result", "stats": [["235 → 20", "지원 팀 → 본선 진출"], ["약 12 : 1", "서류 평가 경쟁률"], ["0줄", "지원 당시 코드 — 신청서와 아이디어 설명 1장"], ["48시간", "본선 개발 — 10.14 SDK 배포 → 10.16 제출"]], "rows": [], "foot": "서류평가는 대상 사용자와 문제 정의의 구체성, 핵심 경험과 가치, Croche 활용 계획과 3일 내 구현 가능성, 해커톤 이후 지속 가능성을 봤습니다. 지원서는 팀장인 제가 기획해 썼습니다."},
-      {"h": "지원서 · 처음 낸 아이디어", "kind": "cards", "cols": 3, "lead": "“추리는 좋아하는데 같이 할 사람이 없거나, 정해진 선택지만 누르는 게임이 아쉬웠던 사람”을 위한 AI 추리 게임", "items": [{"t": "아이디어 / 서비스", "l": ["심문형 대화 추리 · 대탈출식 방탈출 · 더 지니어스식 두뇌 게임", "AI가 용의자를 연기하고, 질문과 증거에 따라 털어놓을 때를 판단", "기존 문제의 값 · 단서 · 규칙을 바꾼 응용 문제 생성 + 답이 하나인지 검증", "진행도 기반 힌트 · 추리에 맞춘 엔딩 → 다시 해도 매번 다른 판"]}, {"t": "지속 가능성", "l": ["추리 예능 · 방탈출 · 머더미스터리 팬", "광고 1회 수익(약 10원)으로 AI 대화 한 판(약 50턴) 비용 충당", "캐릭터 판매 · 추리 예능 콜라보 · 유저 창작 시리즈 로열티"]}, {"t": "Croche 활용 계획", "l": ["용의자마다 세션 분리 — 그 인물이 아는 것만 전달", "Memory로 긴장도 · 증언 · 증거 저장 → 이어하기", "심문은 싼 모델, 문제 응용은 좋은 모델", "제안: 비밀 유지 · 유일해 검증 Tool · 비용 리포트"]}], "foot": "지원서에서 약속한 “매번 달라지는 문제 · 답이 하나인지 검증 · 비밀을 지키는 NPC · 비용 상한”은 아래 기술 포인트에서 모두 실제 코드가 됐습니다."},
-      {"h": "Rezn · 매 판, 새로 쓰이는 추리", "kind": "flow", "media": 1, "lead": "작품을 고르면, Croche가 그 판의 사건을 새로 쓴다", "items": [["매 회차 새로운 사건", "Croche가 만들고 검토 에이전트가 승인한 퍼즐 값 · 단서 위치 · 사건 조건"], ["독립된 기억의 NPC", "인물마다 별도 에이전트 · 저장소 — 자기 비밀 · 말투 · 기억만으로 대화"], ["빈자리는 AI와 함께", "솔로부터 AI 포함 8인까지 — 사람이 비운 자리를 AI가 연기"], ["PC와 휴대폰이 한 방에", "설치 없는 웹 · 초대 코드와 QR · Socket.IO 실시간 동기화"]], "list": ["작품 8종(콜라보 2 · 오리지널 6) · 장르 4(방탈출 · 대화형 · 퍼즐 · 사회 추리) + 이용자 창작 스튜디오", "앱 내 재화 “와트”로 작품 · 프로필 구매, AI 비용은 판당 호출 상한으로 원가 고정"]},
-      {"h": "작품 라인업", "kind": "table", "wrap": true, "media": 1, "cols": ["작품", "구분", "인원", "AI가 하는 일"], "rows": [["수직의 바벨", "오리지널 · 협동 방탈출", "솔로 · 2~3인 협동", "퍼즐 값 · 숨김 위치 · 대본 · 세계 반응 (제 담당)"], ["사설 도박장", "콜라보 · tvN 대탈출", "솔로 · 1~6인", "퍼즐 세트 생성 · 빈 역할을 AI 동료가 연기 (AI 동료 제 담당)"], ["악마의 사제", "콜라보 · 미스터리 수사단", "솔로 · 2~6인", "잠입 방탈출 세트 · 개 · 영혼 반응"], ["마지막 사진관", "오리지널 · 3D 방탈출", "솔로 · 2~3인 협동", "21개 장치 조건 생성 → 검토 에이전트 승인"], ["마피아", "오리지널 · 사회 추리", "사람 1~3 + NPC = 8인", "NPC 7인 — 매번 다른 성향으로 거래 · 변론"], ["마지막 출제자의 유언", "오리지널 · 논리 퍼즐", "솔로 · 2~3인 경쟁", "시험 5개 생성 · 유일해 검증"], ["거울 속의 석 달", "오리지널 · 대화형 스토리", "솔로 · 21개 기억", "감독 AI — 답변으로 성향 판정 · 사건 분기"], ["오답 박물관", "오리지널 · 퍼즐", "솔로 · 관람마다 6문제", "새 문제 출제 · 독립 풀이 검증 후 최대 3회 재생성"]]},
-      {"h": "내 역할", "kind": "role", "items": [{"who": "ME · 김헌수", "me": true, "what": "팀장 · 지원서 기획 · 작품 개발 · 플랫폼 기능", "note": "본선을 뚫은 지원서를 기획했고, 개발에서는 수직의 바벨 전체(서버 규칙 1,062줄 · Croche 연동 · 대본 · three.js 장면 · 명세), 사설 도박장 AI 동료와 퍼즐 보정, 스튜디오 서버 654줄과 웹 화면, 휴대폰 QR 초대, 모바일 UI를 맡았습니다."}, {"who": "TEAMMATES · 2", "what": "플랫폼 · 다른 작품", "note": "플랫폼 뼈대(방 · 계정 · 행동 처리 · 추천)와 사진관 · 마피아 · 박물관 등 다른 작품을 두 팀원이 맡았습니다."}]},
-      {"h": "수직의 바벨 · 3인 협동 방탈출", "lead": "과거 · 현재 · 미래, 세 격리실을 도르래로 잇는다", "p": "1~3인이 각자 다른 층의 격리실에 갇힌 채 시작합니다. 고정 위치에서 시야를 돌려 탐색하고, 도르래로 층 사이에 물건을 보내며, 공유 수첩과 전성관 신호로만 소통합니다. 5장 구성에 엔딩은 두 가지(억제제 · 혈청)입니다. 매 판 Croche가 퍼즐 값(압력 · 해 · 달 · 별 순서 · 각도)과 숨김 위치, 대본을 정하고, 플레이 중에는 서버가 고른 후보 안에서 세계의 반응을 연출합니다. 사람이 없는 층은 혼자서도 오갈 수 있게, 같은 층을 두 사람이 동시에 만지면 서버가 막도록 설계했습니다.", "rows": [[{"src": "media/rezn/panorama.webp", "w": 1600, "h": 639, "cap": "수직의 바벨 · 격리실 파노라마"}], [{"src": "media/rezn/room.webp", "w": 563, "h": 1000, "cap": "격리실 구성"}, {"src": "media/rezn/props.webp", "w": 1000, "h": 1000, "cap": "장치 · 소품"}, {"src": "media/rezn/casino.webp", "w": 702, "h": 1000, "cap": "사설 도박장 표지"}]]},
-      {"h": "Croche 연동 구조", "kind": "flow", "lead": "AI는 출제와 연기만, 정답과 판정은 서버가", "p": "작품은 defineGame()으로 create · action · view · tick을 구현해 카탈로그에 꽂히고, 공통 실행기(GameService)가 방 · 권한 · 중복 요청 · 저장 · 방송을 맡습니다. 작품마다 ai.ts 어댑터 하나가 Croche를 감싸며, 모든 호출이 같은 네 단계를 거칩니다.", "items": [["연결", "Croche.open — 사용자 ID를 SHA-256으로 해시한 저장소, 작업 종류별 에이전트, 방에서 고른 모델"], ["요청", "agent.request + responseFormat json_schema(strict) — 필드 · 길이 · 허용 ID를 스키마로 고정"], ["검증", "Zod로 다시 파싱 → 작품 규칙 검사(유일해 · 비밀값 누출 · enum 범위)"], ["대체", "실패는 안전한 오류 코드로만 — 재생성하거나 미리 쓴 대본 · 기본 세트로 진행"]], "list": ["Croche 어댑터 10개 · 이름 붙은 에이전트 약 41개 · json_schema 응답 형식 21곳", "방마다 모델 선택(14종 + 호환 4종) — 서버가 검증한 방 정보에서만 모델을 읽음", "오래 걸리는 생성은 행동(20초 제한)과 분리된 비동기 작업으로 — 결과는 다음 행동에서 수집", "서버 테스트 36파일 · 약 366건 — 가짜 AI를 주입해 키 없이도 전부 실행"]},
-      {"h": "기술 포인트 · Croche를 게임에 붙이며 고민한 것", "kind": "tech", "note": "1~3은 제가 직접 설계 · 구현한 핵심, 이후는 그 밖의 구현입니다. 코드는 저장소의 실제 줄입니다.", "items": [{"featured": true, "title": "정답은 서버가, 연출은 Croche가 — 필드별 검증과 대체", "area": "수직의 바벨 · script.ts · index.ts", "lanes": [{"name": "CROCHE", "items": [["퍼즐 값 제안", "압력 · 순서 · 각도"], ["대본 작성", "발견 · 단서 · 엔딩 문장"]]}, {"name": "SERVER", "items": [["필드마다 검사", "길이 · 필수 값 · 숨김 위치"], ["누출 검사", "공개 문장에 정답이 있나"], ["실패 필드만 대체", "replaced 목록 기록"]]}], "link": "JSON Schema strict", "problem": "AI가 쓴 대본이 퍼즐 정답과 어긋나거나 정답을 그대로 말해 버리면, 매 판 새로운 방탈출이 곧바로 깰 수 없는 방이 됩니다. 그렇다고 AI 출력 전체를 버리면 “매번 다른 판”이라는 핵심 가치가 사라집니다.", "steps": ["Croche에게는 값과 문장만 제안하게 하고, 정답 값은 서버가 들고 있는다", "대본 필드마다 길이 · 정답 숫자 포함 · 다른 값 미포함 · 숨김 위치 키워드를 검사하는 pick()", "공개 문장은 leaksSecret()로 압력 · 각도 숫자나 문양 2개 이상 노출을 차단", "통과 못 한 필드만 미리 쓴 문장으로 바꾸고 replaced에 기록 — 나머지 AI 문장은 살린다", "키가 없거나 실패하면 “시연 조율” 모드로 전환하고 화면 · 로그에 출처를 그대로 표시"], "result": "AI 응답이 어떻게 오든 방은 항상 풀 수 있고, 좋은 문장은 최대한 살립니다. AI가 아예 없을 때도 같은 경로로 끝까지 진행돼 그대로 로컬 체험판이 됐습니다.", "codes": [{"file": "apps/server/src/games/vertical-ward/script.ts", "lang": "TS", "src": "const pick = (name: string, value: unknown, ok: (text: string) => boolean, fallback: string, max = 160) => {\n  if (fits(value, max) && ok(value.trim())) return value.trim();\n  replaced.push(name); return fallback;\n};\n…\npressure: pick('found.pressure', raw?.found?.pressure, text => new RegExp(`(?<![0-9])${values.pressure}(?![0-9])`).test(text) && !new RegExp(`(?<![0-9])${values.angle}(?![0-9])`).test(text), authored.found.pressure),"}, {"file": "apps/server/src/games/vertical-ward/script.ts", "lang": "TS", "src": "export function leaksSecret(text: string, values: Pick<WardValues, 'pressure' | 'sequence' | 'angle'>) {\n  const number = (value: number) => new RegExp(`(?<![0-9])${value}(?![0-9])`).test(text);\n  const symbols = ['태양', '달', '별'].filter(name => new RegExp(`${name}(?![가-힣])|${name}[ ,·→-]`).test(text)).length;\n  return number(values.pressure) || number(values.angle) || symbols >= 2;\n}"}]}, {"featured": true, "title": "서버가 만든 후보 안에서만 — 동적 enum 스키마와 늦은 응답 폐기", "area": "수직의 바벨 · ai.ts · index.ts", "problem": "플레이 중 “세계의 반응”을 AI에게 자유롭게 쓰게 하면 아직 열리지 않은 장치를 열었다고 하거나 다음 장 내용을 말해 버립니다. 게다가 생성은 최대 45초가 걸리는데 행동 요청은 20초면 끊기고, 그 사이 플레이어는 계속 움직입니다.", "steps": ["서버가 지금 상태에서 가능한 반응 후보(beat)를 먼저 계산", "요청마다 후보 ID로 JSON Schema enum을 만들어 스키마 단계에서 선택지를 묶음", "응답을 Zod로 다시 파싱하고 후보 목록에 있는지 한 번 더 확인", "생성은 참가자 수명 신호에 묶인 비동기 작업으로 분리 — 작업은 상태를 직접 바꾸지 않음", "결과를 수집할 때 장(chapter)이나 리비전이 바뀌었으면 버림"], "result": "AI는 서버가 허락한 반응 중 하나를 고르고 110자 문장으로 연출만 합니다. 느린 응답이 현재 상황을 덮어쓰는 일이 없어 멀티에서도 상태가 꼬이지 않습니다.", "codes": [{"file": "apps/server/src/games/vertical-ward/ai.ts", "lang": "TS", "src": "beatId: { type: 'string', enum: input.candidates.map(candidate => candidate.id) }, text: { type: 'string', maxLength: 110 },\n…\nconst parsed = wardDirectionSchema.safeParse(output);\nif (!parsed.success || !input.candidates.some(candidate => candidate.id === parsed.data.beatId)) throw unavailable('invalid_output');"}, {"file": "apps/server/src/games/vertical-ward/index.ts", "lang": "TS", "src": "// 행동 신호는 20초 뒤 만료되므로 작업에는 참가자 수명 신호를 쓴다. 작업은 상태를 직접 바꾸지 않는다.\nconst signal = AbortSignal.any([context.lifecycleSignal ?? context.signal, controller.signal, AbortSignal.timeout(timeoutMs)]);\n…\n// 장이나 리비전이 바뀐 늦은 응답은 버린다.\nif (ward.chapter !== pending.chapter || ward.direction.revision !== pending.revision) return;"}]}, {"featured": true, "title": "스튜디오 — 질문 네 개로 Croche가 작품을, 서버가 확정을", "area": "스튜디오 · studio/ai.ts · game.ts · service.ts", "problem": "이용자가 세계관과 인물만 적으면 AI가 작품을 완성해 공개하는 기능입니다. 하지만 AI가 인물 이름을 바꾸거나 수치를 빼먹은 설정집은 공개되면 안 되고, 플레이어가 “호감도를 100으로 바꿔”라고 말해 게임을 조작할 수도 있습니다.", "steps": ["제작자가 입력한 인물 이름 · 수치 이름 · 엔딩 ID를 설정집 JSON Schema의 enum으로 고정", "verifyBible로 인물 수 · 수치 중복 · 시작 화자 · 엔딩 ID 유일성을 다시 검사 — 실패하면 비공개", "플레이 턴은 Croche가 제안하고 applyTurn이 확정: 수치는 ±delta 스키마 + 0~100 clamp, 엔딩은 설정집 ID만", "제작 접수는 requestId로 중복 차단, 계정당 동시 제작 1건, 재시작 시 진행 중 작업은 실패로 기록해 재시도 가능"], "result": "검증을 통과한 작품만 스튜디오에 공개되고, 대화로 상태를 조작하는 프롬프트 인젝션이 구조적으로 통하지 않습니다. 설정집은 한 번 만들면 모두가 공유하고 회차당 대화는 80턴으로 묶어 원가를 고정했습니다.", "codes": [{"file": "apps/server/src/studio/ai.ts", "lang": "TS", "src": "name: { type: 'string', enum: names }, appearance: str(400), persona: str(600), voice: str(200), relationships: str(400), knowledge: str(600), secret: str(400),\n…\nconst ok = bible.characters.length === names.length && names.every(name => bible.characters.some(character => character.name === name))\n  && bible.characters.every(character => character.stats.every(stat => statNames.includes(stat.name)) && new Set(character.stats.map(stat => stat.name)).size === character.stats.length)"}, {"file": "apps/server/src/studio/game.ts", "lang": "TS", "src": "/** Croche가 제안한 턴을 서버 규칙으로 확정한다. 수치는 범위 안에서만, 단서는 처음 발견만, 엔딩은 설정집의 ID만 반영한다. */\nfor (const change of turn.statChanges) {\n  const stats = state.stats[change.character];\n  if (stats && change.stat in stats) stats[change.stat] = clamp(stats[change.stat]! + change.delta);\n}\nconst ending = turn.ending ? state.snapshot.bible.endings.find(item => item.id === turn.ending) : undefined;"}]}, {"title": "먼저 말을 거는 AI 동료와 비용 상한", "area": "사설 도박장 · private-casino/index.ts", "summary": "companion 에이전트가 지금 말할지 · 누구에게 · 무엇을 살필지 스스로 정합니다. 서버는 대화 플레이당 80회 · 1초 간격, 먼저 말 걸기 40초 간격 · 최대 40회를 강제하고, 응답한 자리가 사람이 맡지 않은 자리인지, 정답 코드나 열쇠 위치를 흘리지 않는지(leaky) 확인한 뒤에만 내보냅니다.", "code": {"file": "apps/server/src/games/private-casino/index.ts", "lang": "TS", "src": "rule(status.calls < 80 && Date.now() - status.lastAt >= 1000, '잠시 후 다시 말을 걸어 주세요. 한 플레이에서 동료와 80번까지 대화할 수 있어요.');\n…\nif (crew.job || now - crew.lastAt < 40_000 || crew.calls >= 40) return;\n…\nif (!meta.slots!.includes(reply.slot) || !aiSlots(state, context.members).includes(reply.slot) || leaky(reply.text, state)) return;"}}, {"title": "생성 퍼즐의 부분 보정", "area": "사설 도박장 · puzzle.ts", "summary": "엄격 검증 → 실패하면 규칙에 어긋난 항목만 고치고 나머지 생성 값은 살림 → 그래도 안 되면 기본 세트. 플레이어가 이미 단서를 봤다면 늦게 온 세트는 쓰지 않고, 최근 5개 세트를 avoid로 넘겨 매번 다른 조합이 나오게 했습니다.", "code": {"file": "apps/server/src/games/private-casino/index.ts", "lang": "TS", "src": "try { state.puzzle = validatePuzzle(job!.output); state.setup = 'generated'; state.setupNote = null; rememberSet(state.puzzle); }\ncatch {\n  try {\n    const { set, repaired } = repairPuzzle(job!.output);"}}, {"title": "요청별 인스턴스 격리와 SDK 이슈 리포트", "area": "수직의 바벨 · 스튜디오 · ai.ts", "summary": "요청마다 새 에이전트 인스턴스를 열고 닫아 비공개 정답이 다음 요청의 대화 이력으로 넘어가지 않게 했고, 연결은 최대 24개를 유지하며 오래 쉰 것부터 닫습니다. 실제 호출로 SDK 0.5의 문제 두 가지(languages 설정 거절 · 이미지 첨부 시 모델이 바뀜)를 찾아 코드와 docs/croche.md에 기록했습니다.", "code": {"file": "apps/server/src/games/vertical-ward/ai.ts", "lang": "TS", "src": "// SDK 0.5.3은 기본 언어(ko)가 base 설정이라\n// 코드 오버라이드에 languages를 넣으면 invalid_configuration으로 거절한다.\nconst agent = await project.agent(kind, { instance, config: { model: context.aiModel } });\nconst result = await agent.request({ id: randomUUID(), text: (input.text) + koreanNameInstructions, context: JSON.parse(serialized) as JsonValue },\n  { signal: context.signal, responseFormat: format });"}}, {"title": "멀티 사물 점유 잠금", "area": "수직의 바벨 · rules.ts", "summary": "사물을 잡으면 서버가 60초 점유를 걸고, 다른 플레이어가 같은 층을 쓰고 있으면 409 FLOOR_BUSY로 막아 동시 조작 충돌을 없앴습니다.", "code": {"file": "apps/server/src/games/vertical-ward/rules.ts", "lang": "TS", "src": "requireCondition(!occupant, 409, 'FLOOR_BUSY', `${room.members.find(member => member.id === occupant?.userId)?.nickname ?? '다른 플레이어'} 님이 이 층을 사용 중입니다.`);\n…\nward.locks.push({ targetId: object.id, userId: user.id, nickname: user.nickname, expiresAt: Date.now() + 60_000 });"}}, {"title": "터널 주소를 담는 QR 초대", "area": "플랫폼 · QrInvite.tsx", "summary": "시연장에서 휴대폰이 바로 들어올 수 있게, 서버가 알려 주는 Cloudflare 임시 터널의 공개 주소로 초대 링크를 만들어 QR로 띄웠습니다."}, {"title": "같은 요청은 한 번만 — 행동 중복 처리 (팀원 구현)", "area": "플랫폼 · game.ts", "summary": "actionId와 (사용자 + 행동 내용) 지문을 저장해, 같은 요청이 다시 오면 같은 결과를 돌려주고 같은 번호로 다른 내용이 오면 409로 거절합니다. 재시도가 중복 과금으로 이어지지 않는 바탕입니다.", "code": {"file": "apps/server/src/game.ts", "lang": "TS", "src": "const fingerprint = createHash('sha256').update(user.id).update(JSON.stringify(action)).digest('hex');\nconst previous = session.actions.get(action.actionId);\n…\nrequireCondition(previous === fingerprint, 409, 'ACTION_REUSED', '이미 사용한 요청 번호입니다. 새로 시도해 주세요.');"}}]},
-      {"h": "웹 체험판 · 서버를 브라우저로 이식", "kind": "table", "wrap": true, "media": 0, "note": "해커톤 서버는 Croche 키가 없으면 각 작품이 대체 경로로 진행하도록 만들어 두었습니다. 이 구조를 살려 GitHub Pages처럼 서버가 없는 곳에서도 돌아가게 옮겼습니다. 작품 규칙 · 계정 · 방 · 행동 처리는 apps/server의 실제 코드를 그대로 번들에 넣고, Node 전용 모듈만 브라우저용으로 바꿨습니다 — node:fs는 localStorage 위의 가상 파일 시스템, node:crypto는 SHA-256 직접 구현, Socket.IO는 같은 이벤트(subscribe · room:update)를 주고받는 메모리 소켓, Express 라우트는 같은 경로 표로. 클라이언트 코드는 api()와 라우터(HashRouter) 두 곳만 고쳤습니다. AI가 꼭 필요한 작품은 “준비 중”으로 잠그고 스튜디오 진입점을 숨겼습니다.", "cols": ["작품", "AI 없을 때", "체험판"], "rows": [["수직의 바벨", "“시연 조율” — 고정 퍼즐 값 + 숨김 위치만 무작위, 미리 쓴 대본과 오프라인 연출", "플레이"], ["사설 도박장", "기본 퍼즐 세트와 고정 힌트, AI 동료 대화는 꺼짐", "플레이"], ["악마의 사제", "기본 세트와 고정 문구", "플레이"], ["마지막 출제자의 유언", "검증된 보관 시험으로 대체", "플레이"], ["거울 속의 석 달", "정해진 선택지는 대체 대사로 진행 (직접 입력 대화는 불가)", "일부"], ["마지막 사진관 · 마피아 · 오답 박물관", "사건 생성 · NPC 7인 · 문제 출제가 필수", "잠금"], ["스튜디오", "설정집 생성이 필수", "숨김"]], "foot": "맨 위 ‘웹에서 바로 플레이’ 탭에서 닉네임으로 시작해 작품을 사고(체험 와트 1,000) 혼자 플레이로 들어가면 됩니다. 멀티플레이까지 해 보려면 ‘Windows 로컬판’을 받아 일반 창과 시크릿 창으로 각각 접속해 초대 코드로 모이면 됩니다."}
+      { h: '어떤 게임인가', kind: 'flow', media: 1, lead: '작품을 고르면, Croche가 그 판의 사건을 새로 쓴다',
+        items: [
+          ['매 회차 새로운 사건', 'Croche가 만들고 검토 에이전트가 승인한 퍼즐 값 · 단서 위치 · 사건 조건'],
+          ['독립된 기억의 NPC', '인물마다 별도 에이전트 · 저장소 — 자기 비밀 · 말투 · 기억만으로 대화'],
+          ['빈자리는 AI와 함께', '솔로부터 AI 포함 8인까지 — 사람이 비운 자리를 AI가 연기'],
+          ['PC와 휴대폰이 한 방에', '설치 없는 웹 · 초대 코드와 QR · Socket.IO 실시간 동기화']
+        ],
+        list: [
+          '작품 8종(콜라보 2 · 오리지널 6) · 장르 4(방탈출 · 대화형 · 퍼즐 · 사회 추리) + 이용자 창작 스튜디오',
+          '앱 내 재화 “와트”로 작품 · 프로필 구매, AI 비용은 판당 호출 상한으로 원가 고정'
+        ],
+        rows: [
+          [{ src: 'media/rezn/deck/01.webp', w: 1600, h: 900, cap: '본선 발표 표지 — 매 회차 AI 출제 · 빈자리는 AI NPC · 8개 작품' }]
+        ] },
+      { h: '결과 · 아이디어만으로 본선 20팀', kind: 'result', rows: [], foot: '서류평가는 대상 사용자와 문제 정의의 구체성, 핵심 경험과 가치, Croche 활용 계획과 3일 내 구현 가능성, 해커톤 이후 지속 가능성을 봤습니다. 지원서는 팀장인 제가 기획해 썼습니다.',
+        stats: [
+          ['235 → 20', '지원 팀 → 본선 진출'],
+          ['약 12 : 1', '서류 평가 경쟁률'],
+          ['0줄', '지원 당시 코드 — 신청서와 아이디어 설명 1장'],
+          ['48시간', '본선 개발 — 10.14 SDK 배포 → 10.16 제출']
+        ] },
+      { h: '팀과 내 역할 · 3인 팀', kind: 'role', p: '제 포트폴리오라서 아래는 제가 맡은 부분을 중심으로 정리했습니다.',
+        items: [
+          { who: 'ME', me: true, what: '팀장 · 지원서 기획 · 작품 개발 · 플랫폼 기능', note: '본선을 뚫은 지원서를 기획했고, 개발에서는 수직의 바벨 전체(서버 규칙 1,062줄 · Croche 연동 · 대본 · three.js 장면 · 명세), 사설 도박장 AI 동료와 퍼즐 보정, 스튜디오 서버 654줄과 웹 화면, 휴대폰 QR 초대, 모바일 UI를 맡았습니다.' },
+          { who: '팀원 A · B', what: '플랫폼 · 다른 작품', note: '플랫폼 뼈대(방 · 계정 · 행동 처리 · 추천)와 사진관 · 마피아 · 박물관 등 다른 작품을 두 팀원이 맡았습니다.' }
+        ] },
+      { h: '지원서 · 처음 낸 아이디어', kind: 'cards', cols: 3, lead: '“추리는 좋아하는데 같이 할 사람이 없거나, 정해진 선택지만 누르는 게임이 아쉬웠던 사람”을 위한 AI 추리 게임', foot: '지원서에서 약속한 “매번 달라지는 문제 · 답이 하나인지 검증 · 비밀을 지키는 NPC · 비용 상한”은 아래 기술 포인트에서 모두 실제 코드가 됐습니다.',
+        items: [
+          { t: '아이디어 / 서비스', l: ['심문형 대화 추리 · 대탈출식 방탈출 · 더 지니어스식 두뇌 게임', 'AI가 용의자를 연기하고, 질문과 증거에 따라 털어놓을 때를 판단', '기존 문제의 값 · 단서 · 규칙을 바꾼 응용 문제 생성 + 답이 하나인지 검증', '진행도 기반 힌트 · 추리에 맞춘 엔딩 → 다시 해도 매번 다른 판'] },
+          { t: '지속 가능성', l: ['추리 예능 · 방탈출 · 머더미스터리 팬', '광고 1회 수익(약 10원)으로 AI 대화 한 판(약 50턴) 비용 충당', '캐릭터 판매 · 추리 예능 콜라보 · 유저 창작 시리즈 로열티'] },
+          { t: 'Croche 활용 계획', l: ['용의자마다 세션 분리 — 그 인물이 아는 것만 전달', 'Memory로 긴장도 · 증언 · 증거 저장 → 이어하기', '심문은 싼 모델, 문제 응용은 좋은 모델', '제안: 비밀 유지 · 유일해 검증 Tool · 비용 리포트'] }
+        ] },
+      { h: '작품 라인업', kind: 'table', wrap: true, media: 1, cols: ['작품', '구분', '인원', 'AI가 하는 일'],
+        rows: [
+          ['수직의 바벨', '오리지널 · 협동 방탈출', '솔로 · 2~3인 협동', '퍼즐 값 · 숨김 위치 · 대본 · 세계 반응 (제 담당)'],
+          ['사설 도박장', '콜라보 · tvN 대탈출', '솔로 · 1~6인', '퍼즐 세트 생성 · 빈 역할을 AI 동료가 연기 (AI 동료 제 담당)'],
+          ['악마의 사제', '콜라보 · 미스터리 수사단', '솔로 · 2~6인', '잠입 방탈출 세트 · 개 · 영혼 반응'],
+          ['마지막 사진관', '오리지널 · 3D 방탈출', '솔로 · 2~3인 협동', '21개 장치 조건 생성 → 검토 에이전트 승인'],
+          ['마피아', '오리지널 · 사회 추리', '사람 1~3 + NPC = 8인', 'NPC 7인 — 매번 다른 성향으로 거래 · 변론'],
+          ['마지막 출제자의 유언', '오리지널 · 논리 퍼즐', '솔로 · 2~3인 경쟁', '시험 5개 생성 · 유일해 검증'],
+          ['거울 속의 석 달', '오리지널 · 대화형 스토리', '솔로 · 21개 기억', '감독 AI — 답변으로 성향 판정 · 사건 분기'],
+          ['오답 박물관', '오리지널 · 퍼즐', '솔로 · 관람마다 6문제', '새 문제 출제 · 독립 풀이 검증 후 최대 3회 재생성']
+        ] },
+      { h: '수직의 바벨 · 3인 협동 방탈출', lead: '과거 · 현재 · 미래, 세 격리실을 도르래로 잇는다', p: '1~3인이 각자 다른 층의 격리실에 갇힌 채 시작합니다. 고정 위치에서 시야를 돌려 탐색하고, 도르래로 층 사이에 물건을 보내며, 공유 수첩과 전성관 신호로만 소통합니다. 5장 구성에 엔딩은 두 가지(억제제 · 혈청)입니다. 매 판 Croche가 퍼즐 값(압력 · 해 · 달 · 별 순서 · 각도)과 숨김 위치, 대본을 정하고, 플레이 중에는 서버가 고른 후보 안에서 세계의 반응을 연출합니다. 사람이 없는 층은 혼자서도 오갈 수 있게, 같은 층을 두 사람이 동시에 만지면 서버가 막도록 설계했습니다.',
+        rows: [
+          [{ src: 'media/rezn/panorama.webp', w: 1600, h: 639, cap: '수직의 바벨 · 격리실 파노라마' }],
+          [{ src: 'media/rezn/room.webp', w: 563, h: 1000, cap: '격리실 구성' }, { src: 'media/rezn/props.webp', w: 1000, h: 1000, cap: '장치 · 소품' }, { src: 'media/rezn/casino.webp', w: 702, h: 1000, cap: '사설 도박장 표지' }]
+        ] },
+      { h: 'Croche 연동 구조', kind: 'flow', lead: 'AI는 출제와 연기만, 정답과 판정은 서버가', p: '작품은 defineGame()으로 create · action · view · tick을 구현해 카탈로그에 꽂히고, 공통 실행기(GameService)가 방 · 권한 · 중복 요청 · 저장 · 방송을 맡습니다. 작품마다 ai.ts 어댑터 하나가 Croche를 감싸며, 모든 호출이 같은 네 단계를 거칩니다.',
+        items: [
+          ['연결', 'Croche.open — 사용자 ID를 SHA-256으로 해시한 저장소, 작업 종류별 에이전트, 방에서 고른 모델'],
+          ['요청', 'agent.request + responseFormat json_schema(strict) — 필드 · 길이 · 허용 ID를 스키마로 고정'],
+          ['검증', 'Zod로 다시 파싱 → 작품 규칙 검사(유일해 · 비밀값 누출 · enum 범위)'],
+          ['대체', '실패는 안전한 오류 코드로만 — 재생성하거나 미리 쓴 대본 · 기본 세트로 진행']
+        ],
+        list: [
+          'Croche 어댑터 10개 · 이름 붙은 에이전트 약 41개 · json_schema 응답 형식 21곳',
+          '방마다 모델 선택(14종 + 호환 4종) — 서버가 검증한 방 정보에서만 모델을 읽음',
+          '오래 걸리는 생성은 행동(20초 제한)과 분리된 비동기 작업으로 — 결과는 다음 행동에서 수집',
+          '서버 테스트 36파일 · 약 366건 — 가짜 AI를 주입해 키 없이도 전부 실행'
+        ] },
+      { h: '기술 포인트', kind: 'tech', note: '1~3은 제가 직접 설계 · 구현한 핵심이고, 이후는 그 밖의 구현입니다. 코드는 저장소의 실제 줄입니다.',
+        items: [
+          { featured: true, title: '정답은 서버가, 연출은 Croche가 — 필드별 검증과 대체', area: '수직의 바벨 · script.ts · index.ts', lanes: [{ name: 'CROCHE', items: [['퍼즐 값 제안', '압력 · 순서 · 각도'], ['대본 작성', '발견 · 단서 · 엔딩 문장']] }, { name: 'SERVER', items: [['필드마다 검사', '길이 · 필수 값 · 숨김 위치'], ['누출 검사', '공개 문장에 정답이 있나'], ['실패 필드만 대체', 'replaced 목록 기록']] }], link: 'JSON Schema strict', problem: 'AI가 쓴 대본이 퍼즐 정답과 어긋나거나 정답을 그대로 말해 버리면, 매 판 새로운 방탈출이 곧바로 깰 수 없는 방이 됩니다. 그렇다고 AI 출력 전체를 버리면 “매번 다른 판”이라는 핵심 가치가 사라집니다.', steps: ['Croche에게는 값과 문장만 제안하게 하고, 정답 값은 서버가 들고 있는다', '대본 필드마다 길이 · 정답 숫자 포함 · 다른 값 미포함 · 숨김 위치 키워드를 검사하는 pick()', '공개 문장은 leaksSecret()로 압력 · 각도 숫자나 문양 2개 이상 노출을 차단', '통과 못 한 필드만 미리 쓴 문장으로 바꾸고 replaced에 기록 — 나머지 AI 문장은 살린다', '키가 없거나 실패하면 “시연 조율” 모드로 전환하고 화면 · 로그에 출처를 그대로 표시'], result: 'AI 응답이 어떻게 오든 방은 항상 풀 수 있고, 좋은 문장은 최대한 살립니다. AI가 아예 없을 때도 같은 경로로 끝까지 진행돼 그대로 로컬 체험판이 됐습니다.', codes: [{ file: 'apps/server/src/games/vertical-ward/script.ts', lang: 'TS', src: 'const pick = (name: string, value: unknown, ok: (text: string) => boolean, fallback: string, max = 160) => {\n  if (fits(value, max) && ok(value.trim())) return value.trim();\n  replaced.push(name); return fallback;\n};\n…\npressure: pick(\'found.pressure\', raw?.found?.pressure, text => new RegExp(`(?<![0-9])${values.pressure}(?![0-9])`).test(text) && !new RegExp(`(?<![0-9])${values.angle}(?![0-9])`).test(text), authored.found.pressure),' }, { file: 'apps/server/src/games/vertical-ward/script.ts', lang: 'TS', src: 'export function leaksSecret(text: string, values: Pick<WardValues, \'pressure\' | \'sequence\' | \'angle\'>) {\n  const number = (value: number) => new RegExp(`(?<![0-9])${value}(?![0-9])`).test(text);\n  const symbols = [\'태양\', \'달\', \'별\'].filter(name => new RegExp(`${name}(?![가-힣])|${name}[ ,·→-]`).test(text)).length;\n  return number(values.pressure) || number(values.angle) || symbols >= 2;\n}' }] },
+          { featured: true, title: '서버가 만든 후보 안에서만 — 동적 enum 스키마와 늦은 응답 폐기', area: '수직의 바벨 · ai.ts · index.ts', problem: '플레이 중 “세계의 반응”을 AI에게 자유롭게 쓰게 하면 아직 열리지 않은 장치를 열었다고 하거나 다음 장 내용을 말해 버립니다. 게다가 생성은 최대 45초가 걸리는데 행동 요청은 20초면 끊기고, 그 사이 플레이어는 계속 움직입니다.', steps: ['서버가 지금 상태에서 가능한 반응 후보(beat)를 먼저 계산', '요청마다 후보 ID로 JSON Schema enum을 만들어 스키마 단계에서 선택지를 묶음', '응답을 Zod로 다시 파싱하고 후보 목록에 있는지 한 번 더 확인', '생성은 참가자 수명 신호에 묶인 비동기 작업으로 분리 — 작업은 상태를 직접 바꾸지 않음', '결과를 수집할 때 장(chapter)이나 리비전이 바뀌었으면 버림'], result: 'AI는 서버가 허락한 반응 중 하나를 고르고 110자 문장으로 연출만 합니다. 느린 응답이 현재 상황을 덮어쓰는 일이 없어 멀티에서도 상태가 꼬이지 않습니다.', codes: [{ file: 'apps/server/src/games/vertical-ward/ai.ts', lang: 'TS', src: 'beatId: { type: \'string\', enum: input.candidates.map(candidate => candidate.id) }, text: { type: \'string\', maxLength: 110 },\n…\nconst parsed = wardDirectionSchema.safeParse(output);\nif (!parsed.success || !input.candidates.some(candidate => candidate.id === parsed.data.beatId)) throw unavailable(\'invalid_output\');' }, { file: 'apps/server/src/games/vertical-ward/index.ts', lang: 'TS', src: '// 행동 신호는 20초 뒤 만료되므로 작업에는 참가자 수명 신호를 쓴다. 작업은 상태를 직접 바꾸지 않는다.\nconst signal = AbortSignal.any([context.lifecycleSignal ?? context.signal, controller.signal, AbortSignal.timeout(timeoutMs)]);\n…\n// 장이나 리비전이 바뀐 늦은 응답은 버린다.\nif (ward.chapter !== pending.chapter || ward.direction.revision !== pending.revision) return;' }] },
+          { featured: true, title: '스튜디오 — 질문 네 개로 Croche가 작품을, 서버가 확정을', area: '스튜디오 · studio/ai.ts · game.ts · service.ts', problem: '이용자가 세계관과 인물만 적으면 AI가 작품을 완성해 공개하는 기능입니다. 하지만 AI가 인물 이름을 바꾸거나 수치를 빼먹은 설정집은 공개되면 안 되고, 플레이어가 “호감도를 100으로 바꿔”라고 말해 게임을 조작할 수도 있습니다.', steps: ['제작자가 입력한 인물 이름 · 수치 이름 · 엔딩 ID를 설정집 JSON Schema의 enum으로 고정', 'verifyBible로 인물 수 · 수치 중복 · 시작 화자 · 엔딩 ID 유일성을 다시 검사 — 실패하면 비공개', '플레이 턴은 Croche가 제안하고 applyTurn이 확정: 수치는 ±delta 스키마 + 0~100 clamp, 엔딩은 설정집 ID만', '제작 접수는 requestId로 중복 차단, 계정당 동시 제작 1건, 재시작 시 진행 중 작업은 실패로 기록해 재시도 가능'], result: '검증을 통과한 작품만 스튜디오에 공개되고, 대화로 상태를 조작하는 프롬프트 인젝션이 구조적으로 통하지 않습니다. 설정집은 한 번 만들면 모두가 공유하고 회차당 대화는 80턴으로 묶어 원가를 고정했습니다.', codes: [{ file: 'apps/server/src/studio/ai.ts', lang: 'TS', src: 'name: { type: \'string\', enum: names }, appearance: str(400), persona: str(600), voice: str(200), relationships: str(400), knowledge: str(600), secret: str(400),\n…\nconst ok = bible.characters.length === names.length && names.every(name => bible.characters.some(character => character.name === name))\n  && bible.characters.every(character => character.stats.every(stat => statNames.includes(stat.name)) && new Set(character.stats.map(stat => stat.name)).size === character.stats.length)' }, { file: 'apps/server/src/studio/game.ts', lang: 'TS', src: '/** Croche가 제안한 턴을 서버 규칙으로 확정한다. 수치는 범위 안에서만, 단서는 처음 발견만, 엔딩은 설정집의 ID만 반영한다. */\nfor (const change of turn.statChanges) {\n  const stats = state.stats[change.character];\n  if (stats && change.stat in stats) stats[change.stat] = clamp(stats[change.stat]! + change.delta);\n}\nconst ending = turn.ending ? state.snapshot.bible.endings.find(item => item.id === turn.ending) : undefined;' }] },
+          { title: '먼저 말을 거는 AI 동료와 비용 상한', area: '사설 도박장 · private-casino/index.ts', summary: 'companion 에이전트가 지금 말할지 · 누구에게 · 무엇을 살필지 스스로 정합니다. 서버는 대화 플레이당 80회 · 1초 간격, 먼저 말 걸기 40초 간격 · 최대 40회를 강제하고, 응답한 자리가 사람이 맡지 않은 자리인지, 정답 코드나 열쇠 위치를 흘리지 않는지(leaky) 확인한 뒤에만 내보냅니다.', code: { file: 'apps/server/src/games/private-casino/index.ts', lang: 'TS', src: 'rule(status.calls < 80 && Date.now() - status.lastAt >= 1000, \'잠시 후 다시 말을 걸어 주세요. 한 플레이에서 동료와 80번까지 대화할 수 있어요.\');\n…\nif (crew.job || now - crew.lastAt < 40_000 || crew.calls >= 40) return;\n…\nif (!meta.slots!.includes(reply.slot) || !aiSlots(state, context.members).includes(reply.slot) || leaky(reply.text, state)) return;' } },
+          { title: '생성 퍼즐의 부분 보정', area: '사설 도박장 · puzzle.ts', summary: '엄격 검증 → 실패하면 규칙에 어긋난 항목만 고치고 나머지 생성 값은 살림 → 그래도 안 되면 기본 세트. 플레이어가 이미 단서를 봤다면 늦게 온 세트는 쓰지 않고, 최근 5개 세트를 avoid로 넘겨 매번 다른 조합이 나오게 했습니다.', code: { file: 'apps/server/src/games/private-casino/index.ts', lang: 'TS', src: 'try { state.puzzle = validatePuzzle(job!.output); state.setup = \'generated\'; state.setupNote = null; rememberSet(state.puzzle); }\ncatch {\n  try {\n    const { set, repaired } = repairPuzzle(job!.output);' } },
+          { title: '요청별 인스턴스 격리와 SDK 이슈 리포트', area: '수직의 바벨 · 스튜디오 · ai.ts', summary: '요청마다 새 에이전트 인스턴스를 열고 닫아 비공개 정답이 다음 요청의 대화 이력으로 넘어가지 않게 했고, 연결은 최대 24개를 유지하며 오래 쉰 것부터 닫습니다. 실제 호출로 SDK 0.5의 문제 두 가지(languages 설정 거절 · 이미지 첨부 시 모델이 바뀜)를 찾아 코드와 docs/croche.md에 기록했습니다.', code: { file: 'apps/server/src/games/vertical-ward/ai.ts', lang: 'TS', src: '// SDK 0.5.3은 기본 언어(ko)가 base 설정이라\n// 코드 오버라이드에 languages를 넣으면 invalid_configuration으로 거절한다.\nconst agent = await project.agent(kind, { instance, config: { model: context.aiModel } });\nconst result = await agent.request({ id: randomUUID(), text: (input.text) + koreanNameInstructions, context: JSON.parse(serialized) as JsonValue },\n  { signal: context.signal, responseFormat: format });' } },
+          { title: '멀티 사물 점유 잠금', area: '수직의 바벨 · rules.ts', summary: '사물을 잡으면 서버가 60초 점유를 걸고, 다른 플레이어가 같은 층을 쓰고 있으면 409 FLOOR_BUSY로 막아 동시 조작 충돌을 없앴습니다.', code: { file: 'apps/server/src/games/vertical-ward/rules.ts', lang: 'TS', src: 'requireCondition(!occupant, 409, \'FLOOR_BUSY\', `${room.members.find(member => member.id === occupant?.userId)?.nickname ?? \'다른 플레이어\'} 님이 이 층을 사용 중입니다.`);\n…\nward.locks.push({ targetId: object.id, userId: user.id, nickname: user.nickname, expiresAt: Date.now() + 60_000 });' } },
+          { title: '터널 주소를 담는 QR 초대', area: '플랫폼 · QrInvite.tsx', summary: '시연장에서 휴대폰이 바로 들어올 수 있게, 서버가 알려 주는 Cloudflare 임시 터널의 공개 주소로 초대 링크를 만들어 QR로 띄웠습니다.' },
+          { title: '같은 요청은 한 번만 — 행동 중복 처리 (팀원 구현)', area: '플랫폼 · game.ts', summary: 'actionId와 (사용자 + 행동 내용) 지문을 저장해, 같은 요청이 다시 오면 같은 결과를 돌려주고 같은 번호로 다른 내용이 오면 409로 거절합니다. 재시도가 중복 과금으로 이어지지 않는 바탕입니다.', code: { file: 'apps/server/src/game.ts', lang: 'TS', src: 'const fingerprint = createHash(\'sha256\').update(user.id).update(JSON.stringify(action)).digest(\'hex\');\nconst previous = session.actions.get(action.actionId);\n…\nrequireCondition(previous === fingerprint, 409, \'ACTION_REUSED\', \'이미 사용한 요청 번호입니다. 새로 시도해 주세요.\');' } }
+        ] },
+      { h: '웹 체험판 · 서버를 브라우저로 이식', kind: 'table', wrap: true, media: 0, note: '해커톤 서버는 Croche 키가 없으면 각 작품이 대체 경로로 진행하도록 만들어 두었습니다. 이 구조를 살려 GitHub Pages처럼 서버가 없는 곳에서도 돌아가게 옮겼습니다. 작품 규칙 · 계정 · 방 · 행동 처리는 apps/server의 실제 코드를 그대로 번들에 넣고, Node 전용 모듈만 브라우저용으로 바꿨습니다 — node:fs는 localStorage 위의 가상 파일 시스템, node:crypto는 SHA-256 직접 구현, Socket.IO는 같은 이벤트(subscribe · room:update)를 주고받는 메모리 소켓, Express 라우트는 같은 경로 표로. 클라이언트 코드는 api()와 라우터(HashRouter) 두 곳만 고쳤습니다. AI가 꼭 필요한 작품은 “준비 중”으로 잠그고 스튜디오 진입점을 숨겼습니다.', cols: ['작품', 'AI 없을 때', '체험판'], foot: '맨 위 ‘웹에서 바로 플레이’ 탭에서 닉네임으로 시작해 작품을 사고(체험 와트 1,000) 혼자 플레이로 들어가면 됩니다.',
+        rows: [
+          ['수직의 바벨', '“시연 조율” — 고정 퍼즐 값 + 숨김 위치만 무작위, 미리 쓴 대본과 오프라인 연출', '플레이'],
+          ['사설 도박장', '기본 퍼즐 세트와 고정 힌트, AI 동료 대화는 꺼짐', '플레이'],
+          ['악마의 사제', '기본 세트와 고정 문구', '플레이'],
+          ['마지막 출제자의 유언', '검증된 보관 시험으로 대체', '플레이'],
+          ['거울 속의 석 달', '정해진 선택지는 대체 대사로 진행 (직접 입력 대화는 불가)', '일부'],
+          ['마지막 사진관 · 마피아 · 오답 박물관', '사건 생성 · NPC 7인 · 문제 출제가 필수', '잠금'],
+          ['스튜디오', '설정집 생성이 필수', '숨김']
+        ] },
+      { h: 'AI 활용 내역', kind: 'ai', now: 2, p: '이 프로젝트에서 AI는 두 자리에 있었습니다. 게임 안에서는 Croche가 출제와 연기를 맡고, 만드는 쪽에서는 Claude Code와 함께 서버 · 클라이언트를 개발했습니다.',
+        steps: [
+          ['24–25', '바이브 코딩', 'Gemini 웹 · THE BARRACKS'],
+          ['26-1', 'CLI로 개발', 'Gemini CLI · 카타나 제로'],
+          ['26-2', 'MCP 연동 · 하네스 엔지니어링', '해커톤 · CHIME → Croche SDK + Claude Code · 이 프로젝트']
+        ],
+        story: [
+          '게임 안: Croche 어댑터 10개 · 이름 붙은 에이전트 약 41개가 퍼즐 출제 · NPC 연기 · 검토를 맡고, 정답과 판정은 서버가 쥡니다.',
+          '제작: 가짜 AI를 주입한 서버 테스트 약 366건으로 키 없이도 전부 돌려 보며 개발했고, 이 대체 경로가 그대로 AI 없는 웹 체험판이 됐습니다.'
+        ] },
+      { h: '작업 기록', kind: 'timeline',
+        items: [
+          ['지원', '아이디어 지원서 — 신청서와 아이디어 설명 1장, 코드 0줄'],
+          ['서류', '235팀 중 본선 20팀 선정'],
+          ['10.14', 'Croche SDK 배포 · 본선 개발 시작'],
+          ['10.16', '플랫폼 제출 — 작품 8종 · 스튜디오'],
+          ['10.17', '본선 발표 (14쪽)'],
+          ['해커톤 이후', '서버 코드를 브라우저로 옮긴 웹 체험판']
+        ] }
     ]
-  },
-  {
+  },  {
     id: 'chime', cat: ['ai', 'system', 'proto'], type: 'mp4', len: '트레일러 · 풀영상', badge: 'UE5', real: true, cover: 'media/chime/cover.webp',
     title: 'CHIME | AI 파이프라인으로 한 달 만에 만든 AAA 지향 언리얼 스텔스 해킹 데모',
     tool: 'UE5 · Claude Code · MCP · Meshy 7', meta2: '2인 팀 · PM · 개발 환경 · 게임 흐름 기획 · 2026.09–10',
@@ -3179,9 +3330,9 @@ const TIMELINE = [
   { id: 'subivors', when: '2026.07 – 09', t: 'SUBIVORS', d: '첫 5인 팀 · 첫 메인 기획, 실제 서울 지하철역을 답사해 무대로', chips: ['팀 기획', 'Figma · Notion'] },
   { id: 'seoil-hackathon', when: '2026.09', t: '뜻밖의난관 · 해커톤 대상', d: 'Claude와 Unity를 MCP로 가장 먼저 연결해 무박 2일 만에 멀티플레이 완성', chips: [{ t: '대상', hl: true }, 'Claude + Unity MCP'] },
   { id: 'chime', when: '2026.09 – 10', t: 'CHIME · AAA를 향한 한 달', d: '대상 부상 Claude 한 달로 AI 3종 파이프라인을 엮어 언리얼 MVP 완성', chips: ['MVP 완성', 'Unreal · Blender MCP · Meshy'] },
-  { id: 'rezn', when: '2026.10', t: 'Rezn · Croche AI 해커톤 본선', d: '아이디어 지원서만으로 235팀 중 20팀 본선 · 48시간 만에 AI 추리 게임 플랫폼으로 — 3인 협동 작품 “수직의 바벨”을 처음부터 끝까지', chips: ['웹 3D 멀티', 'React · three.js · Croche'] },
+  { id: 'rezn', when: '2026.10', t: 'Rezn · Croche AI 해커톤 본선', d: '아이디어 지원서만으로 235팀 중 20팀 본선 · 48시간 만에 3인 팀으로 AI 추리 게임 플랫폼 완성', chips: [{ t: '본선 20 / 235', hl: true }, '팀장 · 개발', 'React · three.js · Croche'] },
   { id: 'take-action', when: '2026.11', t: 'Take, Action! · 4일 게임잼', d: '4인 팀에서 SCENE 1~3 레벨 디자인과 사운드 — 정답 경로부터 짜고 데이터로 생성', chips: [{ t: '인기 12위 / 2,779', hl: true }, '레벨 디자인', 'Unreal · Python · PCG'] },
-  { id: 'onyourmark', when: '2026.11', t: 'ON YOUR MARK · Unity AI 게임잼', d: '3분 피치로 팀을 모은 HUD 교환 2인 협동 액션 — 기획 리드 · 브랜치 통합, 잼 이후 Unity Play 웹 출시', chips: ['기획 리드', 'Unity 6 · HDRP · Netcode', 'WebGL · Relay'] },
+  { id: 'onyourmark', when: '2026.11', t: 'ON YOUR MARK · Unity AI 게임잼', d: '3분 피치로 팀을 모은 HUD 교환 2인 협동 액션 — 기획 리드 · 브랜치 통합, 잼 이후 웹 출시', chips: ['기획 리드', 'Unity 6 · Netcode'] },
   { id: 'cube', when: '2026.10 – 12', t: 'CUBE (가제) · 메커니즘 설계 데모', d: '큐브 한 면을 돌리면 방과 중력이 함께 도는 FPS — 회전 행렬 하나로 세계 전체를 움직인다', chips: ['메커니즘 설계', 'C++ · OpenGL'] },
   { id: 'popup', when: '2026.11 – 12', t: 'PoP_uP · 1인 2D 액션', d: '바탕화면에 갇힌 커서가 창을 발판 삼고 버튼을 뜯어 싸우는 OS 메타 플랫포머', chips: ['1인 개발', 'Python · pico2d'] },
 ];
