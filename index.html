@@ -1789,6 +1789,23 @@ const PROJECTS = [
           ['E', '패링 1.5초 — 레이저를 조준선 방향으로 120 반사, 성공 시 대시 +1', '모드 전환 AR ↔ RAIL (선딜 1.8초 → 각성 시 0.4초)'],
           ['Q (15킬)', '나노 강화 8초 — 공격 +50% · 공속 +40% · 이속 +20%', '스마트 락온 5초 — 40° 자동 조준']
         ] },
+      { h: '게임 안의 AI · 중재자 Jev에 닿기까지', kind: 'flow', lead: 'AI 중재자는 똑똑한 것보다 빨라야 했다',
+        p: '피치의 세 번째 축인 “AI 삼각 연대”는 두 사람의 전투 신호를 AI가 읽고 무전으로 끼어드는 중재자였습니다. 처음에는 잼에서 지원한 OpenAI API를 붙이려 했지만, 전투 중에 실시간으로 끼어들기에는 요청과 응답이 오가는 I/O 지연이 병목이 됐습니다. 대답이 도착할 때쯤이면 이미 상황이 지나가 있었습니다.',
+        items: [
+          ['OpenAI API', '잼에서 지원한 API로 시작 — 매번 문장을 새로 쓰게 하면 응답을 기다리는 사이 전투 상황이 바뀜'],
+          ['더 빠른 모델', '응답 속도를 기준으로 쓸 수 있는 모델을 다시 비교'],
+          ['로컬 모델 검토', '네트워크 왕복 자체를 없애는 로컬 실행도 검토'],
+          ['Jev', 'OpenRouter System One의 Jev로 결정 — 게임이 지금 상황에 맞는 대사 후보를 추리고, Jev는 미리 녹음한 대사 ID 하나만 고름']
+        ],
+        list: ['문장을 만들지 않고 “고르기”만 시켜 응답을 짧게 — 음성과 자막은 미리 만들어 둔 것을 바로 재생', '키가 없거나 응답이 없으면 로컬 순위 규칙이 대신 골라 무전이 끊기지 않음', '플레이어 무전(V)은 ElevenLabs Scribe v2 음성 인식으로 받아 같은 중재 흐름에 넣음'] },
+      { h: '음성 · 로컬 모델에서 ElevenLabs로', kind: 'flow',
+        p: '무전 대사와 보이스 더빙은 팀원이 처음에 로컬 보이스 모델로 뽑아 봤습니다. 이후 잼에서 Unity AI 토큰을 지원받아 ElevenLabs를 연결했고, 무전 · 더빙 음성을 이걸로 다시 만들었습니다.',
+        items: [
+          ['로컬 보이스 모델', '팀원이 로컬 모델로 먼저 대사 음성을 생성'],
+          ['Unity AI 토큰 → ElevenLabs', '잼에서 지원받은 Unity AI 토큰으로 ElevenLabs 연결'],
+          ['대사 팩 300개', '근거리 검 · 원거리 레일건 · 중재 AI 각 100개, 총 15분 5초 — 감정 태그를 붙여 생성하고 역할별 헬멧 무전 음색으로 후처리'],
+          ['받아쓰기 검수', 'Scribe v2로 300개를 다시 받아써 영어 자막과 대조, 틀리게 들리는 문장은 다시 합성']
+        ] },
       { h: '기술 포인트', kind: 'tech',
         items: [
           { title: '다시 돌려도 같은 결과가 나오는 씬 통합 도구', area: '편집기 도구 · GaramArenaIntegration.cs', summary: '팀원이 만든 에셋 64종을 분류별로 배치하고 HUD · 조준점 · 자막을 붙이고 적 프리팹을 패치하는 과정을 메뉴 하나로 묶었습니다. 다시 실행하면 통합 루트를 지우고 새로 만들어, 브랜치가 바뀔 때마다 배치 모드로 다시 돌릴 수 있습니다.', code: { file: 'Assets/_Project/Editor/GaramArenaIntegration.cs', lang: 'C#', src: '/// 다시 실행하면 "Garam Integration" 루트를 지우고 새로 만든다.\n[MenuItem("Tools/On Your Mark/Apply Garam Elements To Arena")]\n...\nint placed = BuildShowcase(root.transform, arena, floorTop);\nBuildHud(root.transform); BuildReticle(root.transform); BuildSubtitles(root.transform);\nint targets = PatchTargets(); PatchPlayerCrosshair();' } },
