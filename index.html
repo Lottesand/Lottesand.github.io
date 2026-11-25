@@ -1727,7 +1727,7 @@ const PROJECTS = [
   },
   {
     id: 'onyourmark', cat: ['contest', 'system', 'ai'], type: 'mp4', len: '트레일러 · 웹 플레이', badge: 'UNITY', real: true, cover: 'media/oym/cover.webp', repo: 'https://github.com/Architecture-UnityAIGameJam2026/UnityAIGameJam2026', repoLabel: '팀 저장소',
-    award: { title: 'AI는 거들 뿐상', event: 'Unity AI Game Jam 2026', date: '2026.11', note: 'Best Human in the Loop — AI를 도구로 쓰되, 사람의 판단이 가장 빛난 팀' },
+    award: { title: 'AI는 거들 뿐상', event: 'Unity AI Game Jam 2026', date: '2026.11.19', note: 'Best Human in the Loop — AI를 도구로 쓰되, 사람의 기획과 판단이 가장 빛난 팀' },
     title: 'ON YOUR MARK | 서로의 HUD를 대신 봐 주는 1인칭 2인 협동 액션 — 기획 · 브랜치 통합',
     tool: 'Unity 6 · HDRP · Netcode · Claude Code',
     meta2: '4인 팀 · 기획 리드 · 수치 설계 · 브랜치 통합 · 2026.11 게임잼',
@@ -1757,8 +1757,10 @@ const PROJECTS = [
           [{ src: 'media/oym/tr_launch.webp', w: 1280, h: 720, cap: '출격 — KESTREL과 ORBIT FRAME' }, { src: 'media/oym/tposter.webp', w: 1280, h: 720, cap: '레일건 시점 · 교차 HUD와 무전 자막' }],
           [{ src: 'media/oym/tr_hud.webp', w: 1280, h: 720, cap: '대시 · 미니맵 · 무전 AI Jev' }, { src: 'media/oym/tr_boss.webp', w: 1280, h: 720, cap: '보스 CITADEL' }]
         ] },
-      { h: '결과 · AI는 거들 뿐상', lead: 'Best Human in the Loop — AI를 도구로 쓰되, 사람의 판단이 가장 빛난 팀',
-        p: 'Unity AI Game Jam 2026에서 “AI는 거들 뿐상”을 받았습니다. AI 중재자 · 음성 · 에셋 · 통합까지 AI를 곳곳에 썼지만, 협동을 “감각을 나누는 것”으로 읽은 컨셉과 하루 다섯 번 고친 기획 · 수치처럼 사람이 내린 판단이 중심에 있었다는 점이 상의 이름과 맞닿아 있습니다. 상장 사진은 받는 대로 올릴 예정입니다.' },
+      { h: '결과 · AI는 거들 뿐상', kind: 'result',
+        stats: [['AI는 거들 뿐상', 'Best Human in the Loop'], ['2팀', '이 상을 받은 팀'], ['24시간', '개발 시간 · 4인 팀']],
+        rows: [[{ src: 'media/oym/award.webp', cap: 'AI는 거들 뿐상 · 상패', w: 1200, h: 960 }, { src: 'media/oym/cert_done.webp', cap: '수료증', w: 1000, h: 1414 }]],
+        foot: '“AI를 도구로 쓰되, 사람의 기획과 판단이 가장 빛난 팀”에게 주는 상입니다. AI 중재자 · 음성 · 에셋 · 통합까지 AI를 곳곳에 썼지만, 협동을 “감각을 나누는 것”으로 읽은 컨셉과 하루 다섯 번 고친 기획 · 수치는 사람이 정했습니다.' },
       { h: '팀과 내 역할 · 4인 팀', kind: 'role', cols: 3, p: '제 포트폴리오라서 아래는 제가 맡은 부분을 중심으로 정리했습니다.',
         items: [
           { who: 'ME', me: true, what: '기획 리드 · 브랜치 통합', note: '3분 피치로 컨셉을 제안해 팀을 모으고, 기획안 → Unity 구현 스펙 → 패치 노트 → 파츠 명세로 이어지는 문서를 하루 동안 다섯 번 고쳐 구현과 맞췄습니다. 통합 작업으로는 팀원 브랜치 4개를 병합하고, HDRP 17.3을 유지한 채 Netcode 프로토타입을 main에 합쳤습니다(머티리얼 14종 URP → HDRP). UI · 3D 에셋 64종을 아레나에 넣는 편집기 도구, 락온 조준점, HUD 네트워크 연결을 만들었습니다.' },
